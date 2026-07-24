@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pavel Usatov — Backend &amp; Systems Engineer</title>
+<meta name="description" content="Pavel Usatov — backend &amp; distributed-systems engineer and 3rd-year Applied Mathematics &amp; Computer Science student at HSE University, Saint Petersburg. Go/Scala microservices, Kafka pipelines, and P2P tooling.">
+<link rel="canonical" href="http://144.124.226.50:8080/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pavel Usatov — Backend &amp; Systems Engineer">
+<meta property="og:description" content="Backend &amp; distributed-systems engineer and 3rd-year Applied Mathematics &amp; Computer Science student at HSE University, Saint Petersburg.">
+<meta property="og:url" content="http://144.124.226.50:8080/">
+<meta property="og:image" content="http://144.124.226.50:8080/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <nav aria-label="Primary">
+    <span class="nav-name">Pavel Usatov</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="hero" aria-labelledby="hero-heading">
+    <h1 id="hero-heading">Pavel Usatov</h1>
+    <p class="tagline">Backend &amp; distributed-systems engineer — building services, pipelines, and P2P tooling.</p>
+    <p class="hero-sub">3rd-year Applied Mathematics &amp; Computer Science student, HSE University, Saint Petersburg.</p>
+    <div class="hero-links">
+      <a class="button" href="https://github.com/UsatovPavel" target="_blank" rel="noopener">GitHub</a>
+      <a class="button button-secondary" href="#projects">See projects</a>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading">About</h2>
+    <p>
+      I'm a 3rd-year Applied Mathematics &amp; Computer Science student at HSE University,
+      Saint Petersburg, focused on backend services, distributed systems, and infrastructure
+      tooling. My work spans Go and Scala microservices talking over Kafka, a Java-based
+      research project on P2P container image distribution, Android app development, and
+      QA/load-testing pipelines. I like building things that are correctly tested end to end —
+      from unit tests to load tests to real cluster benchmarks — rather than just making them work once.
+    </p>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-heading">
+    <h2 id="skills-heading">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <ul>
+          <li>Go</li>
+          <li>Scala</li>
+          <li>Java / Kotlin</li>
+          <li>Python</li>
+          <li>C++</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Backend &amp; Infra</h3>
+        <ul>
+          <li>Gin, Tapir, cats-effect / fs2</li>
+          <li>Kafka (Sarama, fs2-kafka)</li>
+          <li>PostgreSQL, golang-migrate</li>
+          <li>Docker Compose, nginx, systemd</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Testing &amp; QA</h3>
+        <ul>
+          <li>JUnit 5, ScalaTest, MockK</li>
+          <li>Gatling (load), k6 (load/e2e)</li>
+          <li>Jazzer (fuzzing), jqwik (property-based)</li>
+          <li>golangci-lint, SpotBugs, PMD, Checkstyle</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Mobile &amp; Other</h3>
+        <ul>
+          <li>Android / Jetpack Compose</li>
+          <li>Unreal Engine 4 (C++)</li>
+          <li>gRPC</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <div class="projects-grid">
+
+      <article class="project-card">
+        <h3><a href="https://github.com/UsatovPavel/RIID" target="_blank" rel="noopener">RIID — Runtime-Independent Image Downloader</a></h3>
+        <p>
+          Research project at HSE Saint Petersburg: a Java utility that decouples P2P container
+          image distribution (via Dragonfly) from the container engine, so any OCI-compatible
+          runtime (Docker, Podman, Porto) can pull images without engine-specific integration.
+          Verified against 100+ real images (2&nbsp;KB–4.8&nbsp;GB) with SHA-256 integrity checks
+          and cluster benchmarks showing a 15–20% download-time improvement at 10 nodes.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <h3><a href="https://github.com/UsatovPavel/PRAssign" target="_blank" rel="noopener">PRAssign</a></h3>
+        <p>
+          Go + Gin microservice built for an Avito test task: manages users, teams, and pull-request
+          assignment workflows with token-based auth, admin/author authorization, and aggregated
+          statistics. Includes a Kafka-backed factorial pipeline that talks to the companion
+          AsyncFactorial service, nginx load-balancing across replicas, and Docker Compose setups
+          for integration, load (k6), and resilience testing.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <h3><a href="https://github.com/UsatovPavel/AsyncFactorial" target="_blank" rel="noopener">AsyncFactorial</a></h3>
+        <p>
+          Scala service (cats-effect 3, fs2, fs2-kafka) for concurrent factorial processing in
+          three modes: a Kafka consumer/producer paired with PRAssign, a Tapir-based HTTP API,
+          and a console mode that runs tasks concurrently on cats-effect fibers and writes results
+          asynchronously.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <h3><a href="https://github.com/UsatovPavel/server" target="_blank" rel="noopener">SmartCalendar / TimeTamer</a></h3>
+        <p>
+          "TimeTamer" is an Android productivity app (Jetpack Compose) with collaborative events,
+          streaks/achievements, and AI-assisted task suggestions, backed by this JWT-secured
+          Java/Kotlin server handling users, shared event invitations, and statistics.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <h3><a href="https://github.com/UsatovPavel/Voevoda" target="_blank" rel="noopener">Voevoda</a></h3>
+        <p>
+          A single-player top-down RTS built in Unreal Engine 4 (C++): command a general on a 2D
+          map, fight AI-controlled generals, and reinforce your army from cities, with
+          terrain/unit-type combat modifiers and a dynamic fog-of-war system with scouting units.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <h3><a href="https://github.com/UsatovPavel/QA_test_task" target="_blank" rel="noopener">QA Test Task</a></h3>
+        <p>
+          An automated-testing and performance-audit suite for a web application: JUnit 5 and
+          property-based (jqwik) tests, Jazzer fuzzing that surfaced real crash payloads, and
+          Gatling load scenarios (baseline, spike, heavy) with GC/socket diagnostics, reported via
+          Allure and JaCoCo coverage.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="education" aria-labelledby="education-heading">
+    <h2 id="education-heading">Education</h2>
+    <ul class="timeline">
+      <li>
+        <span class="timeline-date">2023 – present</span>
+        <span class="timeline-body">HSE University, Saint Petersburg — Applied Mathematics &amp; Computer Science, 3rd year</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
+    <p>Best way to reach me or see more of my work:</p>
+    <ul class="contact-list">
+      <li><a href="https://github.com/UsatovPavel" target="_blank" rel="noopener">github.com/UsatovPavel</a></li>
+      <li><a href="mailto:pvusatov@edu.hse.ru">pvusatov@edu.hse.ru</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> Pavel Usatov. Built as a plain static page.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
