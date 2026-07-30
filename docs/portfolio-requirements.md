@@ -1,7 +1,7 @@
 # Portfolio Site — Requirements
 
 **Jira:** AGENT-41 "Research current SE sites" (child of AGENT-40 "My portfolio site")
-**Based on:** deep research of 7 SE/hackathon-dev portfolio sites — full per-site field-by-field detail and raw JSON data kept in `docs/se-portfolio-research/` in the local repo (not pushed to GitHub in this pass; ask if you want it pushed too)
+**Based on:** deep research of 7 SE/hackathon-dev portfolio sites — full per-site field-by-field detail is in `docs/se-portfolio-research/results/*.json` (all 7 pushed); run `docs/se-portfolio-research/generate_report.py` to regenerate the human-readable `report.md` from them
 **Owner context:** Pavel Usatov, HSE SPb (Applied Math & CS, 2023–2027). Polyglot backend/infra engineer — Scala (T-Bank internship, Cats Effect), Java (RIID daemon), Go (PRAssign REST API), Kotlin (Android), plus ML/Python side projects. Hackathon participant (MTS True Tech, VK-adjacent scene) — same cohort as the sites researched below.
 
 ---
@@ -96,4 +96,4 @@ Ship a small, honest signal of recency (last-updated date, or a "currently build
 
 ---
 
-*Full per-site field-by-field research (structure, tech stack, differentiators, contact patterns, etc.) is in `se-portfolio-research/report.md`; raw structured data per site is in `se-portfolio-research/results/*.json` — both present in the local repo commit.*
+*Full per-site field-by-field research (structure, tech stack, differentiators, contact patterns, etc.) is in `se-portfolio-research/results/*.json`; run `se-portfolio-research/generate_report.py` to regenerate `report.md` from them.*
