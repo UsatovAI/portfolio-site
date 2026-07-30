@@ -1,0 +1,111 @@
+topic: "Current software-engineer portfolio sites (SE/hackathon devs)"
+
+field_categories:
+
+  - category: taxonomy
+    description: "Scoping fields — apply first, they determine how comparable an item is to the others"
+    fields:
+      - name: object_type
+        description: "portfolio | consulting-or-product site | template/OSS repo | aggregator/index"
+        detail_level: brief
+      - name: format_genre
+        description: "scroll-page | terminal-CLI | OS-simulation | 3D/game | document/CV | writing-led"
+        detail_level: brief
+      - name: intent_audience
+        description: "job-seeking | freelance client acquisition | personal brand/authority | gated qualification"
+        detail_level: brief
+      - name: seniority_stage
+        description: "student/junior | mid | senior/staff | founder — sets what 'good' means for this item"
+        detail_level: brief
+      - name: language_i18n
+        description: "Primary language; whether an EN/RU toggle exists"
+        detail_level: brief
+
+  - category: basic_info
+    fields:
+      - name: url
+        description: "Canonical URL used"
+        detail_level: brief
+      - name: owner_role
+        description: "Owner name and stated role/background"
+        detail_level: brief
+
+  - category: structure
+    fields:
+      - name: sections_present
+        description: "Which of: About, Projects, Experience, Skills, Resume/CV, Contact, Blog"
+        detail_level: moderate
+      - name: nav_pattern
+        description: "Single-page scroll vs multi-page; nav style"
+        detail_level: brief
+
+  - category: design
+    fields:
+      - name: visual_style
+        description: "Style + design_trend_alignment (bento grid, neo-brutalism, kinetic typography, glassmorphism, minimal, terminal, etc.)"
+        detail_level: moderate
+      - name: color_typography
+        description: "Color scheme, typography choices, dark mode support"
+        detail_level: brief
+      - name: motion
+        description: "Animations/motion, and whether prefers-reduced-motion is respected"
+        detail_level: brief
+      - name: responsiveness_mobile
+        description: "Responsiveness, and specifically how the chosen format_genre degrades (or not) on mobile"
+        detail_level: moderate
+
+  - category: tech_stack
+    fields:
+      - name: framework_hosting
+        description: "Framework/generator if inferable, hosting provider, custom domain/TLD signal"
+        detail_level: moderate
+      - name: performance_a11y
+        description: "Rough performance impression (payload/speed), accessibility signals (skip links, contrast, keyboard nav)"
+        detail_level: moderate
+      - name: analytics_instrumentation
+        description: "Presence of Plausible/Umami/Vercel Analytics etc."
+        detail_level: brief
+
+  - category: content_strategy
+    fields:
+      - name: project_presentation
+        description: "How projects are shown: cards/links/demos, live_demo_availability and host (Vercel/HF Spaces/etc.)"
+        detail_level: detailed
+      - name: resume_integration_mode
+        description: "inline HTML | PDF download | both | ATS-parseable"
+        detail_level: brief
+      - name: proof_verifiability
+        description: "Are claims (hackathon wins, metrics) linked to verifiable sources?"
+        detail_level: moderate
+      - name: quantified_impact
+        description: "Presence of concrete metrics (users, accuracy, latency, cost saved)"
+        detail_level: moderate
+      - name: content_freshness
+        description: "Signs of recency: last commit/post, 'currently working on' indicator"
+        detail_level: brief
+      - name: writing_tone
+        description: "Overall voice/tone of the copy"
+        detail_level: brief
+
+  - category: differentiators
+    fields:
+      - name: standout_features
+        description: "Unique features worth borrowing for this user's own site"
+        detail_level: detailed
+      - name: originality_vs_template
+        description: "Custom build vs identifiable fork/template lineage"
+        detail_level: brief
+      - name: source_available
+        description: "Is the site's own source code public (self-dogfooding signal)?"
+        detail_level: brief
+
+  - category: contact_cta
+    fields:
+      - name: contact_methods
+        description: "How to reach out; placement of social/GitHub/LinkedIn links"
+        detail_level: brief
+      - name: pii_exposure
+        description: "Any personal info exposed in the clear (phone, personal email) — privacy/norms note"
+        detail_level: brief
+
+uncertain: []

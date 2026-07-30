@@ -1,0 +1,59 @@
+topic: "Current software-engineer portfolio sites (SE/hackathon devs) — research for AGENT-41"
+jira: AGENT-41
+generated: 2026-07-29
+
+items:
+  - id: anpilovml
+    name: "anpilovml.ru"
+    url: "http://anpilovml.ru"
+    cohort: ru_seed
+    object_type: portfolio
+    note: "Dmitry Anpilov, Junior ML Engineer / Python dev, 1st place VK Tech hackathon. Note: HTTPS is refused, use HTTP."
+
+  - id: andreykaravaev
+    name: "andreykaravaev.ru"
+    url: "https://andreykaravaev.ru"
+    cohort: ru_seed
+    object_type: portfolio
+    note: "Fullstack dev, terminal aesthetic, freelance client-acquisition intent (10-min TZ/spec builder CTA)."
+
+  - id: scanovich
+    name: "scanovich.ai"
+    url: "https://scanovich.ai"
+    cohort: ru_seed
+    object_type: consulting_site
+    note: "NOT a portfolio in the usual sense — gated consulting/product site for a document-intelligence practice. Include per Jira ticket example, but analyze as a contrast/outlier (object_type field), not a like-for-like portfolio."
+
+  - id: brittanychiang
+    name: "brittanychiang.com"
+    url: "https://brittanychiang.com/"
+    cohort: global_benchmark
+    object_type: portfolio
+    note: "Most-imitated SE portfolio design. Next.js + Tailwind + Vercel, single-page resume-style, accessibility-first (skip-to-content link)."
+
+  - id: satnaing
+    name: "satnaing.dev"
+    url: "https://satnaing.dev"
+    cohort: global_benchmark
+    object_type: portfolio
+    note: "Closest structural analogue to the RU cohort but executed at a higher standard. Next.js + React + TS, blog, dark mode, projects w/ live demos + GitHub links."
+
+  - id: leerob
+    name: "leerob.com"
+    url: "https://leerob.com"
+    cohort: global_benchmark
+    object_type: portfolio
+    note: "Writing-led counter-model, senior-career endpoint (ex-Vercel). No project cards — navigation is essays + advising/investing CTAs."
+
+  - id: brunosimon
+    name: "bruno-simon.com"
+    url: "https://bruno-simon.com"
+    cohort: global_benchmark
+    object_type: portfolio
+    note: "Three.js drivable 3D world portfolio. Extreme ceiling of interactive/creative portfolios — useful as an ROI/effort contrast point, not a template to copy given time budget."
+
+execution:
+  batch_size: 4
+  items_per_agent: 2
+  output_dir: ./results
+  agent_time_budget_minutes: 60
