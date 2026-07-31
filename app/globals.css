@@ -1,0 +1,61 @@
+:root {
+  --color-bg: 255 255 255;
+  --color-surface: 241 245 249;
+  --color-text-primary: 15 23 42;
+  --color-text-secondary: 71 85 105;
+  --color-accent: 37 99 235;
+  --color-border: 203 213 225;
+  --color-terminal: 21 128 61;
+  --color-terminal-bright: 22 163 74;
+  --color-surface-hover: 255 255 255;
+}
+
+.dark {
+  --color-bg: 2 6 23;
+  --color-surface: 15 23 42;
+  --color-text-primary: 226 232 240;
+  --color-text-secondary: 148 163 184;
+  --color-accent: 96 165 250;
+  --color-border: 51 65 85;
+  --color-terminal: 74 222 128;
+  --color-terminal-bright: 74 222 128; /* dark mode has no separate bright variant, see design-system.md §2 */
+  --color-surface-hover: 30 41 59;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text-primary;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skip-link {
+  @apply fixed left-4 top-4 z-50 -translate-y-24 rounded-sm bg-surface px-4 py-2 font-mono text-body text-text-primary transition-transform focus-visible:translate-y-0;
+}
+
+.skip-link:focus-visible {
+  outline: 2px solid rgb(var(--color-terminal));
+  outline-offset: 2px;
+}
