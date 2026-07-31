@@ -12,7 +12,7 @@
 | Canvas vs. pages vs. "game scenario" structure | **Pages** (standard scrollable sections, server-rendered/static — not a canvas/WebGL scene, not an interactive game-style walkthrough) | A canvas/game structure is the bruno-simon-style ceiling: it costs disproportionate build time for a payoff that only fits a graphics/WebGL specialist proving graphics mastery (see requirements doc §6). Pavel's target audience is RU backend/infra hiring, not creative-coding roles — a fast, accessible, content-forward page structure sells the actual work better and fits the "may host on a 4RAM/2vCPU VPS" budget from AGENT-40 far more comfortably than a WebGL scene would. |
 | Language scope | **Russian only, no `/en` route or language switcher** | AGENT-44: "en is useless (i apply in russia to job)." This supersedes requirements doc §5's earlier bilingual RU/EN recommendation — see the correction applied to that doc in this same PR. |
 | Navigation style | **Persistent top nav bar, large and always visible**, not a hidden hamburger or scroll-only site | Modeled on the "good business positioning" example Pavel flagged (therobin.dev/services): a nav that reads like clear service/section categories rather than an about-me scroll with no wayfinding. |
-| Stack/project presentation style | **Grouped, labeled categories** (per requirements doc §2.4: Backend/JVM, Go, ML/Python, Infra) rendered with a **terminal/shell-style visual treatment** — monospace category headers, `$`-prefixed or directory-listing-style project entries | Modeled on the categorized formatting Pavel flagged at amidat.tech, adapted to his own categories, plus his own note that "my projects can be bash-descripted" — i.e. project entries get a terminal-flavored presentation (e.g. `~/projects/riid $ ...`) rather than generic cards, which also doubles as a signature visual motif tying together someone who works close to infra/CLI tooling. |
+| Stack/project presentation style | **Grouped, labeled categories** (per requirements doc §2, item 4: Backend/JVM, Go, ML/Python, Infra) rendered with a **terminal/shell-style visual treatment** — monospace category headers, `$`-prefixed or directory-listing-style project entries | Modeled on the categorized formatting Pavel flagged at amidat.tech, adapted to his own categories, plus his own note that "my projects can be bash-descripted" — i.e. project entries get a terminal-flavored presentation (e.g. `~/projects/riid $ ...`) rather than generic cards, which also doubles as a signature visual motif tying together someone who works close to infra/CLI tooling. |
 
 ## 2. Sitemap
 
@@ -66,7 +66,7 @@ Content lives in typed data files (`content/*.ts`), not a CMS or MDX — per req
 - **Styling:** Tailwind CSS.
 - **Hosting:** self-hosted static files on the VPS mentioned in AGENT-40 (4 RAM / 2 vCPU / 80 GB, upgradeable to 8 RAM / 4 vCPU) behind Nginx with HTTPS (Certbot) — the laptop and the VPS are both viable per AGENT-40, but the VPS is preferred so the site is reachable without Pavel's machine being on. GitHub Pages remains a fallback if VPS deployment is deprioritized.
 - **Analytics:** optional, single lightweight script (Plausible/Umami) — no over-instrumentation.
-- **Repository visibility:** private (AGENT-44 acceptance criterion) — see repo settings note below.
+- **Repository visibility:** private (AGENT-44 acceptance criterion) — done.
 
 ## 6. Deployment flow
 
@@ -77,5 +77,4 @@ Content lives in typed data files (`content/*.ts`), not a CMS or MDX — per req
 
 ## 7. Open follow-ups
 
-- Repository visibility: GitHub's MCP tools available in this session can create/branch/PR but expose no "update repository settings" call, so flipping `pavel-usatov-site` to private has to happen either via a manual toggle in GitHub repo Settings → Danger Zone, or via a `gh`/API call run with write scope outside this session. Flagged as a manual step until confirmed done.
 - Actual Next.js scaffold (this doc is architecture, not implementation) is the next piece of work once this is reviewed.
