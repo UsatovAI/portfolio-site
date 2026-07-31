@@ -1,6 +1,7 @@
 # Portfolio Site — Requirements
 
 **Jira:** AGENT-41 "Research current SE sites" (child of AGENT-40 "My portfolio site")
+**See also:** `docs/site-architecture.md` (AGENT-44) for the resolved sitemap, nav, repo layout, and hosting decisions built on top of this doc.
 **Based on:** deep research of 7 SE/hackathon-dev portfolio sites — full per-site field-by-field detail is in `docs/se-portfolio-research/results/*.json` (all 7 pushed); run `docs/se-portfolio-research/generate_report.py` to regenerate the human-readable `report.md` from them
 **Owner context:** Pavel Usatov, HSE SPb (Applied Math & CS, 2023–2027). Polyglot backend/infra engineer — Scala (T-Bank internship, Cats Effect), Java (RIID daemon), Go (PRAssign REST API), Kotlin (Android), plus ML/Python side projects. Hackathon participant (MTS True Tech, VK-adjacent scene) — same cohort as the sites researched below.
 
@@ -54,7 +55,7 @@ Provide **both** inline HTML content and a downloadable PDF (the existing LaTeX 
 
 ## 5. Contact & language
 
-- **Bilingual (RU/EN), not RU-only.** anpilovml.ru and andreykaravaev.ru are both RU-only, which caps their reach; satnaing.dev's content-language filter (rather than a duplicated `/en` site) is the cleanest pattern to borrow, and scanovich.ai shows the failure mode to avoid (`/ru/` served with `lang="en"` — get the `hreflang`/`lang` attributes right per locale).
+- **Russian only — no `/en` route or language switcher.** *(Updated per AGENT-44: "en is useless, I apply for jobs in Russia" — supersedes the bilingual recommendation this section originally made.)* anpilovml.ru and andreykaravaev.ru are both RU-only already, which fits the target market Pavel is actually applying in; just get the basics right that they didn't — correct `lang="ru"` and `hreflang` set site-wide (scanovich.ai's specific mistake was serving `/ru/` with `lang="en"` — don't repeat that even without a second locale).
 - **No personal phone number or other sensitive PII in cleartext.** anpilovml.ru publishes a personal mobile number and email as clear copy-paste text; prefer a contact form, an obfuscated mailto, or a link to LinkedIn/Telegram instead.
 - **Contact must work without JavaScript**, or degrade to a visible fallback — scanovich.ai's contact section renders `null` with JS disabled, silently killing its one conversion path. At minimum, a plain `mailto:` link should always be present in the HTML.
 - Set real Open Graph / Twitter Card metadata (title, description, image, url) — andreykaravaev.ru's link previews are broken (`<title>` = "About me", no `og:image`), which quietly costs shares/click-throughs.
