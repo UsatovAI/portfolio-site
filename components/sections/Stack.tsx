@@ -13,7 +13,7 @@ export function Stack() {
           выделен отдельно.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {stackCategories.map((category) => (
             <StackCard key={category.slug} category={category} />
           ))}
