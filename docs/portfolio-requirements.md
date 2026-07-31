@@ -30,9 +30,9 @@ Single-page scroll site (the format every site in this cohort converges on, exce
 3. **Projects** — two tiers, borrowed from bruno-simon's model:
    - **Tier 1 (flagship):** RIID, PRAssign+AsyncFactorial, TimeTamer — each with role, stack tags, live metric, and links to demo/repo.
    - **Tier 2 (coursework/experiments):** ZIO-Notification-Service, ANTLR parser, Voevoda, scanovich-webUI hackathon entry — lighter cards, still linked.
-4. **Skills/Tech Stack** — grouped by domain (Backend/JVM, Go, ML/Python, Infra) rather than a flat tag cloud.
-5. **Resume/CV** — see §4.
-6. **Contact** — see §5.
+4. **Skills/Tech Stack** — grouped by domain (Backend, ML/Python, Infra — *updated per AGENT-44 review: Go folds under Backend rather than its own category*) rather than a flat tag cloud.
+5. **Resume PDF download** — a footer link only, not a dedicated page/section. *(Updated per AGENT-44 review: "resume not needed, the site's goal is describing me as a candidate, the resume already does that job" — see §4.)*
+6. **Contact** — footer-only as well, not a dedicated nav destination, mirroring scanovich.ai's end-of-page pattern. See §5.
 
 No blog at launch (see §6 on content freshness) — add one later only with a plan to keep it fed, per the satnaing lesson.
 
@@ -51,7 +51,9 @@ This is the single biggest differentiator between the strong and weak sites in t
 
 ## 4. Resume integration
 
-Provide **both** inline HTML content and a downloadable PDF (the existing LaTeX resume), matching the "both" mode that none of the 7 researched sites fully achieved — most picked one or the other, or (bruno-simon) neither. Keep the PDF text-selectable/ATS-parseable — avoid Figma-style flattened exports (a real risk flagged even for brittanychiang.com's PDF).
+*(Updated per AGENT-44 review — supersedes the "both" recommendation below.)* No dedicated resume page or inline resume content section: the site's job is describing Pavel as a candidate, not duplicating the resume, which already does that job on its own. Keep only a downloadable PDF link (footer, see §2), text-selectable/ATS-parseable — avoid Figma-style flattened exports (a real risk flagged even for brittanychiang.com's PDF).
+
+Original research finding, kept for context: providing **both** inline HTML content and a downloadable PDF matched the "both" mode that none of the 7 researched sites fully achieved — most picked one or the other, or (bruno-simon) neither. That's no longer the plan here, per the update above.
 
 ## 5. Contact & language
 
