@@ -11,6 +11,9 @@ export interface StackCategory {
 
 // Source: docs/stub-content.md §1. Go intentionally folds under Backend rather than
 // getting its own category, per site-architecture.md §1 (Pavel's review).
+// Testing frameworks (JUnit/Mockito/ScalaTest) and dev/observability tooling
+// (Gradle/Grafana/Prometheus/ELK/Git/Kanban/k6) live under Tools, separate from
+// Infrastructure (runtime/deployment tech) — split requested directly by Pavel.
 export const stackCategories: StackCategory[] = [
   {
     slug: "backend",
@@ -21,16 +24,13 @@ export const stackCategories: StackCategory[] = [
       { name: "Go", note: "REST API — PRAssign" },
       { name: "Kotlin", note: "Android — TimeTamer" },
       { name: "Spring Boot" },
-      { name: "JUnit 4/5" },
-      { name: "Mockito" },
-      { name: "ScalaTest" },
       { name: "TypeScript", note: "стек стажировки в Т-Банке" },
       { name: "C++", note: "средний уровень — Voevoda (Unreal Engine 4)" },
     ],
   },
   {
     slug: "ml-python",
-    title: "ML / Python",
+    title: "ML & Python",
     items: [
       { name: "Python", note: "средний уровень" },
       { name: "pandas" },
@@ -47,8 +47,8 @@ export const stackCategories: StackCategory[] = [
     ],
   },
   {
-    slug: "infra",
-    title: "Infra",
+    slug: "infrastructure",
+    title: "Infrastructure",
     items: [
       { name: "Docker" },
       { name: "Docker Compose" },
@@ -56,18 +56,27 @@ export const stackCategories: StackCategory[] = [
       { name: "Kafka", note: "PRAssign+AsyncFactorial, стажировка в Т-Банке" },
       { name: "PostgreSQL", note: "стажировка в Т-Банке, PRAssign, TimeTamer" },
       { name: "Nginx", note: "масштабирование API PRAssign" },
+      { name: "gRPC", note: "RIID" },
+      { name: "OCI/Docker Registry API", note: "RIID" },
+      { name: "Podman", note: "база сравнения нагрузочных тестов RIID" },
+      // [VERIFY] systemd is not mentioned anywhere in either resume — omitted per
+      // docs/stub-content.md §1 rather than guessed.
+    ],
+  },
+  {
+    slug: "tools",
+    title: "Tools",
+    items: [
+      { name: "Git" },
+      { name: "Kanban" },
       { name: "Gradle", note: "сборка RIID" },
       { name: "Grafana" },
       { name: "Prometheus" },
       { name: "ELK", note: "стек стажировки в Т-Банке" },
-      { name: "Git" },
-      { name: "Kanban" },
-      { name: "gRPC", note: "RIID" },
-      { name: "OCI/Docker Registry API", note: "RIID" },
-      { name: "Podman", note: "база сравнения нагрузочных тестов RIID" },
       { name: "k6", note: "нагрузочное тестирование RIID" },
-      // [VERIFY] systemd is not mentioned anywhere in either resume — omitted per
-      // docs/stub-content.md §1 rather than guessed.
+      { name: "JUnit 4/5" },
+      { name: "Mockito" },
+      { name: "ScalaTest" },
     ],
   },
 ];
