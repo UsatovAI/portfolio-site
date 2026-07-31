@@ -1,6 +1,7 @@
 # Portfolio Site — Requirements
 
 **Jira:** AGENT-41 "Research current SE sites" (child of AGENT-40 "My portfolio site")
+**See also:** `docs/site-architecture.md` (AGENT-44) for the resolved sitemap, nav, repo layout, and hosting decisions built on top of this doc.
 **Based on:** deep research of 7 SE/hackathon-dev portfolio sites — full per-site field-by-field detail is in `docs/se-portfolio-research/results/*.json` (all 7 pushed); run `docs/se-portfolio-research/generate_report.py` to regenerate the human-readable `report.md` from them
 **Owner context:** Pavel Usatov, HSE SPb (Applied Math & CS, 2023–2027). Polyglot backend/infra engineer — Scala (T-Bank internship, Cats Effect), Java (RIID daemon), Go (PRAssign REST API), Kotlin (Android), plus ML/Python side projects. Hackathon participant (MTS True Tech, VK-adjacent scene) — same cohort as the sites researched below.
 
@@ -29,9 +30,9 @@ Single-page scroll site (the format every site in this cohort converges on, exce
 3. **Projects** — two tiers, borrowed from bruno-simon's model:
    - **Tier 1 (flagship):** RIID, PRAssign+AsyncFactorial, TimeTamer — each with role, stack tags, live metric, and links to demo/repo.
    - **Tier 2 (coursework/experiments):** ZIO-Notification-Service, ANTLR parser, Voevoda, scanovich-webUI hackathon entry — lighter cards, still linked.
-4. **Skills/Tech Stack** — grouped by domain (Backend/JVM, Go, ML/Python, Infra) rather than a flat tag cloud.
-5. **Resume/CV** — see §4.
-6. **Contact** — see §5.
+4. **Skills/Tech Stack** — grouped by domain (Backend, ML/Python, Infra — *updated per AGENT-44 review: Go folds under Backend rather than its own category*) rather than a flat tag cloud.
+5. **Resume PDF download** — a footer link only, not a dedicated page/section. *(Updated per AGENT-44 review: "resume not needed, the site's goal is describing me as a candidate, the resume already does that job" — see §4.)*
+6. **Contact** — footer-only as well, not a dedicated nav destination, mirroring scanovich.ai's end-of-page pattern. See §5.
 
 No blog at launch (see §6 on content freshness) — add one later only with a plan to keep it fed, per the satnaing lesson.
 
@@ -50,11 +51,13 @@ This is the single biggest differentiator between the strong and weak sites in t
 
 ## 4. Resume integration
 
-Provide **both** inline HTML content and a downloadable PDF (the existing LaTeX resume), matching the "both" mode that none of the 7 researched sites fully achieved — most picked one or the other, or (bruno-simon) neither. Keep the PDF text-selectable/ATS-parseable — avoid Figma-style flattened exports (a real risk flagged even for brittanychiang.com's PDF).
+*(Updated per AGENT-44 review — supersedes the "both" recommendation below.)* No dedicated resume page or inline resume content section: the site's job is describing Pavel as a candidate, not duplicating the resume, which already does that job on its own. Keep only a downloadable PDF link (footer, see §2), text-selectable/ATS-parseable — avoid Figma-style flattened exports (a real risk flagged even for brittanychiang.com's PDF).
+
+Original research finding, kept for context: providing **both** inline HTML content and a downloadable PDF matched the "both" mode that none of the 7 researched sites fully achieved — most picked one or the other, or (bruno-simon) neither. That's no longer the plan here, per the update above.
 
 ## 5. Contact & language
 
-- **Bilingual (RU/EN), not RU-only.** anpilovml.ru and andreykaravaev.ru are both RU-only, which caps their reach; satnaing.dev's content-language filter (rather than a duplicated `/en` site) is the cleanest pattern to borrow, and scanovich.ai shows the failure mode to avoid (`/ru/` served with `lang="en"` — get the `hreflang`/`lang` attributes right per locale).
+- **Russian only — no `/en` route or language switcher.** *(Updated per AGENT-44: "en is useless, I apply for jobs in Russia" — supersedes the bilingual recommendation this section originally made.)* anpilovml.ru and andreykaravaev.ru are both RU-only already, which fits the target market Pavel is actually applying in; just get the basics right that they didn't — correct `lang="ru"` and `hreflang` set site-wide (scanovich.ai's specific mistake was serving `/ru/` with `lang="en"` — don't repeat that even without a second locale).
 - **No personal phone number or other sensitive PII in cleartext.** anpilovml.ru publishes a personal mobile number and email as clear copy-paste text; prefer a contact form, an obfuscated mailto, or a link to LinkedIn/Telegram instead.
 - **Contact must work without JavaScript**, or degrade to a visible fallback — scanovich.ai's contact section renders `null` with JS disabled, silently killing its one conversion path. At minimum, a plain `mailto:` link should always be present in the HTML.
 - Set real Open Graph / Twitter Card metadata (title, description, image, url) — andreykaravaev.ru's link previews are broken (`<title>` = "About me", no `og:image`), which quietly costs shares/click-throughs.
