@@ -5,7 +5,7 @@ export interface StackItem {
 
 export interface StackCategory {
   slug: string;
-  label: string;
+  title: string;
   items: StackItem[];
 }
 
@@ -14,7 +14,7 @@ export interface StackCategory {
 export const stackCategories: StackCategory[] = [
   {
     slug: "backend",
-    label: "backend",
+    title: "Backend",
     items: [
       { name: "Java", note: "основной backend-язык — RIID, сервер TimeTamer, стажировка в Т-Банке" },
       { name: "Scala", note: "Cats Effect 3, ZIO — стажировка в Т-Банке, PRAssign+AsyncFactorial, ZIO-Notification-Service" },
@@ -30,7 +30,7 @@ export const stackCategories: StackCategory[] = [
   },
   {
     slug: "ml-python",
-    label: "ml/python",
+    title: "ML / Python",
     items: [
       { name: "Python", note: "средний уровень" },
       { name: "pandas" },
@@ -48,7 +48,7 @@ export const stackCategories: StackCategory[] = [
   },
   {
     slug: "infra",
-    label: "infra",
+    title: "Infra",
     items: [
       { name: "Docker" },
       { name: "Docker Compose" },
