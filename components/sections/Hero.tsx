@@ -8,11 +8,23 @@ export function Hero() {
         <h1 id="hero-heading" className="mt-2 text-h1 text-text-primary">
           Павел Усатов
         </h1>
-        <p className="mt-4 max-w-2xl text-lead text-text-secondary">
-          Backend/infra-разработчик и студент ВШЭ СПб (ПМИ, 2023–2027). Пишу на Java, Scala и Go,
-          закрываю задачи от REST API и очередей до нагрузочного тестирования на Kubernetes; со
-          стороны — Python и ML.
-        </p>
+
+        <div className="mt-4 flex flex-wrap items-baseline gap-x-2 text-h3 text-text-primary">
+          <details className="jvm-role-disclosure">
+            <summary>JVM</summary>
+            <span className="jvm-role-disclosure__languages">Java · Kotlin · Scala</span>
+          </details>
+          <span>backend developer</span>
+        </div>
+
+        <div className="mt-5 max-w-3xl space-y-2 text-lead text-text-secondary">
+          <p>
+            Разрабатываю бэкенд и распределенные системы: Spring Boot, REST API, работа с PostgreSQL,
+            контейнеризация с Docker, асинхронные пайплайны (Kafka).
+          </p>
+          <p>Развертываю в Kubernetes, наблюдаю через Grafana.</p>
+        </div>
+
         <div className="mt-8 flex flex-wrap gap-4 font-mono text-body">
           <a
             href="#projects"

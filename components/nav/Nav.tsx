@@ -4,11 +4,11 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const NAV_LINKS = [
+  { href: "#stack", label: "Стек", sectionId: "stack" },
   { href: "#experience", label: "Опыт", sectionId: "experience" },
   { href: "#projects", label: "Проекты", sectionId: "projects" },
   { href: "#education-projects", label: "Учебные", sectionId: "education-projects" },
   { href: "#activities", label: "Активности", sectionId: "activities" },
-  { href: "#stack", label: "Стек", sectionId: "stack" },
 ];
 
 export function Nav() {

@@ -7,23 +7,16 @@ import { StackTag } from "@/components/ui/StackTag";
 // orange/serif treatment.
 export function StackCard({ category }: { category: StackCategory }) {
   return (
-    <div className="selection-card stack-spark-card rounded-sm border border-border bg-surface/90 p-6 backdrop-blur-sm">
-      <span className="stack-spark-field" aria-hidden="true">
-        {Array.from({ length: 12 }, (_, index) => (
-          <span className="stack-spark" key={index} />
-        ))}
-      </span>
-      <div className="relative z-[2]">
-        <div className="stack-spark-card__icon flex h-12 w-12 items-center justify-center rounded-sm border border-terminal/30 bg-terminal/10 text-terminal">
-          <StackIcon slug={category.slug} />
-        </div>
-        <h3 className="mt-4 text-h3 text-text-primary">{category.title}</h3>
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {category.items.map((item) => (
-            <StackTag key={item.name} item={item} />
-          ))}
-        </ul>
+    <div className="selection-card rounded-sm border border-border bg-surface/90 p-6 backdrop-blur-sm">
+      <div className="flex h-12 w-12 items-center justify-center rounded-sm border border-terminal/30 bg-terminal/10 text-terminal">
+        <StackIcon slug={category.slug} />
       </div>
+      <h3 className="mt-4 text-h3 text-text-primary">{category.title}</h3>
+      <ul className="mt-4 flex flex-wrap gap-2">
+        {category.items.map((item) => (
+          <StackTag key={item.name} item={item} />
+        ))}
+      </ul>
     </div>
   );
 }

@@ -40,12 +40,16 @@ export function AdditionalActivities() {
             <p className="mt-5 font-mono text-caption text-text-secondary">июль 2024 · июль 2025</p>
           </article>
 
-          <details className="activity-photo-reveal border border-border bg-surface/80 p-6 sm:col-span-2">
-            <summary className="cursor-pointer list-none font-mono text-caption text-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-4">
-              community --events <span className="text-text-secondary">[показать фото]</span>
-            </summary>
+          <article className="activity-photo-reveal border border-border bg-surface/80 p-6 sm:col-span-2">
+            <button
+              type="button"
+              className="activity-photo-reveal__trigger font-mono text-caption text-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-4"
+              aria-describedby="community-events-description"
+            >
+              community --events
+            </button>
             <h3 className="mt-3 text-h3 text-text-primary">Инженерные мероприятия</h3>
-            <p className="mt-3 max-w-2xl text-body text-text-secondary">
+            <p id="community-events-description" className="mt-3 max-w-2xl text-body text-text-secondary">
               Посещаю JVM-субботники, «Сезон кода» в Санкт-Петербурге и Code Retreat — слежу за практиками backend-разработки и обмениваюсь опытом с сообществом.
             </p>
             <figure className="activity-photo-reveal__preview">
@@ -60,7 +64,7 @@ export function AdditionalActivities() {
                 JVM · Ozon Tech · «Сезон кода» · Code Retreat
               </figcaption>
             </figure>
-          </details>
+          </article>
         </div>
       </div>
     </section>

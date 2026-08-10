@@ -18,11 +18,11 @@ export default function Home() {
         <Nav />
         <main id="main">
           <Hero />
+          <Stack />
           <Experience />
           <Projects />
           <EducationalProjects />
           <AdditionalActivities />
-          <Stack />
         </main>
         <Footer />
       </div>

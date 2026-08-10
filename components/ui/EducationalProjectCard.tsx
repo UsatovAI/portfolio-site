@@ -2,13 +2,13 @@ import type { Project } from "@/content/projects";
 
 export function EducationalProjectCard({ project }: { project: Project }) {
   return (
-    <article className="selection-card flex min-h-72 flex-col border border-border bg-surface/70 p-6 sm:aspect-square">
+    <article className="selection-card flex flex-col border border-border bg-surface/70 p-5 sm:p-6">
       <p className="font-mono text-caption text-terminal">{project.role}</p>
       <h3 className="mt-3 text-h3 text-text-primary">{project.title}</h3>
       <p className="mt-2 text-body font-medium text-text-primary">{project.summary}</p>
       <p className="mt-3 text-body text-text-secondary">{project.description}</p>
 
-      <div className="mt-auto pt-6">
+      <div className="mt-6">
         <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary" aria-label="Стек проекта">
           {project.stack.map((tech) => (
             <li key={tech}>{tech}</li>
