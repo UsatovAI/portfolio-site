@@ -10,10 +10,14 @@ export function Hero() {
         </h1>
 
         <div className="mt-4 flex flex-wrap items-baseline gap-x-2 text-h3 text-text-primary">
-          <details className="jvm-role-disclosure">
-            <summary>JVM</summary>
-            <span className="jvm-role-disclosure__languages">Java · Kotlin · Scala</span>
-          </details>
+          <span className="jvm-role-disclosure">
+            <span className="jvm-role-disclosure__trigger" tabIndex={0} aria-describedby="jvm-languages">
+              JVM
+            </span>
+            <span id="jvm-languages" role="tooltip" className="jvm-role-disclosure__languages">
+              Java · Kotlin · Scala
+            </span>
+          </span>
           <span>backend developer</span>
         </div>
 

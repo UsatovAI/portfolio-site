@@ -1,9 +1,11 @@
 import type { Project } from "@/content/projects";
+import type { PortfolioVariant } from "@/content/portfolio-variant";
+import { JVM_SECONDARY_TECH } from "@/content/portfolio-variant";
 
 // Terminal-motif Project entry. Spec: docs/design-system.md §4 "Project entry".
 // Tier 1 (flagship) gets the `surface` fill; Tier 2 (coursework/hackathon) is the
 // same structure at a visually lighter weight (border only, transparent background).
-export function ProjectEntry({ project }: { project: Project }) {
+export function ProjectEntry({ project, variant }: { project: Project; variant: PortfolioVariant }) {
   return (
     <article className="selection-card border border-border bg-surface p-6">
       <p className="font-mono">
@@ -22,7 +24,12 @@ export function ProjectEntry({ project }: { project: Project }) {
 
         <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary" aria-label="Стек проекта">
           {project.stack.map((tech) => (
-            <li key={tech}>{tech}</li>
+            <li
+              key={tech}
+              className={variant === "jvm" && JVM_SECONDARY_TECH.has(tech) ? "opacity-40" : undefined}
+            >
+              {tech}
+            </li>
           ))}
         </ul>
 

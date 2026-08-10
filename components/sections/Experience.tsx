@@ -1,6 +1,7 @@
 import { experience } from "@/content/experience";
+import type { PortfolioVariant } from "@/content/portfolio-variant";
 
-export function Experience() {
+export function Experience({ variant }: { variant: PortfolioVariant }) {
   return (
     <section
       id="experience"
@@ -28,9 +29,11 @@ export function Experience() {
                   className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary"
                   aria-label="Стек проекта"
                 >
-                  {entry.stack.map((tech) => (
-                    <li key={tech}>{tech}</li>
-                  ))}
+                  {entry.stack
+                    .filter((tech) => variant !== "jvm" || tech !== "TypeScript")
+                    .map((tech) => (
+                      <li key={tech}>{tech}</li>
+                    ))}
                 </ul>
               ) : null}
               {entry.link ? (

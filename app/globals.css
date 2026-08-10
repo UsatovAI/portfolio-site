@@ -226,6 +226,57 @@
   animation: selection-scan 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@property --stack-border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.stack-border-card::after {
+  display: none;
+}
+
+.stack-border-card:hover,
+.stack-border-card:focus-within {
+  border-color: rgb(var(--color-border));
+}
+
+.stack-border-runner {
+  --stack-border-angle: 0deg;
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  padding: 3px;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 5px;
+  background: conic-gradient(
+    from var(--stack-border-angle),
+    transparent 0deg 218deg,
+    rgb(var(--color-terminal) / 0.25) 250deg,
+    rgb(var(--color-terminal-bright)) 278deg,
+    rgb(255 255 255 / 0.98) 296deg,
+    rgb(var(--color-terminal-bright)) 316deg,
+    transparent 350deg 360deg
+  );
+  filter: drop-shadow(0 0 8px rgb(var(--color-terminal-bright) / 0.85));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: opacity 180ms ease;
+}
+
+.stack-border-card:hover .stack-border-runner,
+.stack-border-card:focus-within .stack-border-runner {
+  opacity: 1;
+  animation: stack-border-orbit 1.7s linear infinite;
+}
+
 .activity-photo-reveal {
   position: relative;
   transition:
@@ -265,18 +316,13 @@
   display: inline-block;
 }
 
-.jvm-role-disclosure summary {
+.jvm-role-disclosure__trigger {
   cursor: pointer;
-  list-style: none;
   color: rgb(var(--color-terminal));
   border-bottom: 1px dashed rgb(var(--color-terminal) / 0.7);
 }
 
-.jvm-role-disclosure summary::-webkit-details-marker {
-  display: none;
-}
-
-.jvm-role-disclosure summary:focus-visible {
+.jvm-role-disclosure__trigger:focus-visible {
   outline: 2px solid rgb(var(--color-terminal));
   outline-offset: 4px;
 }
@@ -296,7 +342,23 @@
   line-height: 1rem;
   font-weight: 400;
   color: rgb(var(--color-terminal));
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0.35rem);
   box-shadow: 0 12px 28px rgb(0 0 0 / 0.2);
+  transition:
+    visibility 0s linear 140ms,
+    opacity 140ms ease,
+    transform 180ms ease;
+}
+
+.jvm-role-disclosure:hover .jvm-role-disclosure__languages,
+.jvm-role-disclosure:focus-within .jvm-role-disclosure__languages {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
 }
 
 @keyframes grid-drift {
@@ -344,6 +406,12 @@
   }
 }
 
+@keyframes stack-border-orbit {
+  to {
+    --stack-border-angle: 360deg;
+  }
+}
+
 @keyframes cursor-blink {
   50% {
     opacity: 0;
@@ -384,7 +452,8 @@
   .site-backdrop__glow,
   .site-backdrop__routes path,
   .site-backdrop__nodes circle,
-  .selection-card::after {
+  .selection-card::after,
+  .stack-border-runner {
     animation: none !important;
   }
 

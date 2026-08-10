@@ -1,6 +1,7 @@
 export interface StackItem {
   name: string;
   note?: string;
+  muted?: boolean;
 }
 
 export interface StackCategory {

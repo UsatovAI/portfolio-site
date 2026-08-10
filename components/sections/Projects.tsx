@@ -1,7 +1,30 @@
 import { projects } from "@/content/projects";
+import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { ProjectEntry } from "@/components/ui/ProjectEntry";
 
-export function Projects() {
+export function Projects({ variant }: { variant: PortfolioVariant }) {
+  const renderedProjects = projects.map((project) => {
+    if (variant !== "jvm") return project;
+
+    if (project.slug === "scanovich-webui") {
+      return {
+        ...project,
+        description:
+          "Оркестратор AI-моделей для Open WebUI: маршрутизация запросов, генерация PPTX и распознавание речи.",
+      };
+    }
+
+    if (project.slug === "population-forecast") {
+      return {
+        ...project,
+        description:
+          "Прогнозирование населения на 10-летнем горизонте: сравнение ARIMA, Prophet, XGBoost и Random Forest.",
+      };
+    }
+
+    return project;
+  });
+
   return (
     <section
       id="projects"
@@ -18,8 +41,8 @@ export function Projects() {
         </p>
 
         <div className="mt-10 space-y-6">
-          {projects.map((project) => (
-            <ProjectEntry key={project.slug} project={project} />
+          {renderedProjects.map((project) => (
+            <ProjectEntry key={project.slug} project={project} variant={variant} />
           ))}
         </div>
       </div>

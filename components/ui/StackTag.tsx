@@ -5,7 +5,12 @@ import type { StackItem } from "@/content/stack";
 // while the cursor is on the word, or while it's keyboard-focused.
 export function StackTag({ item }: { item: StackItem }) {
   const pill = (
-    <span className="inline-flex items-center rounded-sm border border-terminal/30 bg-bg px-3 py-1 font-mono text-caption text-terminal outline-none transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2">
+    <span
+      className={
+        "inline-flex items-center rounded-sm border border-terminal/30 bg-bg px-3 py-1 font-mono text-caption text-terminal outline-none transition-[color,opacity] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2 " +
+        (item.muted ? "opacity-40 hover:opacity-100 focus-visible:opacity-100" : "")
+      }
+    >
       {item.name}
     </span>
   );

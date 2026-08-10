@@ -11,7 +11,15 @@
   and an accessible event-photo reveal for JVM Subbotnik, Sezon Koda SPb, and Code Retreat.
 - Project wording and metrics come from the `resumeJavaML2026-07.tex` attachment in AGENT-64.
 - The hero uses the HH positioning copy: `JVM backend developer`, two short backend/infra paragraphs,
-  and a native click disclosure from `JVM` to `Java · Kotlin · Scala`.
+  and a hover/focus disclosure from `JVM` to `Java · Kotlin · Scala`.
+
+## Portfolio variants
+
+- `/default` renders the complete portfolio; `/` keeps the same complete version for backwards
+  compatibility.
+- `/jvm` reuses the same components with JVM-specific content shaping: TypeScript is removed,
+  Go/C++ are visually secondary, the ML stack is shorter, and AI/ML project descriptions are compact.
+- Both variants are exported by one Next.js build and served by the same Nginx deployment.
 
 ## Background and selection motion
 
@@ -34,6 +42,7 @@
 - `components/background/AmbientBackground.tsx` contains the decorative SVG network layer.
 - `app/globals.css` contains the grid, glow, route, node, cursor, and card-selection animations.
 - `components/nav/Nav.tsx` measures the active link and moves a single shared indicator to it.
-- Stack cards use the shared restrained card-selection state without particle or spark effects.
+- Stack cards have no particle/spark effect. Selection uses a thicker luminous segment that travels
+  around the full card outline.
 - No animation dependency is shipped; the implementation uses CSS plus the existing navigation client
   component.
