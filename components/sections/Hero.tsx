@@ -3,7 +3,7 @@ export function Hero() {
     <section id="home" aria-labelledby="hero-heading" className="scroll-mt-16 py-16 sm:py-24">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <p className="font-mono text-body text-terminal">
-          <span aria-hidden="true">$</span> whoami
+          <span aria-hidden="true">$</span> whoami<span className="terminal-cursor" aria-hidden="true">_</span>
         </p>
         <h1 id="hero-heading" className="mt-2 text-h1 text-text-primary">
           Павел Усатов

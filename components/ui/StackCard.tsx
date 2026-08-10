@@ -7,7 +7,7 @@ import { StackTag } from "@/components/ui/StackTag";
 // orange/serif treatment.
 export function StackCard({ category }: { category: StackCategory }) {
   return (
-    <div className="rounded-sm border border-border bg-surface p-6">
+    <div className="selection-card rounded-sm border border-border bg-surface/90 p-6 backdrop-blur-sm">
       <div className="flex h-12 w-12 items-center justify-center rounded-sm border border-terminal/30 bg-terminal/10 text-terminal">
         <StackIcon slug={category.slug} />
       </div>

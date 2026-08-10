@@ -10,8 +10,8 @@ export function ProjectEntry({ project }: { project: Project }) {
     <div
       className={
         isTier1
-          ? "border border-border bg-surface p-6"
-          : "border border-border bg-transparent p-6"
+          ? "selection-card border border-border bg-surface p-6"
+          : "selection-card border border-border bg-transparent p-6"
       }
     >
       <p className="font-mono">

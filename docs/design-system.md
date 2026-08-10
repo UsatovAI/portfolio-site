@@ -251,3 +251,19 @@ Usage examples once this is in place: `bg-bg text-text-primary`, `border border-
 - 1 slate grayscale + 1 blue accent + 1 green terminal accent, defined once as CSS variables, flipped by `.dark`.
 - 6-step type scale, Tailwind's default (unmodified) spacing scale.
 - Terminal motif = sharp corners, monospace `#`/`$` glyph in the green token, border-only chrome, hover and focus-visible always paired, motion respects `prefers-reduced-motion`.
+
+## 9. Ambient background and selection motion (AGENT-64)
+
+- The page background is a fixed, pointer-inert composition of a 64px deployment grid, soft token-based
+  glows, and a sparse SVG network diagram. It stays behind all content and uses the existing `terminal`,
+  `accent`, `border`, and `bg` tokens in both themes.
+- Network routes use a dashed-line flow and nodes pulse at staggered intervals. The pattern is deliberately
+  low-contrast; it adds identity without becoming an information layer.
+- The active navigation state uses one shared 2px gradient indicator. Its position and width transition
+  between links, so section selection reads as one continuous state change.
+- Stack and project cards may show a short decorative scan along the top border on hover/focus-within.
+  Card content never translates or scales, preserving the stable terminal layout required in §4.
+- Motion is progressive enhancement. Content is always rendered at full opacity and never waits for an
+  observer or animation callback.
+- Under `prefers-reduced-motion: reduce`, all background motion, card scans, and the terminal cursor stop;
+  the active navigation indicator remains visible but moves with the global near-zero transition duration.
