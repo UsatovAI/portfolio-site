@@ -17,26 +17,26 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = "http://144.124.226.50:8081";
+const siteUrl = "https://usatovpavel.ru";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Павел Усатов — backend/infra-разработчик",
+  title: "Павел Усатов — JVM backend-разработчик",
   description:
-    "Портфолио Павла Усатова: Java, Scala, Go, Kubernetes. RIID, PRAssign+AsyncFactorial, TimeTamer и другие проекты, стажировка в Т-Банке.",
+    "Портфолио Павла Усатова: JVM backend, Scala, Java, Kafka и Kubernetes. Опыт в Т-Банке, RIID, продуктовые, ML и учебные проекты.",
   openGraph: {
-    title: "Павел Усатов — backend/infra-разработчик",
+    title: "Павел Усатов — JVM backend-разработчик",
     description:
-      "Портфолио Павла Усатова: Java, Scala, Go, Kubernetes. RIID, PRAssign+AsyncFactorial, TimeTamer и другие проекты, стажировка в Т-Банке.",
+      "Портфолио Павла Усатова: JVM backend, Scala, Java, Kafka и Kubernetes. Опыт в Т-Банке, RIID, продуктовые, ML и учебные проекты.",
     url: siteUrl,
     locale: "ru_RU",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Павел Усатов — backend/infra-разработчик",
+    title: "Павел Усатов — JVM backend-разработчик",
     description:
-      "Портфолио Павла Усатова: Java, Scala, Go, Kubernetes. RIID, PRAssign+AsyncFactorial, TimeTamer и другие проекты, стажировка в Т-Банке.",
+      "Портфолио Павла Усатова: JVM backend, Scala, Java, Kafka и Kubernetes. Опыт в Т-Банке, RIID, продуктовые, ML и учебные проекты.",
   },
 };
 

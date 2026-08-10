@@ -1,4 +1,4 @@
-import { tier1Projects, tier2Projects } from "@/content/projects";
+import { projects } from "@/content/projects";
 import { ProjectEntry } from "@/components/ui/ProjectEntry";
 
 export function Projects() {
@@ -13,22 +13,14 @@ export function Projects() {
           Проекты
         </h2>
 
-        <div className="mt-10">
-          <h3 className="font-mono text-h3 text-text-primary">Флагманские</h3>
-          <div className="mt-6 space-y-6">
-            {tier1Projects.map((project) => (
-              <ProjectEntry key={project.slug} project={project} />
-            ))}
-          </div>
-        </div>
+        <p className="mt-2 max-w-2xl text-body text-text-secondary">
+          Продуктовые, командные и исследовательские проекты из резюме.
+        </p>
 
-        <div className="mt-16">
-          <h3 className="font-mono text-h3 text-text-primary">Учебные и хакатоны</h3>
-          <div className="mt-6 space-y-6">
-            {tier2Projects.map((project) => (
-              <ProjectEntry key={project.slug} project={project} />
-            ))}
-          </div>
+        <div className="mt-10 space-y-6">
+          {projects.map((project) => (
+            <ProjectEntry key={project.slug} project={project} />
+          ))}
         </div>
       </div>
     </section>

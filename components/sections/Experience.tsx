@@ -33,6 +33,16 @@ export function Experience() {
                   ))}
                 </ul>
               ) : null}
+              {entry.link ? (
+                <a
+                  href={entry.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block border-b border-border text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+                >
+                  {entry.link.label} ↗
+                </a>
+              ) : null}
             </li>
           ))}
         </ol>

@@ -4,10 +4,11 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const NAV_LINKS = [
-  { href: "#home", label: "Главная", sectionId: "home" },
-  { href: "#stack", label: "Стек", sectionId: "stack" },
-  { href: "#projects", label: "Проекты", sectionId: "projects" },
   { href: "#experience", label: "Опыт", sectionId: "experience" },
+  { href: "#projects", label: "Проекты", sectionId: "projects" },
+  { href: "#education-projects", label: "Учебные", sectionId: "education-projects" },
+  { href: "#activities", label: "Активности", sectionId: "activities" },
+  { href: "#stack", label: "Стек", sectionId: "stack" },
 ];
 
 export function Nav() {
@@ -68,7 +69,7 @@ export function Nav() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-bg/80 shadow-[0_1px_0_rgb(var(--color-terminal)/0.05)] backdrop-blur-xl">
       <nav
         aria-label="Основная навигация"
-        className="mx-auto flex max-w-4xl items-center justify-between gap-4 px-4 py-3 sm:px-6"
+        className="mx-auto grid max-w-5xl grid-cols-[1fr_auto] items-center gap-x-4 gap-y-3 px-4 py-3 lg:grid-cols-[auto_1fr_auto] lg:px-6"
       >
         <a
           href="#home"
@@ -79,7 +80,7 @@ export function Nav() {
 
         <ul
           ref={linksRef}
-          className="relative flex flex-wrap items-center gap-3 font-sans text-body font-medium sm:gap-5"
+          className="relative col-span-2 row-start-2 flex min-w-0 items-center justify-between gap-3 overflow-x-auto font-sans text-caption font-medium sm:justify-start sm:gap-5 sm:text-body lg:col-span-1 lg:row-start-1 lg:justify-center"
         >
           <li
             aria-hidden="true"
@@ -113,7 +114,9 @@ export function Nav() {
           })}
         </ul>
 
-        <ThemeToggle />
+        <div className="col-start-2 row-start-1 lg:col-start-3">
+          <ThemeToggle />
+        </div>
       </nav>
     </header>
   );

@@ -4,6 +4,8 @@ import { Hero } from "@/components/sections/Hero";
 import { Stack } from "@/components/sections/Stack";
 import { Projects } from "@/components/sections/Projects";
 import { Experience } from "@/components/sections/Experience";
+import { EducationalProjects } from "@/components/sections/EducationalProjects";
+import { AdditionalActivities } from "@/components/sections/AdditionalActivities";
 import { Footer } from "@/components/footer/Footer";
 import { AmbientBackground } from "@/components/background/AmbientBackground";
 
@@ -16,9 +18,11 @@ export default function Home() {
         <Nav />
         <main id="main">
           <Hero />
-          <Stack />
-          <Projects />
           <Experience />
+          <Projects />
+          <EducationalProjects />
+          <AdditionalActivities />
+          <Stack />
         </main>
         <Footer />
       </div>

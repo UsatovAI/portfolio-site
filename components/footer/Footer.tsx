@@ -54,7 +54,7 @@ export function Footer() {
         </div>
 
         <p className="mt-10 font-mono text-caption text-text-secondary">
-          Обновлено: 31 июля 2026 · сайт в разработке (stub-версия для ревью)
+          Обновлено: 10 августа 2026
         </p>
       </div>
     </footer>

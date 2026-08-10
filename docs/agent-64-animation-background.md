@@ -1,4 +1,17 @@
-# AGENT-64 — background and selection motion
+# AGENT-64 — implemented site features
+
+## Resume sections
+
+- Page order follows the resume: Experience, Projects, Educational Projects, Additional Activities,
+  then the existing grouped Stack section.
+- RIID is part of Experience; Scanovich, PRAssign, TimeTamer, population forecasting, and Voevoda
+  are regular projects.
+- Educational projects use smaller square cards in a two-column desktop grid.
+- Additional Activities contains the downloadable Yandex EdTech Agents Week certificate, teaching,
+  and an accessible event-photo reveal for JVM Subbotnik, Sezon Koda SPb, and Code Retreat.
+- Project wording and metrics come from the `resumeJavaML2026-07.tex` attachment in AGENT-64.
+
+## Background and selection motion
 
 ## Requirements derived from the review
 
@@ -19,5 +32,7 @@
 - `components/background/AmbientBackground.tsx` contains the decorative SVG network layer.
 - `app/globals.css` contains the grid, glow, route, node, cursor, and card-selection animations.
 - `components/nav/Nav.tsx` measures the active link and moves a single shared indicator to it.
+- Stack-card selection adds a large icon flare and twelve directional sparks; reduced-motion users
+  receive only the static border/glow state.
 - No animation dependency is shipped; the implementation uses CSS plus the existing navigation client
   component.

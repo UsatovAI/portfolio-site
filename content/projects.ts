@@ -14,38 +14,22 @@ export interface Project {
   metric?: string;
   stack: string[];
   links: ProjectLink[];
-  /** Notes carried over from docs/stub-content.md's [VERIFY] flags — rendered as
-   * visible on-page caveats AND left as JSX comments at the relevant spot, per
-   * AGENT-45 instructions (don't silently invent a replacement fact). */
-  verify?: string[];
 }
 
-// Source: docs/stub-content.md §2. Every entry links a real, public repo per
-// portfolio-requirements.md §3 ("every project card links a live demo or a public
-// repo — no exceptions"). Numbers are reused verbatim from the resume, not invented.
+// Source: the resume attached to AGENT-64. Main and educational work are kept
+// as separate collections so the page mirrors the resume structure.
 export const projects: Project[] = [
   {
-    slug: "riid",
-    title: "RIID",
+    slug: "scanovich-webui",
+    title: "Scanovich",
     tier: 1,
-    period: "январь 2026 – июнь 2026",
-    role: "Индивидуальный проект",
-    summary: "Java daemon, в 1.2 раза быстрее Podman",
+    period: "2026",
+    role: "Командный хакатон MTS True Tech",
+    summary: "Python-оркестратор AI-моделей для Open WebUI",
     description:
-      "Java-демон для p2p-загрузки OCI/Docker образов, независимый от container engine. Разработан для внутреннего облака VK.",
-    metric:
-      "Нагрузочное тестирование на кластере k8s (100 образов, 1 МБ – 5 ГБ): в 1.2 раза быстрее Podman.",
-    stack: ["Java", "Kubernetes", "gRPC", "OCI/Docker Registry API"],
-    links: [
-      { label: "репозиторий", href: "https://github.com/UsatovPavel/riid" },
-      {
-        label: "p2p-библиотека",
-        href: "https://github.com/UsatovPavel/java-dragonfly-image-puller",
-      },
-    ],
-    verify: [
-      "Вспомогательная p2p-библиотека (java-dragonfly-image-puller) — уточнить, что репозиторий всё ещё существует и открыт для просмотра.",
-    ],
+      "Классификация запросов, выбор модели и загрузка файлов из Open WebUI. Генерация PPTX через LLM-план, параллельных агентов и шаблоны под аудиторию; интеграция распознавания речи и pytest-тесты.",
+    stack: ["Python", "FastAPI", "Open WebUI", "REST API", "pytest", "Docker Compose"],
+    links: [{ label: "GitHub", href: "https://github.com/FUYOH666/scanovich-webUI/" }],
   },
   {
     slug: "prassign",
@@ -55,8 +39,8 @@ export const projects: Project[] = [
     role: "Индивидуальный проект",
     summary: "Go REST API + Scala/Kafka pipeline",
     description:
-      "Go REST API + пайплайн из Scala-консьюмеров через Kafka: задачи принимаются Go-сервисом, передаются через Kafka, вычисляются на Scala, отслеживаются в PostgreSQL.",
-    stack: ["Go", "Scala", "Kafka", "Cats Effect 3", "PostgreSQL"],
+      "Go-сервис принимает задачи, Kafka передаёт их Scala-консьюмерам для вычисления, а состояние сохраняется в PostgreSQL.",
+    stack: ["Go", "Scala", "Kafka", "Cats Effect 3", "PostgreSQL", "Nginx", "Docker", "k6"],
     links: [
       { label: "PRAssign", href: "https://github.com/UsatovPavel/PRAssign" },
       { label: "AsyncFactorial", href: "https://github.com/UsatovPavel/AsyncFactorial" },
@@ -67,33 +51,65 @@ export const projects: Project[] = [
     title: "TimeTamer",
     tier: 1,
     period: "февраль 2025 – август 2025",
-    role: "Командный проект (курсовая работа НИУ ВШЭ) — сделано вместе с командой, не в одиночку",
-    summary: "Java-сервер + Kotlin/Compose календарь с геймификацией",
+    role: "Командный проект",
+    summary: "Java-сервер + Kotlin/Compose календарь",
     description:
-      "Java-сервер и Android-приложение-календарь на Kotlin/Jetpack Compose с элементами геймификации (общие задания, статистика, достижения, push-уведомления) и AI-ассистентом (ChatGPT + Whisper) для подсказок по задачам и голосового ввода.",
-    stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit"],
+      "Календарь с общими заданиями, статистикой, достижениями, push-уведомлениями и AI-ассистентом ChatGPT + Whisper для подсказок и голосового ввода.",
+    stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit", "PostgreSQL"],
+    links: [],
+  },
+  {
+    slug: "population-forecast",
+    title: "ML-прогноз численности населения",
+    tier: 1,
+    period: "индивидуальный проект",
+    role: "ML / time series",
+    summary: "Прогноз временных рядов на 10 лет",
+    description:
+      "Сбор данных из World Bank API, UN Population Division и Census API. Сравнение ARIMA, Prophet, линейной регрессии, XGBoost и Random Forest по MAPE, RMSE и стабильности ошибки.",
+    metric: "Лучшая ARIMA с grid search: MAPE 0,020 на отложенном десятилетнем окне.",
+    stack: ["Python", "pandas", "scikit-learn", "XGBoost", "Prophet", "statsmodels", "SciPy"],
     links: [
-      { label: "репозиторий (организация)", href: "https://github.com/hse-project-Java-2025" },
-    ],
-    verify: [
-      "Ссылка ведёт на организацию, указанную в резюме — перед публикацией уточнить точное имя репозитория внутри неё.",
+      { label: "GitHub", href: "https://github.com/UsatovPavel/Pop_ML_Forecast10" },
     ],
   },
   {
-    slug: "zio-notification-service",
-    title: "ZIO-Notification-Service",
+    slug: "voevoda",
+    title: "Voevoda",
+    tier: 1,
+    period: "январь 2024 – июнь 2024",
+    role: "Командный проект",
+    summary: "2D top-down RTS на Unreal Engine 4",
+    description:
+      "Генерация городов и оппонентов, поведение врагов, виджеты армии ИИ, туман войны и механика сражений.",
+    stack: ["C++", "Unreal Engine 4"],
+    links: [{ label: "GitHub", href: "https://github.com/UsatovPavel/Voevoda" }],
+  },
+];
+
+export const educationalProjects: Project[] = [
+  {
+    slug: "java-git-cli",
+    title: "Git CLI",
     tier: 2,
     period: "учебный проект",
-    role: "Учебный проект",
-    summary: "Scala ZIO REST API для уведомлений",
-    description:
-      "REST API на Scala ZIO для отправки уведомлений с учётом часовых поясов.",
+    role: "Java",
+    summary: "CLI-аналог Git",
+    description: "Реализация основных операций системы контроля версий в консольном приложении.",
+    stack: ["Java", "CLI"],
+    links: [],
+  },
+  {
+    slug: "zio-notification-service",
+    title: "ZIO Notification Service",
+    tier: 2,
+    period: "учебный проект",
+    role: "Scala",
+    summary: "REST API для уведомлений",
+    description: "Сервис уведомлений с учётом часовых поясов, построенный на ZIO.",
     stack: ["Scala", "ZIO", "REST API"],
     links: [
-      {
-        label: "репозиторий",
-        href: "https://github.com/UsatovPavel/ZIO-Notification-Service",
-      },
+      { label: "GitHub", href: "https://github.com/UsatovPavel/ZIO-Notification-Service" },
     ],
   },
   {
@@ -101,47 +117,10 @@ export const projects: Project[] = [
     title: "ANTLR-парсер",
     tier: 2,
     period: "учебный проект",
-    role: "Учебный проект",
-    summary: "Python regex-парсер на ANTLR",
-    description: "Парсер регулярных выражений на Python, построенный с помощью ANTLR.",
+    role: "Python",
+    summary: "Парсер регулярных выражений",
+    description: "Парсер формального языка регулярных выражений, построенный с помощью ANTLR.",
     stack: ["Python", "ANTLR"],
-    links: [
-      {
-        label: "репозиторий (ветка task4-dev)",
-        href: "https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev",
-      },
-    ],
-    verify: [
-      "Ссылка ведёт на конкретную ветку (task4-dev) учебного репозитория Usatov-FL-HSE — перед публикацией уточнить, что ветка ещё существует и остаётся нужной целью ссылки.",
-    ],
-  },
-  {
-    slug: "voevoda",
-    title: "Voevoda",
-    tier: 2,
-    period: "январь 2024 – июнь 2024",
-    role: "Командный проект — сделано вместе с командой, не в одиночку",
-    summary: "2D top-down RTS на Unreal Engine 4",
-    description:
-      "2D top-down RTS: командование генералом, захват городов, найм армий, сражения с ИИ. Вклад Павла: генерация городов и оппонентов, поведение ИИ противника, виджеты армии, туман войны, сражения.",
-    stack: ["C++", "Unreal Engine 4"],
-    links: [{ label: "репозиторий", href: "https://github.com/UsatovPavel/Voevoda" }],
-  },
-  {
-    slug: "scanovich-webui",
-    title: "scanovich-webUI",
-    tier: 2,
-    period: "2026",
-    role: "Командная хакатон-работа (MTS True Tech) — репозиторий команды, не личный",
-    summary: "Python-оркестратор нейросетей для Open WebUI",
-    description:
-      "Хакатон MTS True Tech: Python-оркестратор AI-моделей, интегрированный в Open WebUI (классификация запросов, выбор модели, загрузка файлов, генерация PPTX через параллельных LLM-агентов, интеграция распознавания речи, покрытие тестами pytest). Репозиторий размещён под аккаунтом тимлида FUYOH666, не Павла.",
-    stack: ["Python", "FastAPI", "Open WebUI", "Docker Compose"],
-    links: [
-      { label: "репозиторий команды", href: "https://github.com/FUYOH666/scanovich-webUI/" },
-    ],
+    links: [],
   },
 ];
-
-export const tier1Projects = projects.filter((p) => p.tier === 1);
-export const tier2Projects = projects.filter((p) => p.tier === 2);
