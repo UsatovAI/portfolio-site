@@ -56,7 +56,9 @@ export const projects: Project[] = [
     description:
       "Календарь с общими заданиями, статистикой, достижениями, push-уведомлениями и AI-ассистентом ChatGPT + Whisper для подсказок и голосового ввода.",
     stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit", "PostgreSQL"],
-    links: [],
+    links: [
+      { label: "GitHub", href: "https://github.com/hse-project-Java-2025" },
+    ],
   },
   {
     slug: "population-forecast",
@@ -121,6 +123,11 @@ export const educationalProjects: Project[] = [
     summary: "Парсер регулярных выражений",
     description: "Парсер формального языка регулярных выражений, построенный с помощью ANTLR.",
     stack: ["Python", "ANTLR"],
-    links: [],
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev",
+      },
+    ],
   },
 ];
