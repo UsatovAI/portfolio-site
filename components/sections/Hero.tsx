@@ -1,9 +1,11 @@
+import { GitHubIcon } from "@/components/ui/GitHubIcon";
+
 export function Hero() {
   return (
     <section id="home" aria-labelledby="hero-heading" className="scroll-mt-16 py-16 sm:py-24">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <p className="font-mono text-body text-terminal">
-          <span aria-hidden="true">$</span> whoami<span className="terminal-cursor" aria-hidden="true">_</span>
+          <span aria-hidden="true">$</span> whoami
         </p>
         <h1 id="hero-heading" className="mt-2 text-h1 text-text-primary">
           Павел Усатов
@@ -40,9 +42,10 @@ export function Hero() {
             href="https://github.com/UsatovPavel"
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-border px-4 py-2 text-text-primary transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+            className="inline-flex items-center gap-2 border border-border px-4 py-2 text-text-primary transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
           >
-            github.com/UsatovPavel ↗
+            <GitHubIcon />
+            GitHub
           </a>
         </div>
       </div>

@@ -172,13 +172,6 @@
     opacity 160ms ease;
 }
 
-.terminal-cursor {
-  display: inline-block;
-  margin-left: 0.16em;
-  color: rgb(var(--color-terminal-bright));
-  animation: cursor-blink 1.1s steps(1, end) infinite;
-}
-
 .selection-card {
   position: relative;
   overflow: hidden;
@@ -412,12 +405,6 @@
   }
 }
 
-@keyframes cursor-blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 @media (max-width: 640px) {
   .site-backdrop__grid {
     background-size: 44px 44px, 44px 44px, 176px 176px, 176px 176px;
@@ -457,9 +444,6 @@
     animation: none !important;
   }
 
-  .terminal-cursor {
-    opacity: 1;
-  }
 }
 
 .skip-link {

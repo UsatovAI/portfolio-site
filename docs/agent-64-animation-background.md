@@ -19,6 +19,8 @@
   compatibility.
 - `/jvm` reuses the same components with JVM-specific content shaping: TypeScript is removed,
   Go/C++ are visually secondary, the ML stack is shorter, and AI/ML project descriptions are compact.
+- `/backend` prioritizes backend/infrastructure stack categories and backend projects; `/ml`
+  prioritizes ML/Python skills and ML projects.
 - Both variants are exported by one Next.js build and served by the same Nginx deployment.
 
 ## Background and selection motion

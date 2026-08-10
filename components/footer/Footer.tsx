@@ -44,9 +44,10 @@ export function Footer() {
                   href="https://github.com/UsatovPavel"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-b border-border text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+                  className="inline-flex items-center gap-2 border-b border-border text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
                 >
-                  github.com/UsatovPavel ↗
+                  <GitHubIcon className="h-4 w-4" />
+                  GitHub
                 </a>
               </li>
             </ul>
@@ -60,3 +61,4 @@ export function Footer() {
     </footer>
   );
 }
+import { GitHubIcon } from "@/components/ui/GitHubIcon";

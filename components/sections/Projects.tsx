@@ -3,7 +3,7 @@ import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { ProjectEntry } from "@/components/ui/ProjectEntry";
 
 export function Projects({ variant }: { variant: PortfolioVariant }) {
-  const renderedProjects = projects.map((project) => {
+  const shapedProjects = projects.map((project) => {
     if (variant !== "jvm") return project;
 
     if (project.slug === "scanovich-webui") {
@@ -24,6 +24,17 @@ export function Projects({ variant }: { variant: PortfolioVariant }) {
 
     return project;
   });
+
+  const projectPriority: Partial<Record<PortfolioVariant, string[]>> = {
+    backend: ["prassign", "timetamer", "scanovich-webui", "voevoda", "population-forecast"],
+    ml: ["population-forecast", "scanovich-webui", "timetamer", "prassign", "voevoda"],
+  };
+  const renderedProjects = projectPriority[variant]
+    ? [...shapedProjects].sort(
+        (a, b) =>
+          projectPriority[variant]!.indexOf(a.slug) - projectPriority[variant]!.indexOf(b.slug)
+      )
+    : shapedProjects;
 
   return (
     <section
