@@ -3,6 +3,14 @@ export interface ProjectLink {
   href: string;
 }
 
+export type ProjectCategory = "Backend" | "ML" | "Android";
+
+export interface ProjectMedia {
+  src: string;
+  title: string;
+  description: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -13,6 +21,8 @@ export interface Project {
   description: string;
   metric?: string;
   stack: string[];
+  categories: ProjectCategory[];
+  media?: ProjectMedia[];
   links: ProjectLink[];
 }
 
@@ -29,6 +39,7 @@ export const projects: Project[] = [
     description:
       "Классификация запросов, выбор модели и загрузка файлов из Open WebUI. Генерация PPTX через LLM-план, параллельных агентов и шаблоны под аудиторию; интеграция распознавания речи и pytest-тесты.",
     stack: ["Python", "FastAPI", "Open WebUI", "REST API", "pytest", "Docker Compose"],
+    categories: ["Backend", "ML"],
     links: [{ label: "GitHub", href: "https://github.com/FUYOH666/scanovich-webUI/" }],
   },
   {
@@ -41,6 +52,7 @@ export const projects: Project[] = [
     description:
       "Go-сервис принимает задачи, Kafka передаёт их Scala-консьюмерам для вычисления, а состояние сохраняется в PostgreSQL.",
     stack: ["Go", "Scala", "Kafka", "Cats Effect 3", "PostgreSQL", "Nginx", "Docker", "k6"],
+    categories: ["Backend"],
     links: [
       { label: "PRAssign", href: "https://github.com/UsatovPavel/PRAssign" },
       { label: "AsyncFactorial", href: "https://github.com/UsatovPavel/AsyncFactorial" },
@@ -56,6 +68,19 @@ export const projects: Project[] = [
     description:
       "Календарь с общими заданиями, статистикой, достижениями, push-уведомлениями и AI-ассистентом ChatGPT + Whisper для подсказок и голосового ввода.",
     stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit", "PostgreSQL"],
+    categories: ["Backend", "Android"],
+    media: [
+      {
+        src: "/projects/timetamer/calendar-demo.mp4",
+        title: "Smart Calendar",
+        description: "Сценарии календаря, общих задач и планирования в Android-приложении.",
+      },
+      {
+        src: "/projects/timetamer/ai-dialog-demo.mp4",
+        title: "AI-диалог и голосовой ввод",
+        description: "Работа ассистента ChatGPT и распознавания речи Whisper.",
+      },
+    ],
     links: [
       { label: "GitHub", href: "https://github.com/hse-project-Java-2025" },
     ],
@@ -71,6 +96,7 @@ export const projects: Project[] = [
       "Сбор данных из World Bank API, UN Population Division и Census API. Сравнение ARIMA, Prophet, линейной регрессии, XGBoost и Random Forest по MAPE, RMSE и стабильности ошибки.",
     metric: "Лучшая ARIMA с grid search: MAPE 0,020 на отложенном десятилетнем окне.",
     stack: ["Python", "pandas", "scikit-learn", "XGBoost", "Prophet", "statsmodels", "SciPy"],
+    categories: ["ML"],
     links: [
       { label: "GitHub", href: "https://github.com/UsatovPavel/Pop_ML_Forecast10" },
     ],
@@ -85,6 +111,14 @@ export const projects: Project[] = [
     description:
       "Генерация городов и оппонентов, поведение врагов, виджеты армии ИИ, туман войны и механика сражений.",
     stack: ["C++", "Unreal Engine 4"],
+    categories: [],
+    media: [
+      {
+        src: "/projects/voevoda/gameplay-demo.mp4",
+        title: "Игровой процесс Voevoda",
+        description: "Демонстрация top-down RTS, боевой механики и поведения противников.",
+      },
+    ],
     links: [{ label: "GitHub", href: "https://github.com/UsatovPavel/Voevoda" }],
   },
 ];
@@ -99,6 +133,7 @@ export const educationalProjects: Project[] = [
     summary: "CLI-аналог Git",
     description: "Реализация основных операций системы контроля версий в консольном приложении.",
     stack: ["Java", "CLI"],
+    categories: ["Backend"],
     links: [],
   },
   {
@@ -110,6 +145,7 @@ export const educationalProjects: Project[] = [
     summary: "REST API для уведомлений",
     description: "Сервис уведомлений с учётом часовых поясов, построенный на ZIO.",
     stack: ["Scala", "ZIO", "REST API"],
+    categories: ["Backend"],
     links: [
       { label: "GitHub", href: "https://github.com/UsatovPavel/ZIO-Notification-Service" },
     ],
@@ -123,6 +159,7 @@ export const educationalProjects: Project[] = [
     summary: "Парсер регулярных выражений",
     description: "Парсер формального языка регулярных выражений, построенный с помощью ANTLR.",
     stack: ["Python", "ANTLR"],
+    categories: [],
     links: [
       {
         label: "GitHub",

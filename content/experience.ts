@@ -6,6 +6,18 @@ export interface ExperienceEntry {
   bullets: string[];
   stack?: string[];
   link?: { label: string; href: string };
+  media?: {
+    overview: ExperienceMedia[];
+    byTechnology: Partial<Record<string, ExperienceMedia[]>>;
+  };
+}
+
+export interface ExperienceMedia {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
 }
 
 // Source: the resume attached to AGENT-64. RIID belongs to Experience there,
@@ -37,5 +49,43 @@ export const experience: ExperienceEntry[] = [
     ],
     stack: ["Java", "Kubernetes", "Grafana", "Prometheus", "gRPC", "OCI Registry API", "Docker"],
     link: { label: "GitHub", href: "https://github.com/UsatovPavel/riid" },
+    media: {
+      overview: [
+        {
+          src: "/projects/riid/riid-vs-podman.png",
+          alt: "Диаграмма скорости и размера образов при сравнении RIID и Podman",
+          caption: "RIID и Podman: скорость загрузки по размеру образа",
+          width: 884,
+          height: 710,
+        },
+        {
+          src: "/projects/riid/layer-bytes.png",
+          alt: "График объёма слоёв RIID по источникам cache и p2p",
+          caption: "Распределение трафика между cache и p2p",
+          width: 461,
+          height: 295,
+        },
+      ],
+      byTechnology: {
+        Grafana: [
+          {
+            src: "/projects/riid/grafana-latency.png",
+            alt: "График Grafana с медианной и 95-м перцентилем задержки pipeline RIID",
+            caption: "Grafana: p50 и p95 успешных загрузок",
+            width: 718,
+            height: 369,
+          },
+        ],
+        Kubernetes: [
+          {
+            src: "/projects/riid/kubernetes-pods.png",
+            alt: "Панель Kubernetes с количеством готовых pod RIID, vmagent и Dragonfly",
+            caption: "Kubernetes: состояние pod нагрузочного кластера",
+            width: 1449,
+            height: 418,
+          },
+        ],
+      },
+    },
   },
 ];
