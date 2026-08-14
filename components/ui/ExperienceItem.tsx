@@ -146,7 +146,7 @@ export function ExperienceItem({
       </div>
 
       {selection && selectedItems.length > 0 ? (
-        <div id={mediaId} className="mt-4" aria-live="polite">
+        <div id={mediaId} className="media-reveal mt-4" aria-live="polite">
           <MediaPanel items={selectedItems} selection={selection} />
         </div>
       ) : null}

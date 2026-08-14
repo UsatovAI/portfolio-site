@@ -104,7 +104,11 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
       </div>
 
       {hasMedia && isOpen ? (
-        <div id={mediaId} className="mt-4 grid gap-4 sm:grid-cols-2" aria-live="polite">
+        <div
+          id={mediaId}
+          className="media-reveal mt-4 grid gap-4 sm:grid-cols-2"
+          aria-live="polite"
+        >
           {project.media!.map((media) => (
             <figure key={media.src} className="overflow-hidden border border-border bg-surface">
               <video
