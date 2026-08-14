@@ -82,9 +82,13 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
             ) : null}
 
             {hasMedia ? (
-              <p className="flex items-center gap-2 font-mono text-caption text-terminal">
-                <span aria-hidden="true">{isOpen ? "−" : "+"}</span>
-                {isOpen ? "скрыть материалы" : "показать материалы"}
+              <p className="inline-flex items-center gap-2 rounded-sm border border-terminal bg-terminal/10 px-3 py-2 font-mono text-caption font-medium text-terminal">
+                <span aria-hidden="true" className="text-body leading-none">
+                  {isOpen ? "−" : "+"}
+                </span>
+                {isOpen
+                  ? "Скрыть материалы"
+                  : `Открыть материалы · ${project.media!.length} видео`}
               </p>
             ) : null}
           </div>
@@ -100,6 +104,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
                 controls
                 playsInline
                 preload="metadata"
+                poster={media.poster}
                 aria-label={media.title}
               >
                 <source src={media.src} type="video/mp4" />

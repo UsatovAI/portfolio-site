@@ -35,12 +35,18 @@ server {
         add_header Cache-Control "public, immutable";
     }
 
+    location ^~ /projects/ {
+        try_files $uri =404;
+        add_header Cache-Control "public, max-age=604800";
+    }
+
     location = / {
         return 301 /jvm;
     }
 
     location / {
         try_files $uri $uri.html $uri/ =404;
+        add_header Cache-Control "no-cache" always;
     }
 
     add_header Strict-Transport-Security "max-age=31536000" always;

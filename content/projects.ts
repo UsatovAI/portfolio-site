@@ -7,6 +7,7 @@ export type ProjectCategory = "Backend" | "ML" | "Android";
 
 export interface ProjectMedia {
   src: string;
+  poster: string;
   title: string;
   description: string;
 }
@@ -72,11 +73,13 @@ export const projects: Project[] = [
     media: [
       {
         src: "/projects/timetamer/calendar-demo.mp4",
+        poster: "/projects/timetamer/calendar-poster.jpg",
         title: "Smart Calendar",
         description: "Сценарии календаря, общих задач и планирования в Android-приложении.",
       },
       {
         src: "/projects/timetamer/ai-dialog-demo.mp4",
+        poster: "/projects/timetamer/ai-dialog-poster.jpg",
         title: "AI-диалог и голосовой ввод",
         description: "Работа ассистента ChatGPT и распознавания речи Whisper.",
       },
@@ -115,6 +118,7 @@ export const projects: Project[] = [
     media: [
       {
         src: "/projects/voevoda/gameplay-demo.mp4",
+        poster: "/projects/voevoda/gameplay-poster.jpg",
         title: "Игровой процесс Voevoda",
         description: "Демонстрация top-down RTS, боевой механики и поведения противников.",
       },
