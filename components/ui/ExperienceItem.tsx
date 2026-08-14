@@ -14,7 +14,7 @@ function MediaPanel({ items, selection }: { items: ExperienceMedia[]; selection:
     <div
       className={
         isOverview && items.length > 1
-          ? "grid items-start gap-3 sm:grid-cols-[minmax(0,1.9fr)_minmax(0,1fr)] lg:grid-cols-1 xl:grid-cols-[minmax(0,1.9fr)_minmax(0,1fr)]"
+          ? "grid items-start gap-3 sm:grid-cols-2"
           : "space-y-3"
       }
     >
@@ -58,9 +58,17 @@ export function ExperienceItem({
 
   return (
     <li
-      className={`border-l-2 border-border pl-6 ${
-        selection ? "grid items-start gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(18rem,1fr)]" : ""
-      }`}
+      className="border-l-2 border-border pl-6"
+      onMouseEnter={hasMedia ? () => setSelection((current) => current ?? "overview") : undefined}
+      onMouseLeave={hasMedia ? () => setSelection(null) : undefined}
+      onFocus={hasMedia ? () => setSelection((current) => current ?? "overview") : undefined}
+      onBlur={
+        hasMedia
+          ? (event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setSelection(null);
+            }
+          : undefined
+      }
     >
       <div>
         <p className="font-mono text-caption text-text-secondary">{entry.period}</p>
@@ -91,6 +99,9 @@ export function ExperienceItem({
                         aria-pressed={isSelected}
                         aria-controls={mediaId}
                         onClick={() => toggleSelection(tech)}
+                        onMouseEnter={() => setSelection(tech)}
+                        onMouseLeave={() => setSelection("overview")}
+                        onFocus={() => setSelection(tech)}
                         className={`rounded-sm border px-2 py-1 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2 ${
                           isSelected
                             ? "border-terminal bg-terminal/10 text-text-primary"
@@ -135,7 +146,7 @@ export function ExperienceItem({
       </div>
 
       {selection && selectedItems.length > 0 ? (
-        <div id={mediaId} aria-live="polite">
+        <div id={mediaId} className="mt-4" aria-live="polite">
           <MediaPanel items={selectedItems} selection={selection} />
         </div>
       ) : null}

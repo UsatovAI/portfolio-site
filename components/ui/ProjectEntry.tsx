@@ -9,15 +9,23 @@ import { JVM_SECONDARY_TECH } from "@/content/portfolio-variant";
 // Tier 1 (flagship) gets the `surface` fill; Tier 2 (coursework/hackathon) is the
 // same structure at a visually lighter weight (border only, transparent background).
 export function ProjectEntry({ project, variant }: { project: Project; variant: PortfolioVariant }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isPinnedOpen, setIsPinnedOpen] = useState(false);
   const mediaId = useId();
   const hasMedia = Boolean(project.media?.length);
+  const isOpen = hasMedia && (isHovered || isFocused || isPinnedOpen);
 
   return (
     <article
-      className={
-        hasMedia && isOpen
-          ? "grid items-start gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(17rem,1fr)]"
+      onMouseEnter={hasMedia ? () => setIsHovered(true) : undefined}
+      onMouseLeave={hasMedia ? () => setIsHovered(false) : undefined}
+      onFocus={hasMedia ? () => setIsFocused(true) : undefined}
+      onBlur={
+        hasMedia
+          ? (event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setIsFocused(false);
+            }
           : undefined
       }
     >
@@ -29,7 +37,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
             aria-label={`${isOpen ? "Скрыть" : "Показать"} материалы проекта ${project.title}`}
             aria-expanded={isOpen}
             aria-controls={mediaId}
-            onClick={() => setIsOpen((value) => !value)}
+            onClick={() => setIsPinnedOpen((value) => !value)}
           />
         ) : null}
 
@@ -88,7 +96,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
                 </span>
                 {isOpen
                   ? "Скрыть материалы"
-                  : `Открыть материалы · ${project.media!.length} видео`}
+                  : `Наведите: ${project.media!.length} видео`}
               </p>
             ) : null}
           </div>
@@ -96,7 +104,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
       </div>
 
       {hasMedia && isOpen ? (
-        <div id={mediaId} className="space-y-4" aria-live="polite">
+        <div id={mediaId} className="mt-4 grid gap-4 sm:grid-cols-2" aria-live="polite">
           {project.media!.map((media) => (
             <figure key={media.src} className="overflow-hidden border border-border bg-surface">
               <video
