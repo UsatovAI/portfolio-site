@@ -18,6 +18,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
 
   return (
     <article
+      className="relative"
       onMouseEnter={hasMedia ? () => setIsHovered(true) : undefined}
       onMouseLeave={hasMedia ? () => setIsHovered(false) : undefined}
       onFocus={hasMedia ? () => setIsFocused(true) : undefined}
@@ -29,6 +30,16 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
           : undefined
       }
     >
+      {project.featured ? (
+        <span
+          className="pointer-events-none absolute left-0 top-6 -translate-x-[135%] font-mono text-[2em] leading-none text-terminal"
+          aria-hidden="true"
+        >
+          ★
+        </span>
+      ) : null}
+      {project.featured ? <span className="sr-only">Ключевой проект:</span> : null}
+
       <div className="selection-card relative border border-border bg-surface p-6">
         {hasMedia ? (
           <button
@@ -41,85 +52,69 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
           />
         ) : null}
 
-        <div
-          className={
-            hasMedia
-              ? "pointer-events-none relative z-[2] flex items-start gap-3"
-              : "relative z-[2] flex items-start gap-3"
-          }
-        >
-          <span
-            className={`shrink-0 font-mono leading-none text-terminal ${project.featured ? "text-[4em]" : "invisible"}`}
-            aria-hidden="true"
-          >
-            ★
-          </span>
-          {project.featured ? <span className="sr-only">Ключевой проект:</span> : null}
+        <div className={hasMedia ? "pointer-events-none relative z-[2]" : "relative z-[2]"}>
+          <p className="flex flex-wrap items-baseline gap-x-2 font-mono">
+            <span className="text-text-secondary">{`~/projects/${project.slug}`}</span>
+            <span className="font-bold text-terminal">$</span>
+            <span className="font-medium text-text-primary">{project.title}</span>
+            <span
+              className="mx-1 hidden h-[0.6em] flex-1 self-center border-b border-dotted border-border sm:block"
+              aria-hidden="true"
+            />
+            <span className="whitespace-nowrap text-caption text-text-secondary">
+              {project.period}
+            </span>
+          </p>
 
-          <div className="min-w-0 flex-1">
-            <p className="flex flex-wrap items-baseline gap-x-2 font-mono">
-              <span className="text-text-secondary">{`~/projects/${project.slug}`}</span>
-              <span className="font-bold text-terminal">$</span>
-              <span className="font-medium text-text-primary">{project.title}</span>
-              <span
-                className="mx-1 hidden h-[0.6em] flex-1 self-center border-b border-dotted border-border sm:block"
-                aria-hidden="true"
-              />
-              <span className="whitespace-nowrap text-caption text-text-secondary">
-                {project.period}
-              </span>
-            </p>
+          <div className="mt-4 space-y-3 text-body text-text-secondary">
+            <p className="font-medium text-text-primary">{project.summary}</p>
+            <p>{project.description}</p>
+            {project.metric ? <p className="text-text-primary">{project.metric}</p> : null}
+            <p className="text-caption">{project.role}</p>
 
-            <div className="mt-4 space-y-3 text-body text-text-secondary">
-              <p className="font-medium text-text-primary">{project.summary}</p>
-              <p>{project.description}</p>
-              {project.metric ? <p className="text-text-primary">{project.metric}</p> : null}
-              <p className="text-caption">{project.role}</p>
+            <ul
+              className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary"
+              aria-label="Стек проекта"
+            >
+              {project.stack.map((tech) => (
+                <li
+                  key={tech}
+                  className={
+                    variant === "jvm" && JVM_SECONDARY_TECH.has(tech) ? "opacity-40" : undefined
+                  }
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
 
-              <ul
-                className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary"
-                aria-label="Стек проекта"
-              >
-                {project.stack.map((tech) => (
-                  <li
-                    key={tech}
-                    className={
-                      variant === "jvm" && JVM_SECONDARY_TECH.has(tech) ? "opacity-40" : undefined
-                    }
-                  >
-                    {tech}
+            {project.links.length > 0 ? (
+              <ul className="flex flex-wrap gap-x-4 gap-y-1">
+                {project.links.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pointer-events-auto border-b border-border text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+                    >
+                      {link.label} ↗
+                    </a>
                   </li>
                 ))}
               </ul>
+            ) : null}
 
-              {project.links.length > 0 ? (
-                <ul className="flex flex-wrap gap-x-4 gap-y-1">
-                  {project.links.map((link) => (
-                    <li key={link.href}>
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="pointer-events-auto border-b border-border text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
-                      >
-                        {link.label} ↗
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-
-              {hasMedia ? (
-                <p className="inline-flex items-center gap-2 rounded-sm border border-terminal bg-terminal/10 px-3 py-2 font-mono text-caption font-medium text-terminal">
-                  <span aria-hidden="true" className="text-body leading-none">
-                    {isOpen ? "−" : "+"}
-                  </span>
-                  {isOpen
-                    ? "Скрыть материалы"
-                    : `Наведите: ${project.media!.length} видео`}
-                </p>
-              ) : null}
-            </div>
+            {hasMedia ? (
+              <p className="inline-flex items-center gap-2 rounded-sm border border-terminal bg-terminal/10 px-3 py-2 font-mono text-caption font-medium text-terminal">
+                <span aria-hidden="true" className="text-body leading-none">
+                  {isOpen ? "−" : "+"}
+                </span>
+                {isOpen
+                  ? "Скрыть материалы"
+                  : `Наведите: ${project.media!.length} видео`}
+              </p>
+            ) : null}
           </div>
         </div>
       </div>

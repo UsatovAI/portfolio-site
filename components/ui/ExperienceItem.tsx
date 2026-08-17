@@ -58,7 +58,7 @@ export function ExperienceItem({
 
   return (
     <li
-      className="border-l-2 border-border pl-6"
+      className="relative border-l-2 border-border pl-6"
       onMouseEnter={hasMedia ? () => setSelection((current) => current ?? "overview") : undefined}
       onMouseLeave={hasMedia ? () => setSelection(null) : undefined}
       onFocus={hasMedia ? () => setSelection((current) => current ?? "overview") : undefined}
@@ -70,88 +70,88 @@ export function ExperienceItem({
           : undefined
       }
     >
-      <div className="flex items-start gap-3">
+      {entry.featured ? (
         <span
-          className={`shrink-0 font-mono leading-none text-terminal ${entry.featured ? "text-[4em]" : "invisible"}`}
+          className="pointer-events-none absolute left-0 top-0 -translate-x-[135%] font-mono text-[2em] leading-none text-terminal"
           aria-hidden="true"
         >
           ★
         </span>
-        {entry.featured ? <span className="sr-only">Ключевой проект:</span> : null}
+      ) : null}
+      {entry.featured ? <span className="sr-only">Ключевой проект:</span> : null}
 
-        <div className="min-w-0 flex-1">
-          <p className="font-mono text-caption text-text-secondary">{entry.period}</p>
-          <h3 className="mt-1 text-h3 text-text-primary">{entry.org}</h3>
-          <p className="text-body font-medium text-text-secondary">{entry.role}</p>
-          <ul className="mt-3 list-inside list-disc space-y-1 text-body text-text-secondary">
-            {entry.bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
-            ))}
+      <div>
+        <p className="font-mono text-caption text-text-secondary">{entry.period}</p>
+        <h3 className="mt-1 text-h3 text-text-primary">{entry.org}</h3>
+        <p className="text-body font-medium text-text-secondary">{entry.role}</p>
+        <ul className="mt-3 list-inside list-disc space-y-1 text-body text-text-secondary">
+          {entry.bullets.map((bullet) => (
+            <li key={bullet}>{bullet}</li>
+          ))}
+        </ul>
+
+        {entry.stack && entry.stack.length > 0 ? (
+          <ul
+            className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-caption text-text-secondary"
+            aria-label="Стек проекта"
+          >
+            {entry.stack
+              .filter((tech) => variant !== "jvm" || tech !== "TypeScript")
+              .map((tech) => {
+                const isInteractive = Boolean(entry.media?.byTechnology[tech]);
+                const isSelected = selection === tech;
+
+                return (
+                  <li key={tech}>
+                    {isInteractive ? (
+                      <button
+                        type="button"
+                        aria-pressed={isSelected}
+                        aria-controls={mediaId}
+                        onClick={() => toggleSelection(tech)}
+                        onMouseEnter={() => setSelection(tech)}
+                        onMouseLeave={() => setSelection("overview")}
+                        onFocus={() => setSelection(tech)}
+                        className={`rounded-sm border px-2 py-1 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2 ${
+                          isSelected
+                            ? "border-terminal bg-terminal/10 text-text-primary"
+                            : "border-border text-accent hover:border-terminal"
+                        }`}
+                      >
+                        {tech} {isSelected ? "−" : "+"}
+                      </button>
+                    ) : (
+                      tech
+                    )}
+                  </li>
+                );
+              })}
           </ul>
+        ) : null}
 
-          {entry.stack && entry.stack.length > 0 ? (
-            <ul
-              className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-caption text-text-secondary"
-              aria-label="Стек проекта"
+        <div className="mt-4 flex flex-wrap items-center gap-4">
+          {entry.link ? (
+            <a
+              href={entry.link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border-b border-border text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
             >
-              {entry.stack
-                .filter((tech) => variant !== "jvm" || tech !== "TypeScript")
-                .map((tech) => {
-                  const isInteractive = Boolean(entry.media?.byTechnology[tech]);
-                  const isSelected = selection === tech;
-
-                  return (
-                    <li key={tech}>
-                      {isInteractive ? (
-                        <button
-                          type="button"
-                          aria-pressed={isSelected}
-                          aria-controls={mediaId}
-                          onClick={() => toggleSelection(tech)}
-                          onMouseEnter={() => setSelection(tech)}
-                          onMouseLeave={() => setSelection("overview")}
-                          onFocus={() => setSelection(tech)}
-                          className={`rounded-sm border px-2 py-1 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2 ${
-                            isSelected
-                              ? "border-terminal bg-terminal/10 text-text-primary"
-                              : "border-border text-accent hover:border-terminal"
-                          }`}
-                        >
-                          {tech} {isSelected ? "−" : "+"}
-                        </button>
-                      ) : (
-                        tech
-                      )}
-                    </li>
-                  );
-                })}
-            </ul>
+              {entry.link.label} ↗
+            </a>
           ) : null}
 
-          <div className="mt-4 flex flex-wrap items-center gap-4">
-            {entry.link ? (
-              <a
-                href={entry.link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block border-b border-border text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
-              >
-                {entry.link.label} ↗
-              </a>
-            ) : null}
-
-            {hasMedia ? (
-              <button
-                type="button"
-                aria-expanded={selection === "overview"}
-                aria-controls={mediaId}
-                onClick={() => toggleSelection("overview")}
-                className="border-b border-border font-mono text-caption text-terminal transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
-              >
-                {selection === "overview" ? "− скрыть материалы RIID" : "+ материалы RIID"}
-              </button>
-            ) : null}
-          </div>
+          {hasMedia ? (
+            <button
+              type="button"
+              aria-expanded={selection === "overview"}
+              aria-controls={mediaId}
+              onClick={() => toggleSelection("overview")}
+              className="border-b border-border font-mono text-caption text-terminal transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+            >
+              {selection === "overview" ? "− скрыть материалы RIID" : "+ материалы RIID"}
+            </button>
+          ) : null}
         </div>
       </div>
 
