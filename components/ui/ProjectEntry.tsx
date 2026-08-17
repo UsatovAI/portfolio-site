@@ -43,11 +43,13 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
 
         <div
           className={
-            hasMedia ? "pointer-events-none relative z-[2] flex gap-3" : "relative z-[2] flex gap-3"
+            hasMedia
+              ? "pointer-events-none relative z-[2] flex items-start gap-3"
+              : "relative z-[2] flex items-start gap-3"
           }
         >
           <span
-            className={`shrink-0 pt-0.5 font-mono text-terminal ${project.featured ? "" : "invisible"}`}
+            className={`shrink-0 font-mono leading-none text-terminal ${project.featured ? "text-[4em]" : "invisible"}`}
             aria-hidden="true"
           >
             ★

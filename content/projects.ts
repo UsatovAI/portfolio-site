@@ -173,4 +173,17 @@ export const educationalProjects: Project[] = [
       },
     ],
   },
+  {
+    slug: "portfolio-site",
+    title: "Этот сайт",
+    tier: 2,
+    period: "июль 2026 – август 2026",
+    role: "TypeScript",
+    summary: "Собственный портфолио-сайт: Next.js + Tailwind",
+    description:
+      "Статический экспорт с четырьмя вариантами подачи контента (полный/JVM/backend/ML); деплой на VPS через Nginx и Certbot.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Nginx"],
+    categories: ["Backend"],
+    links: [{ label: "GitHub", href: "https://github.com/UsatovAI/portfolio-site" }],
+  },
 ];

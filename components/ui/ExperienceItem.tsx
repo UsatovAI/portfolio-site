@@ -70,9 +70,9 @@ export function ExperienceItem({
           : undefined
       }
     >
-      <div className="flex gap-3">
+      <div className="flex items-start gap-3">
         <span
-          className={`shrink-0 pt-0.5 font-mono text-terminal ${entry.featured ? "" : "invisible"}`}
+          className={`shrink-0 font-mono leading-none text-terminal ${entry.featured ? "text-[4em]" : "invisible"}`}
           aria-hidden="true"
         >
           ★

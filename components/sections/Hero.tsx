@@ -3,7 +3,7 @@ import { GitHubIcon } from "@/components/ui/GitHubIcon";
 export function Hero() {
   return (
     <section id="home" aria-labelledby="hero-heading" className="scroll-mt-16 py-16 sm:py-24">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <p className="font-mono text-body text-terminal">
           <span aria-hidden="true">$</span> whoami
         </p>

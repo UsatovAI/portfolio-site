@@ -7,7 +7,7 @@ export function AdditionalActivities() {
       aria-labelledby="activities-heading"
       className="scroll-mt-24 py-16 sm:py-24"
     >
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <h2 id="activities-heading" className="text-h2 text-text-primary">
           Дополнительная деятельность
         </h2>
