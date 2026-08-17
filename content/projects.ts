@@ -25,6 +25,7 @@ export interface Project {
   categories: ProjectCategory[];
   media?: ProjectMedia[];
   links: ProjectLink[];
+  featured?: boolean;
 }
 
 // Source: the resume attached to AGENT-64. Main and educational work are kept
@@ -63,6 +64,7 @@ export const projects: Project[] = [
     slug: "timetamer",
     title: "TimeTamer",
     tier: 1,
+    featured: true,
     period: "февраль 2025 – август 2025",
     role: "Командный проект",
     summary: "Java-сервер + Kotlin/Compose календарь",

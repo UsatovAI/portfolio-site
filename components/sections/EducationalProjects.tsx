@@ -8,7 +8,7 @@ export function EducationalProjects() {
       aria-labelledby="education-projects-heading"
       className="scroll-mt-24 py-16 sm:py-24"
     >
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <h2 id="education-projects-heading" className="text-h2 text-text-primary">
           Учебные проекты
         </h2>

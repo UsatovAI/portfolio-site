@@ -37,7 +37,6 @@ export function Stack({ variant }: { variant: PortfolioVariant }) {
   );
 
   const descriptions: Partial<Record<PortfolioVariant, string>> = {
-    jvm: "JVM-first профиль: Java, Scala и Kotlin в центре; Go и C++ оставлены как дополнительный опыт.",
     backend: "Backend-first профиль: языки, API, базы данных и инфраструктура показаны раньше ML-инструментов.",
     ml: "ML-first профиль: Python, данные и модели показаны раньше backend- и инфраструктурного стека.",
   };

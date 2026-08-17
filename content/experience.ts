@@ -10,6 +10,7 @@ export interface ExperienceEntry {
     overview: ExperienceMedia[];
     byTechnology: Partial<Record<string, ExperienceMedia[]>>;
   };
+  featured?: boolean;
 }
 
 export interface ExperienceMedia {
@@ -41,6 +42,7 @@ export const experience: ExperienceEntry[] = [
     org: "RIID для внутреннего облака VK",
     role: "Индивидуальный проект · Java daemon для p2p-загрузки OCI/Docker-образов",
     period: "январь 2026 – июнь 2026",
+    featured: true,
     bullets: [
       "Спроектировал модульный pipeline: CLI → dispatcher → registry client/cache/p2p → engine adapters.",
       "Провёл нагрузочное тестирование на k8s-кластере: 100 образов размером от 1 МБ до 5 ГБ.",
