@@ -17,18 +17,33 @@ export function AdditionalActivities() {
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
           <article className="selection-card border border-border bg-surface/80 p-6">
-            <p className="font-mono text-caption text-terminal">education --certificate</p>
-            <h3 className="mt-3 text-h3 text-text-primary">Yandex EdTech · Agents Week</h3>
+            <p className="font-mono text-caption text-terminal">education --certificates</p>
+            <h3 className="mt-3 text-h3 text-text-primary">Yandex EdTech · Школа анализа данных</h3>
             <p className="mt-3 text-body text-text-secondary">
-              Интенсив по проектированию и применению AI-агентов в образовательных продуктах.
+              Интенсивы по проектированию, применению и безопасности AI-агентов.
             </p>
-            <a
-              href="/activities/agents-week-certificate.pdf"
-              download
-              className="mt-5 inline-block border-b border-border text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
-            >
-              Скачать сертификат (PDF) ↓
-            </a>
+            <ul className="mt-5 space-y-4">
+              <li>
+                <a
+                  href="/activities/agents-week-certificate.pdf"
+                  download
+                  className="inline-block border-b border-border text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+                >
+                  Agents Week (PDF) ↓
+                </a>
+                <p className="mt-1 font-mono text-caption text-text-secondary">6-10 апреля 2026</p>
+              </li>
+              <li>
+                <a
+                  href="/activities/ai-agents-security-week-certificate.pdf"
+                  download
+                  className="inline-block border-b border-border text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+                >
+                  AI Agents Security Week (PDF) ↓
+                </a>
+                <p className="mt-1 font-mono text-caption text-text-secondary">27-31 июля 2026</p>
+              </li>
+            </ul>
           </article>
 
           <article className="selection-card border border-border bg-surface/80 p-6">
