@@ -144,7 +144,9 @@
 	{Продуктовая команда документооборота}{Kanban}
 	\resumeItemListStart
 	\resumeItem{}{Релизы в GitLab: merge request, ревью, зелёный пайплайн, автовыкат на прод}
-	\resumeItem{}{Алерты на БД, расширения PostgreSQL, e2e на QA-контуре, разбор багов по ELK}
+	\resumeItem{}{Алерты на БД, оптимизация запроса, расширения PostgreSQL}
+	\resumeItem{}{Прогонял e2e 23 low-code интеграций на QA-контуре перед выкатом}
+	\resumeItem{}{Разбирал баги генерации документов по логам в ELK}
 	\resumeItemListEnd
 	\textbf{Технологии}: GitLab CI, PostgreSQL, Kafka, Docker, ELK, Scala
 
@@ -157,10 +159,8 @@
 	{\ulhref{https://github.com/UsatovAI/ansible-deploy}{ansible-deploy} $|$ \normalfont{\emph{\ulhref{https://github.com/UsatovAI/claude-web-console}{claude-web-console}}}}{2026}
 	{Автодеплой веб-консоли к headless Claude Code на VPS}{Индивидуальный проект}
 	\resumeItemListStart
-	\resumeItem{}{Ansible-роли с тегами, ansible-vault, прод и тест - разные группы инвентаря}
-	\resumeItem{}{Сервис без root: свой пользователь, ProtectSystem=strict, NoNewPrivileges}
-	\resumeItem{}{certbot: pre/post-хуки освобождают порт 80, renewal-хук возвращает ACL}
-	\resumeItem{}{Nginx единственный на 443, маршрутизация по SNI на два домена}
+	\resumeItem{}{Ansible-роли с тегами и секретами в ansible-vault; прод и тест - разные группы}
+	\resumeItem{}{systemd без root с ProtectSystem=strict, certbot с renewal-хуком, SNI на nginx}
 	\resumeItemListEnd
 	\textbf{Технологии}: Ansible, ansible-vault, systemd, Nginx, certbot/Let's Encrypt, Bash
 
