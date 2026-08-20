@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Build the static export and publish it to the VPS.
 #
+#   ENV_FILE=~/playground/pavel-usatov-site/.env ./nginx/deploy.sh
 #   DEPLOY_HOST=root@203.0.113.10 DEPLOY_PASSWORD=... ./nginx/deploy.sh
 #   DEPLOY_HOST=root@203.0.113.10 DEPLOY_SSH_KEY_FILE=~/.ssh/id_deploy ./nginx/deploy.sh
 #
@@ -11,6 +12,16 @@
 # ~/playground/pavel-usatov-site/.env (IPv4, VPS_PASSWORD); in CI they come
 # from repository secrets. Never commit them.
 set -Eeuo pipefail
+
+# ENV_FILE lets the server credentials come straight from the VDS notes file.
+# It is parsed rather than sourced: the keys there are written "IPv4 = value",
+# and the spaces around "=" make it invalid shell.
+if [[ -n ${ENV_FILE:-} ]]; then
+  [[ -r $ENV_FILE ]] || { printf 'Cannot read ENV_FILE: %s\n' "$ENV_FILE" >&2; exit 1; }
+  env_get() { sed -nE "s/^[[:space:]]*$1[[:space:]]*=[[:space:]]*//p" "$ENV_FILE" | head -n1 | tr -d '\r'; }
+  : "${DEPLOY_HOST:=root@$(env_get IPv4 | tr -d '"'"'"' ')}"
+  : "${DEPLOY_PASSWORD:=$(env_get VPS_PASSWORD)}"
+fi
 
 DEPLOY_HOST="${DEPLOY_HOST:?set DEPLOY_HOST, e.g. DEPLOY_HOST=root@203.0.113.10}"
 WEB_ROOT="${WEB_ROOT:-/var/www/pavel-usatov-site/current}"
