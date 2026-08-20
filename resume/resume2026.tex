@@ -141,23 +141,25 @@
 	\section{Опыт}
 	\resumeSubHeadingListStart
 	\resumeSubheading
-	{Стажировка Scala Т-банк}{апрель 2026 - июль 2026}
+	{Стажировка Backend Т-банк}{апрель 2026 - июль 2026}
 	{Участвовал в миграции документов с long на uuid}{Продуктовая команда документооборота}
 	\resumeItemListStart
-	\resumeItem{}{Создал 10 новых эндпоинтов, работающих с uuid}
-	\resumeItem{}{Создал 7 клиентов к сервисам команды в репозитории интеграции b2b. Протестировал e2e на QA контуре}
+	\resumeItem{}{Версионировал 10 эндпоинтов под uuid, чтобы не сломать мобильные приложения, установленные у пользователей}
+	\resumeItem{}{Написал модуль команды в общем репозитории интеграции b2b: 7 клиентов с документацией взамен legacy трёхлетней давности. Смежные команды завели эпики перехода на новое API}
 	\resumeItem{}{Создал и протестировал 23 интеграции для low-code платформы, обеспечив переход на новое API бухгалтерии}
 	\resumeItem{}{Работа с БД: создание алертов, оптимизация запроса, добавление расширений}
-	\resumeItemListEnd
+	\resumeItem{}{Чинил баги генерации документов: время у нас, восстановил столбец статистики во внешнем сервисе}
+    \resumeItemListEnd
 	\textbf{Технологии}: Scala, Cats Effect, PostgreSQL, Kanban, Kafka, Docker, Typescript, ELK
 	\resumeSubheading
 	{\ulhref{https://github.com/UsatovPavel/riid}{Утилита RIID для внутреннего облака VK}}{январь 2026 - июнь 2026}
-	{Daemon на Java для p2p-загрузки OCI/Docker образов \textit{независимый} от container engine}{Индивидуальный проект}
+	{Daemon на Java для p2p-загрузки OCI/Docker образов \textit{независимый} от container engine}{Курсовая, научрук - SRE из VK}
 	\resumeItemListStart
+    \resumeItem{}{{Написал \ulhref{https://github.com/UsatovPavel/java-dragonfly-image-puller}{библиотеку}: gRPC-клиент к Dragonfly для загрузки слоёв с соседних нод. \textbf{Взят в использование в VK}}}
+    \resumeItem{}{Обосновал команде интеграцию  Dragonfly с Rust вместо согласованной ранее Go: с версии 2026 она основная}
 	\resumeItem{}{Модульная архитектура: CLI → dispatcher (стратегия скачивания) → registry client/cache/p2p → engine adapters}
 	\resumeItem{}{Нагрузочное тестирование: кластер в k8s, 100 образов от 1 МБ до 5 ГБ}
 	\resumeItem{}{Скачивает в 1,2 раза быстрее, чем Podman согласно нагрузочному тестированию}
-	\resumeItem{}{P2P-модуль: взаимодействие с Dragonfly через unix-socket/tcp по gRPC через \href{https://github.com/UsatovPavel/java-dragonfly-image-puller}{\underline{свою библиотеку}}}
 	%\resumeItem{}{Сбор метрик через Prometheus, отображение в Grafana}
 	\resumeItemListEnd
 	\textbf{Технологии}: Java, Kubernetes, Grafana, Prometheus, Gradle, OCI/Docker Registry API, p2p, Podman, Docker, gRPC%\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HTTP, CLI, интеграционные и e2e тесты
@@ -185,7 +187,7 @@
 		\normalfont{\emph{\ulhref{https://github.com/UsatovPavel/PRAssign}{Go REST API} + {\ulhref{https://github.com/UsatovPavel/AsyncFactorial}{Scala Kafka consumers}:}
 			}
 	}}{ноябрь 2025 - январь 2026}
-	{Получение задач через Go сервис, передача через Kafka, вычисление на Scala, отслеживание в БД} {Индивидуальный проект}
+	{Получение задач через Go, передача через Kafka, вычисление на Scala, отслеживание в БД} {Индивидуальный проект}
 	%\resumeItemListStart
 	%\resumeItem 
 	%\resumeItem{}{API для управления PR с проверкой прав и статистикой}
@@ -232,7 +234,7 @@
 	%
 	%-----------PROGRAMMING SKILLS-----------
 	\section{Навыки}
-	\textbf{Языки}{: Java, Scala, средне: (Kotlin, Python, C++)} \\
+	\textbf{Языки}{: Java, Scala, Kotlin} \\ %, Python, C++)} \\
 	\textbf{Frameworks}{: Spring Boot, JUnit, Mockito} \\
 	\textbf{Технологии и инструменты}{: Git, Docker, PostgreSQL, Kafka, Kubernetes, Grafana, Prometheus, Gradle, Cats Effect} \\%Nginx, k6, p2p, ZIO, FS
 	\textbf{Навыки}{: тестирование (интеграционное/e2e/нагрузочное/UI), алгоритмы и структуры данных, работа по Kanban}%проектирование архитектур(MVVM/клиент-сервер/микросервисная)}%<- ТУПО
@@ -240,12 +242,12 @@
 % Unreal Engine <- если на Gamedev
 
 
-\section{Дополнительная деятельность}
-\resumeSubHeadingListStart
-\resumeSubheading
-{Кировская летняя метапредметная школа}{Вишкиль}
-{Педагог доп. образования (математика)}{Июль 2024, Июль 2025}
-\resumeSubHeadingListEnd
+%\section{Дополнительная деятельность}
+%\resumeSubHeadingListStart
+%\resumeSubheading
+%{Кировская летняя метапредметная школа}{Вишкиль}
+%{Педагог доп. образования (математика)}{Июль 2024, Июль 2025}
+%\resumeSubHeadingListEnd
 
 %-------------------------------------------
 \end{document}
