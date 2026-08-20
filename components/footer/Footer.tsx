@@ -19,7 +19,7 @@ export function Footer() {
               <span className="text-terminal">$</span> resume --format=pdf
             </p>
             <a
-              href="/resume.pdf"
+              href="/resume.pdf?v=2026-08-20"
               className="inline-block border-b border-border font-sans text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
             >
               Скачать резюме (PDF) ↓
@@ -55,7 +55,7 @@ export function Footer() {
         </div>
 
         <p className="mt-10 font-mono text-caption text-text-secondary">
-          Обновлено: 10 августа 2026
+          Обновлено: 20 августа 2026
         </p>
       </div>
     </footer>
