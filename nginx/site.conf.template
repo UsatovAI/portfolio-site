@@ -57,6 +57,6 @@ server {
     # inline <script> tags per page for the RSC hydration payload (self.__next_f.push),
     # not just the ThemeScript.tsx theme-init script — a fixed hash allowlist can't cover
     # them (they vary per page/build), and blocking them breaks hydration entirely.
-    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc.yandex.ru; font-src 'self'; media-src 'self'; connect-src 'self' https://mc.yandex.ru https://mc.webvisor.com https://mc.webvisor.org wss://mc.yandex.ru wss://mc.webvisor.com wss://mc.webvisor.org; child-src blob: https://mc.yandex.ru; frame-src blob: https://mc.yandex.ru; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self' https://metrika.yandex.ru https://analytics.yandex.ru https://metrica.yandex.com https://analytics.yandex.com" always;
     add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" always;
 }

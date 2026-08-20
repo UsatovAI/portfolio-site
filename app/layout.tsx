@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { YandexMetrika } from "@/components/analytics/YandexMetrika";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import "./globals.css";
 
@@ -46,7 +47,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <ThemeScript />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>{children}</body>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
+        {children}
+        <YandexMetrika />
+      </body>
     </html>
   );
 }
