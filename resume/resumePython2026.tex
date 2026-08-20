@@ -136,8 +136,9 @@
 	{Участвовал в миграции документов с long на uuid}{Продуктовая команда документооборота}
 	\resumeItemListStart
 	\resumeItem{}{Версионировал 10 эндпоинтов под uuid, чтобы не сломать мобильные приложения, установленные у пользователей}
-	\resumeItem{}{Написал модуль команды в общем репозитории интеграции: 7 клиентов с документацией взамен legacy трёхлетней давности. Смежные команды завели эпики перехода на новое API}
-	\resumeItem{}{Чинил баги генерации документов: время у нас, восстановил столбец статистики во внешнем сервисе. Работа с БД: алерты, оптимизация запроса, расширения}
+	\resumeItem{}{Написал модуль команды в репозитории интеграции: 7 клиентов взамен legacy, смежные команды мигрируют на API}
+	\resumeItem{}{Чинил баги генерации документов: время у нас, восстановил столбец статистики во внешнем сервисе}
+	\resumeItem{}{Работа с БД: создание алертов, оптимизация запроса, добавление расширений}
 	\resumeItemListEnd
 	\textbf{Технологии}: Scala, Cats Effect, PostgreSQL, Kafka, Docker, Typescript, Kanban
 	\resumeSubheading
@@ -155,40 +156,38 @@
 	\section{Проекты}
 	\resumeSubHeadingListStart
 	\resumeSubheading
-	{\textbf{pr-review-rag}: автоматическое ревью пул-реквестов на LLM + RAG}{июль 2026}
-	{Прототип приватного AI-ревью без передачи кода в зарубежные сервисы}{Индивидуальный проект}
-	\resumeItemListStart
-	\resumeItem{}{RAG-контур: эмбеддинги diff через sentence-transformers, поиск top-k по косинусной близости к чанкам корпуса в SQLite}
-	\resumeItem{}{Два провайдера LLM за одним интерфейсом: GigaChat и Yandex AI Studio, переключение через переменную окружения}
-	\resumeItem{}{Собирает unified diff merge-base..ветка без checkout; сборка индекса и прогон ревью вынесены в цели Makefile}
-	\resumeItem{}{\textbf{Закрыл направление по результату}: прототип за 7 часов дал неудовлетворительное качество ревью, связку LLM+RAG для ускорения разработки RIID отклонил}
-	\resumeItemListEnd
-	\textbf{Технологии}: Python, sentence-transformers, SQLite, httpx, GigaChat API, Yandex AI Studio, Make
-
-	\resumeSubheading
-	{\ulhref{https://github.com/UsatovPavel/Pop_ML_Forecast10}{Прогноз численности населения на 10 лет}}{март 2026}
+	{\ulhref{https://github.com/UsatovPavel/Pop_ML_Forecast10}{\textbf{Прогноз населения стран}} $|$ \normalfont{\emph{ML на 10-летнем горизонте}}}{март 2026}
 	{Воспроизведение и расширение статьи по ML-прогнозированию демографии}{Индивидуальный проект}
 	\resumeItemListStart
-	\resumeItem{}{Пайплайн сбора из трёх источников: UN World Population Prospects, US Census IDB API и World Bank API; когорты по 5-летним группам, смертность, фертильность}
-	\resumeItem{}{Сравнил 10 конфигураций: ARIMA с grid search, Prophet, XGBoost, Random Forest, линейная регрессия, когортно-компонентная модель}
-	\resumeItem{}{Лучший результат MAPE 0.020 против 0.196 у наивного baseline; прогноз по России на 2023-2032 сопоставлен с прогнозом Росстата}
+	\resumeItem{}{Собрал датасет из UN WPP, US Census IDB и World Bank API: когорты, смертность, фертильность}
+	\resumeItem{}{Сравнил 10 конфигураций: ARIMA с grid search, Prophet, XGBoost, Random Forest, когортная модель}
+	\resumeItem{}{Лучший MAPE 0.020 против 0.196 у наивного baseline; прогноз по России сверен с росстатовским}
 	\resumeItemListEnd
 	\textbf{Технологии}: Python, pandas, NumPy, scikit-learn, statsmodels, XGBoost, Prophet, Jupyter
 
 	\resumeSubheading
-	{\ulhref{https://github.com/FUYOH666/scanovich-webUI/}{Хакатон MTS True Tech}}{2026}
-	{Оркестратор нейросетей на Python в контуре заказчика, интеграция с Open WebUI}{Командный проект}
+	{\ulhref{https://github.com/FUYOH666/scanovich-webUI/}{\textbf{Хакатон MTS True Tech}} $|$ \normalfont{\emph{оркестратор нейросетей}}}{апрель 2026}
+	{Приватный AI-контур заказчика, интеграция с Open WebUI}{Командный проект}
 	\resumeItemListStart
-	\resumeItem{}{Генерация презентаций PPTX по плану от LLM: шаблоны и адаптация содержания под аудиторию}
-	\resumeItem{}{Семантический классификатор запросов и политика ingest документов, мост статусов Open WebUI, распознавание речи}
+	\resumeItem{}{Генерация PPTX по плану от LLM: шаблоны и адаптация содержания под аудиторию}
+	\resumeItem{}{Семантический классификатор запросов, политика ingest, мост статусов Open WebUI, STT}
 	\resumeItemListEnd
 	\textbf{Технологии}: Python, LLM API, Open WebUI, Docker Compose, Make
 
 	\resumeSubheading
-	{Учебные задания}{}{}{}
+	{\textbf{pr-review-rag} $|$ \normalfont{\emph{прототип приватного AI-ревью пул-реквестов}}}{июль 2026}
+	{RAG по чанкам diff в SQLite, GigaChat и Yandex AI Studio за одним интерфейсом}{Индивидуальный проект}
 	\resumeItemListStart
-	\resumeItem{Python}{\ulhref{https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev}{ANTLR-парсер} регулярных выражений: грамматика, генерация инструкций проверки строки, тесты pytest}
-	\resumeItem{Go}{\ulhref{https://github.com/UsatovPavel/PRAssign}{REST API на Gin} с JWT и пайплайном Kafka $\rightarrow$ PostgreSQL, нагрузочные тесты k6}
+	\resumeItem{}{За 7 часов довёл до рабочего прототипа и закрыл направление: качество ревью неудовлетворительное}
+	\resumeItemListEnd
+	\textbf{Технологии}: Python, sentence-transformers, SQLite, httpx, GigaChat API, Yandex AI Studio
+
+	\resumeSubheading
+	{Учебные и командные задания}{}{}{}
+	\resumeItemListStart
+	\resumeItem{Java + Kotlin}{\ulhref{https://github.com/hse-project-Java-2025}{«TimeTamer»}: командный календарь с AI-ассистентом и геймификацией, сервер на Spring Boot}
+	\resumeItem{Python}{\ulhref{https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev}{ANTLR-парсер} регулярных выражений: грамматика, генерация инструкций, pytest}
+	\resumeItem{Go}{\ulhref{https://github.com/UsatovPavel/PRAssign}{REST API на Gin} с JWT, пайплайн Kafka $\rightarrow$ PostgreSQL, нагрузочные тесты k6}
 	\resumeItemListEnd
 	\resumeSubHeadingListEnd
 

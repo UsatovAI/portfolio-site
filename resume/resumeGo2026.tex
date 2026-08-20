@@ -136,7 +136,7 @@
 	{Участвовал в миграции документов с long на uuid}{Продуктовая команда документооборота}
 	\resumeItemListStart
 	\resumeItem{}{Версионировал 10 эндпоинтов под uuid, чтобы не сломать мобильные приложения, установленные у пользователей}
-	\resumeItem{}{Написал модуль команды в общем репозитории интеграции: 7 клиентов с документацией взамен legacy трёхлетней давности. Смежные команды завели эпики перехода на новое API}
+	\resumeItem{}{Написал модуль команды в репозитории интеграции: 7 клиентов взамен legacy, смежные команды мигрируют на API}
 	\resumeItem{}{Работа с БД: создание алертов, оптимизация запроса, добавление расширений}
 	\resumeItem{}{Чинил баги генерации документов: время у нас, восстановил столбец статистики во внешнем сервисе}
 	\resumeItemListEnd
@@ -146,7 +146,8 @@
 	{Daemon для p2p-загрузки OCI/Docker образов \textit{независимый} от container engine}{Курсовая, научрук - SRE из VK}
 	\resumeItemListStart
 	\resumeItem{}{Написал \ulhref{https://github.com/UsatovPavel/java-dragonfly-image-puller}{библиотеку}: gRPC-клиент к Dragonfly для загрузки слоёв с соседних нод. \textbf{Взят в использование в VK}}
-	\resumeItem{}{Разобрал Go- и Rust-клиенты Dragonfly и обосновал команде переход на Rust вместо согласованной ранее Go: Go не поддерживается с 2026}
+	\resumeItem{}{Разобрал Go- и Rust-клиенты Dragonfly, обосновал команде Rust: Go-версия не поддерживается с 2026}
+	\resumeItem{}{Модульная архитектура: CLI $\rightarrow$ dispatcher $\rightarrow$ registry/cache/p2p $\rightarrow$ adapters для Podman, Porto, Docker}
 	\resumeItem{}{На 20\% быстрее Podman на кластере k8s из 12 нод: 100 образов от 1 МБ до 5 ГБ}
 	\resumeItemListEnd
 	\textbf{Технологии}: Java, Kubernetes, gRPC, Docker, Podman, OCI/Docker Registry API, p2p, Grafana
@@ -156,13 +157,13 @@
 	\section{Проекты}
 	\resumeSubHeadingListStart
 	\resumeSubheading
-	{\ulhref{https://github.com/UsatovPavel/PRAssign}{\textbf{PRAssign}}: Go-сервис управления code review}{ноябрь 2025 - январь 2026}
+	{\ulhref{https://github.com/UsatovPavel/PRAssign}{\textbf{PRAssign}} $|$ \normalfont{\emph{Go-сервис управления code review}}}{ноябрь 2025 - январь 2026}
 	{REST API на Gin: команды, пользователи, пул-реквесты, назначение ревьюеров и статистика}{Индивидуальный проект}
 	\resumeItemListStart
-	\resumeItem{}{Слоистая архитектура cmd/internal: handler $\rightarrow$ service $\rightarrow$ repository на pgx, конфигурация через viper, JWT-аутентификация с проверкой прав автора и админа}
-	\resumeItem{}{Асинхронный пайплайн: Go API $\rightarrow$ Kafka (sarama) $\rightarrow$ \ulhref{https://github.com/UsatovPavel/AsyncFactorial}{Scala-consumer} $\rightarrow$ Kafka $\rightarrow$ Go-consumer $\rightarrow$ PostgreSQL, с TTL и фоновой очисткой результатов}
-	\resumeItem{}{Nginx балансирует несколько реплик сервиса: повтор запроса по 502/503/504, keepalive, вывод упавшего бэкенда из ротации}
-	\resumeItem{}{Пирамида тестов: интеграционные, e2e, smoke и stress; миграции golang-migrate, нагрузка через k6, golangci-lint в пайплайне}
+	\resumeItem{}{Слоистая архитектура: handler $\rightarrow$ service $\rightarrow$ repository на pgx, конфигурация viper, JWT с проверкой прав}
+	\resumeItem{}{Асинхронный пайплайн: Go API $\rightarrow$ Kafka (sarama) $\rightarrow$ \ulhref{https://github.com/UsatovPavel/AsyncFactorial}{Scala-consumer} $\rightarrow$ Kafka $\rightarrow$ Go-consumer $\rightarrow$ PostgreSQL}
+	\resumeItem{}{Nginx балансирует реплики сервиса: повтор по 502/503/504, keepalive, вывод упавшего бэкенда}
+	\resumeItem{}{Пирамида тестов: интеграционные, e2e, smoke, stress; миграции golang-migrate, нагрузка k6}
 	\resumeItemListEnd
 	\textbf{Технологии}: Go, Gin, pgx, sarama, viper, JWT, Kafka, PostgreSQL, Nginx, Docker Compose, k6, golangci-lint
 
@@ -170,9 +171,17 @@
 	{\ulhref{https://github.com/hse-project-Java-2025}{Приложение «TimeTamer»}}{февраль 2025 - август 2025}
 	{Серверная часть календаря с AI-ассистентом и геймификацией}{Командный проект}
 	\resumeItemListStart
-	\resumeItem{}{Общие задания, статистика, достижения, push-уведомления, аутентификация; интеграция ChatGPT и Whisper для голосового ввода}
+	\resumeItem{}{Общие задания, статистика, достижения, push-уведомления; интеграция ChatGPT и Whisper}
 	\resumeItemListEnd
 	\textbf{Технологии}: Java, Spring Boot, PostgreSQL, Docker, JUnit 4/5, Mockito
+
+	\resumeSubheading
+	{Учебные задания}{}{}{}
+	\resumeItemListStart
+	\resumeItem{Scala}{\ulhref{https://github.com/UsatovPavel/ZIO-Notification-Service}{ZIO REST API} для уведомлений с учётом часовых поясов}
+	\resumeItem{Python}{\ulhref{https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev}{ANTLR-парсер} регулярных выражений}
+	\resumeItem{Java}{реализация CLI-аналога Git}
+	\resumeItemListEnd
 
 	\resumeSubHeadingListEnd
 
