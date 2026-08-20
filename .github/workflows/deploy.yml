@@ -1,0 +1,46 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Fail if the export is empty
+        run: test -f out/index.html
+
+      - name: Publish to the VPS
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          WEB_ROOT: ${{ vars.WEB_ROOT || '/var/www/pavel-usatov-site/current' }}
+        run: |
+          set -Eeuo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          ssh -i ~/.ssh/id_deploy "$DEPLOY_HOST" "mkdir -p -- '$WEB_ROOT'"
+          rsync -az --delete --checksum -e "ssh -i ~/.ssh/id_deploy" out/ "$DEPLOY_HOST:$WEB_ROOT/"
