@@ -1,0 +1,202 @@
+%-------------------------
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[russian, english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+	\vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+	\item\small{
+		{\ifx&#1&\else\textbf{#1}: \fi#2 \vspace{-2pt}}
+	}
+}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+
+\newcommand{\resumeSubheading}[4]{
+	\vspace{-1pt}\item
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		\textbf{#1} & #2 \\
+		\ifx&#3&\else\textit{\small#3} & \textit{\small #4} \\ \fi
+	\end{tabular*}\vspace{-5pt}
+}
+
+
+\newcommand{\resumeSubSubheading}[2]{
+	\item
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		\textit{\small#1} & \textit{\small #2} \\
+	\end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+	\item
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		\small#1 & #2 \\
+	\end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+	\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+	\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\ulhref}[2]{\href{#1}{\underline{#2}}}
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+	\begin{center}
+		\textbf{\Large \scshape Усатов Павел} \textbf{\Large $|$ DevOps Engineer} \\ \vspace{1pt}
+		\small +7 (912) 712-83-52 $|$
+		\href{https://t.me/Usatov_Pavel}{\underline{Telegram}} $|$
+		\href{mailto:pvusatov@edu.hse.ru}{\underline{pvusatov@edu.hse.ru}} $|$
+		\href{https://github.com/UsatovPavel}{\underline{Github}} $|$
+		\href{https://usatovpavel.ru/default}{\underline{\textbf{Сайт}}}
+	\end{center}
+
+	%-----------EDUCATION-----------
+	\section{Образование}
+	\resumeSubHeadingListStart
+	\resumeSubheading
+	{ВШЭ СПБ}{Санкт-Петербург}
+	{Прикладная математика и информатика}{2023-2027}
+	\item \textbf{Релевантные курсы:}
+	Архитектура компьютера и операционные системы, компьютерные сети, базы данных,
+	алгоритмы и структуры данных, архитектура ПО
+	\resumeSubHeadingListEnd
+
+	%-----------EXPERIENCE-----------
+	\section{Опыт}
+	\resumeSubHeadingListStart
+	\resumeSubheading
+	{\ulhref{https://github.com/UsatovPavel/riid}{Утилита RIID для внутреннего облака VK}}{январь 2026 - июнь 2026}
+	{Daemon доставки OCI/Docker образов по p2p, независимый от container engine}{Курсовая, научрук - SRE из VK}
+	\resumeItemListStart
+	\resumeItem{}{Развернул в k8s: DaemonSet агента на каждой ноде, ConfigMap, Secret, Service, local-path storage}
+	\resumeItem{}{CI в GitHub Actions: 5 джоб, поднимает minikube (driver=none) и Dragonfly прямо в раннере}
+	\resumeItem{}{Свой Helm-чарт riid-observer: VictoriaMetrics, Grafana и kube-state-metrics с RBAC}
+	\resumeItem{}{Метрики в Prometheus-формате через Micrometer, скрейп vmagent-ом как DaemonSet}
+	\resumeItem{}{Релиз библиотеки по тегу: публикация в GitHub Packages, версия из тега, гейты checkstyle/PMD/SpotBugs}
+	\resumeItem{}{Провижининг ВМ в Yandex Cloud; прогоны против registry Selectel, Docker Hub и локального}
+	\resumeItem{}{Нагрузочный прогон на 12 нодах: 100 образов от 1 МБ до 5 ГБ, на 20\% быстрее Podman}
+	\resumeItemListEnd
+	\textbf{Технологии}: Kubernetes, Helm, Docker, Podman, OCI Registry API, Prometheus, Grafana, Bash, Yandex Cloud
+
+	\resumeSubheading
+	{Стажировка Backend Т-Банк}{апрель 2026 - июль 2026}
+	{Продуктовая команда документооборота}{Kanban, релизы через merge request}
+	\resumeItemListStart
+	\resumeItem{}{Версионировал 10 эндпоинтов при миграции на uuid, чтобы не сломать установленные мобильные приложения}
+	\resumeItem{}{Настроил алерты на БД, оптимизировал запрос, добавил расширения PostgreSQL}
+	\resumeItem{}{Релизный цикл в GitLab: merge request, ревью, зелёный пайплайн, автоматический выкат на прод}
+	\resumeItem{}{Проверял изменения на QA-контуре: e2e-прогоны 23 интеграций перед выкатом на прод}
+	\resumeItem{}{Локализовал баги генерации документов на стыке с внешним сервисом по логам в ELK}
+	\resumeItemListEnd
+	\textbf{Технологии}: GitLab CI, PostgreSQL, Kafka, Docker, ELK, Scala, Typescript
+
+	\resumeSubHeadingListEnd
+
+	%-----------PROJECTS-----------
+	\section{Проекты}
+	\resumeSubHeadingListStart
+	\resumeSubheading
+	{\ulhref{https://github.com/UsatovPavel/PRAssign}{\textbf{PRAssign}} $|$ \normalfont{\emph{сервис управления code review}}}{ноябрь 2025 - январь 2026}
+	{Go REST API и асинхронный пайплайн на Kafka}{Индивидуальный проект}
+	\resumeItemListStart
+	\resumeItem{}{Три конфигурации Docker Compose: сборка, интеграционные тесты, нагрузка}
+	\resumeItem{}{Nginx балансирует реплики: повтор по 502/503/504, keepalive, вывод упавшего бэкенда}
+	\resumeItem{}{Миграции golang-migrate, нагрузка k6, golangci-lint в пайплайне}
+	\resumeItemListEnd
+	\textbf{Технологии}: Go, Nginx, Kafka, PostgreSQL, Docker Compose, k6, golangci-lint
+
+	\resumeSubheading
+	{\ulhref{https://github.com/hse-project-Java-2025}{TimeTamer}}{2025}
+	{Java server$+$Kotlin Android приложение-календарь с элементами AI и геймификации}{Командный проект}
+	\resumeItemListStart
+	\resumeItem{}{Докеризовал серверную часть: Dockerfile и docker-compose с PostgreSQL, секреты через .env}
+	\resumeItem{}{Настроил кэш слоёв сборки; починил пересоздание таблиц Hibernate внутри контейнера}
+	\resumeItemListEnd
+	\textbf{Технологии}: Docker, Docker Compose, PostgreSQL, Java, Spring Boot
+
+	\resumeSubheading
+	{Автоматизация на Python}{}{}{}
+	\resumeItemListStart
+	\resumeItem{pr-review-rag}{прототип AI-ревью пул-реквестов: RAG в SQLite, GigaChat и Yandex AI Studio}
+	\resumeItem{\ulhref{https://github.com/UsatovPavel/Pop_ML_Forecast10}{Прогноз населения}}{сбор данных из трёх API, сравнение 10 моделей, MAPE 0.020}
+	\resumeItemListEnd
+	\resumeSubHeadingListEnd
+
+	%-----------SKILLS-----------
+	\section{Навыки}
+	\textbf{Оркестрация}{: Kubernetes (DaemonSet, ConfigMap, Secret, RBAC, Service), Helm, minikube, k3s} \\
+	\textbf{Контейнеры}{: Docker, Docker Compose, Podman, Porto, OCI/Docker Registry API} \\
+	\textbf{CI/CD и скрипты}{: Git, GitLab CI, GitHub Actions, Make, Bash, Gradle, golangci-lint} \\
+	\textbf{Мониторинг}{: Prometheus, VictoriaMetrics, vmagent, Grafana, kube-state-metrics, ELK} \\
+	\textbf{ОС, сеть, данные}{: Linux, Nginx, gRPC, unix-socket, PostgreSQL, Kafka} \\
+	\textbf{Языки}{: Go, Python, Java, Scala}
+
+%-------------------------------------------
+\end{document}

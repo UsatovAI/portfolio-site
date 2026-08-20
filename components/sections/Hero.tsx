@@ -1,5 +1,6 @@
 import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { GitHubIcon } from "@/components/ui/GitHubIcon";
+import type { PortfolioVariant } from "@/content/portfolio-variant";
 
 export function Hero({ variant }: { variant: PortfolioVariant }) {
   return (

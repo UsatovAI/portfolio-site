@@ -26,9 +26,10 @@ audience:
 
 ## Deploying
 
-The site is a static export (`npm run build` → `out/`) served by Nginx. `nginx/bootstrap.sh`
-provisions TLS via Certbot and installs the vhost from `nginx/site.conf.template`; deploys
-ship a new `out/` build to a timestamped release directory and flip a `current` symlink.
+The site is a static export (`npm run build` → `out/`) served by Nginx on a VPS behind Cloudflare.
+`nginx/bootstrap.sh` provisions TLS via Certbot and installs the vhost from `nginx/site.conf.template`.
+CI (`.github/workflows/deploy.yml`) builds on every push to `main`, then rsyncs `out/` to `WEB_ROOT`.
+`nginx/deploy.sh` does the same by hand; credentials and secrets are listed in `nginx/README.md`.
 
 ## Docs
 
