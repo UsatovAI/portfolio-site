@@ -10,37 +10,61 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build static export
-        run: npm run build
-
+      - run: npm ci
+      - run: npm run build
       - name: Fail if the export is empty
         run: test -f out/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-export
+          path: out/
+          retention-days: 7
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-export
+          path: out
+
+      # Key auth is preferred. DEPLOY_PASSWORD is the fallback while the server
+      # still uses password login; see nginx/README.md for the upgrade.
       - name: Publish to the VPS
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
           WEB_ROOT: ${{ vars.WEB_ROOT || '/var/www/pavel-usatov-site/current' }}
         run: |
           set -Eeuo pipefail
-          mkdir -p ~/.ssh
-          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_deploy
-          chmod 600 ~/.ssh/id_deploy
-          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_deploy "$DEPLOY_HOST" "mkdir -p -- '$WEB_ROOT'"
-          rsync -az --delete --checksum -e "ssh -i ~/.ssh/id_deploy" out/ "$DEPLOY_HOST:$WEB_ROOT/"
+          test -n "$DEPLOY_HOST" || { echo "DEPLOY_HOST secret is not set"; exit 1; }
+
+          if [ -n "$DEPLOY_SSH_KEY" ]; then
+            mkdir -p ~/.ssh
+            printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_deploy
+            chmod 600 ~/.ssh/id_deploy
+            SSH="ssh -i $HOME/.ssh/id_deploy -o StrictHostKeyChecking=accept-new"
+            RUN=""
+          elif [ -n "$DEPLOY_PASSWORD" ]; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
+            SSH="ssh -o StrictHostKeyChecking=accept-new -o PreferredAuthentications=password -o PubkeyAuthentication=no"
+            RUN="sshpass -e"
+            export SSHPASS="$DEPLOY_PASSWORD"
+          else
+            echo "Neither DEPLOY_SSH_KEY nor DEPLOY_PASSWORD is set"; exit 1
+          fi
+
+          $RUN $SSH "$DEPLOY_HOST" "mkdir -p -- '$WEB_ROOT'"
+          $RUN rsync -az --delete --checksum -e "$SSH" out/ "$DEPLOY_HOST:$WEB_ROOT/"
+          echo "Published ${GITHUB_SHA::7} to $WEB_ROOT"

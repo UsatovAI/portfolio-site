@@ -1,8 +1,8 @@
 # Nginx, TLS and publishing
 
-Two separate steps. `bootstrap.sh` prepares the server once; `deploy.sh` publishes the
-site every time it changes. Running only the first one leaves whatever export is already
-in `WEB_ROOT` serving forever, which is exactly how the live site fell behind `main`.
+Two separate things. `bootstrap.sh` prepares the server once; publishing happens on every
+change. Running only the first leaves whatever export is already in `WEB_ROOT` serving
+forever, which is exactly how the live site fell behind `main`.
 
 ## 1. Server bootstrap (once)
 
@@ -10,45 +10,72 @@ Installs Certbot, obtains a Let's Encrypt certificate for the apex and `www` dom
 installs the static-site Nginx vhost and enables automatic renewal. The HTTPS root URL
 redirects permanently to `/jvm`; `/default` keeps the complete portfolio.
 
-Run on the VPS from this directory:
-
 ```bash
 sudo ./bootstrap.sh
 ```
 
 Defaults can be overridden with `DOMAIN`, `WWW_DOMAIN`, `LE_EMAIL` and `WEB_ROOT`. The
-previous Nginx site files are copied to `/etc/nginx/pavel-site-backups/` before the active
-vhost is changed. The script refuses to run until an export already exists at
-`$WEB_ROOT/index.html`, so publish once before the first bootstrap.
+previous Nginx site files are copied to `/etc/nginx/pavel-site-backups/` first. The script
+refuses to run until an export exists at `$WEB_ROOT/index.html`, so publish once before the
+first bootstrap.
 
-## 2. Publishing (every change)
+## 2. Publishing by hand
 
 The site is a static Next.js export (`output: "export"`), so publishing means building
-`out/` and copying it to `WEB_ROOT`. Nothing does this automatically unless the workflow
-below is configured.
+`out/` and copying it to `WEB_ROOT`.
 
-From a machine with the repository checked out:
+Credentials are **not** in this repository. Locally they sit in
+`~/playground/pavel-usatov-site/.env` as `IPv4` and `VPS_PASSWORD`.
 
 ```bash
-DEPLOY_HOST=user@usatovpavel.ru ./nginx/deploy.sh
+cd ~/playground/pavel-usatov-site && set -a && . ./.env && set +a
+cd /path/to/portfolio-site
+DEPLOY_HOST="root@$IPv4" DEPLOY_PASSWORD="$VPS_PASSWORD" ./nginx/deploy.sh
 ```
 
-`WEB_ROOT` defaults to `/var/www/pavel-usatov-site/current`, matching `bootstrap.sh`.
-`SSH_OPTS` is passed to both `ssh` and `rsync` if you need a specific key or port.
+With a key instead of a password:
 
-## 3. Automatic publishing
+```bash
+DEPLOY_HOST="root@$IPv4" DEPLOY_SSH_KEY_FILE=~/.ssh/id_deploy ./nginx/deploy.sh
+```
 
-`.github/workflows/deploy.yml` runs the same build and rsync on every push to `main`, and
-can be triggered by hand from the Actions tab. It stays inert until these are set in the
-repository settings:
+## 3. Publishing from CI
+
+`.github/workflows/deploy.yml` has two stages. `build` runs on every push to `main` and
+uploads the export as an artifact; `deploy` takes that artifact and rsyncs it to the VPS.
+It also runs from the Actions tab via `workflow_dispatch`.
+
+Required repository secrets:
 
 | Secret | Value |
 |---|---|
-| `DEPLOY_HOST` | `user@usatovpavel.ru` |
-| `DEPLOY_SSH_KEY` | private key whose public half is in the server's `authorized_keys` |
-| `DEPLOY_KNOWN_HOSTS` | output of `ssh-keyscan usatovpavel.ru` |
+| `DEPLOY_HOST` | `root@<IPv4 from .env>` |
+| `DEPLOY_SSH_KEY` | private deploy key — **preferred**, see below |
+| `DEPLOY_PASSWORD` | `VPS_PASSWORD` — fallback if no key is installed yet |
 
-Optional repository variable `WEB_ROOT` overrides the default path.
+Set one of `DEPLOY_SSH_KEY` or `DEPLOY_PASSWORD`, not both; the key wins. Optional
+repository variable `WEB_ROOT` overrides the default path.
 
-Until the secrets exist the workflow fails on the publish step; the build steps before it
-still run, so a broken `main` is caught either way.
+The `deploy` job targets a `production` environment, so a required reviewer can be added
+in repository settings if you want publishing to be approved rather than automatic.
+
+### Move off the password
+
+A root password in CI secrets is the weakest part of this setup: it grants full shell
+access, it cannot be scoped to one task, and rotating it means touching every place it is
+stored. Install a dedicated key once and the password stops being needed:
+
+```bash
+ssh-keygen -t ed25519 -f ~/.ssh/id_deploy -C "github-deploy" -N ""
+ssh-copy-id -i ~/.ssh/id_deploy.pub "root@$IPv4"          # asks for VPS_PASSWORD once
+```
+
+Then put the contents of `~/.ssh/id_deploy` into the `DEPLOY_SSH_KEY` secret, delete
+`DEPLOY_PASSWORD`, and consider `PasswordAuthentication no` in `/etc/ssh/sshd_config`.
+
+## 4. If the site still looks stale after publishing
+
+`usatovpavel.ru` is served through Cloudflare, with the VPS Nginx as origin. A successful
+rsync updates the origin, not the CDN. If the old page persists, purge the cache in the
+Cloudflare dashboard — that is a separate cause from the missing deploy step and can hide
+a correct deployment.
