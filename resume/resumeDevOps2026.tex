@@ -149,7 +149,6 @@
 	{Стажировка Backend Т-Банк}{апрель 2026 - июль 2026}
 	{Продуктовая команда документооборота}{Kanban, релизы через merge request}
 	\resumeItemListStart
-	\resumeItem{}{Версионировал 10 эндпоинтов при миграции на uuid, чтобы не сломать установленные мобильные приложения}
 	\resumeItem{}{Настроил алерты на БД, оптимизировал запрос, добавил расширения PostgreSQL}
 	\resumeItem{}{Релизный цикл в GitLab: merge request, ревью, зелёный пайплайн, автоматический выкат на прод}
 	\resumeItem{}{Проверял изменения на QA-контуре: e2e-прогоны 23 интеграций перед выкатом на прод}
@@ -162,6 +161,18 @@
 	%-----------PROJECTS-----------
 	\section{Проекты}
 	\resumeSubHeadingListStart
+	\resumeSubheading
+	{\ulhref{https://github.com/UsatovAI/ansible-deploy}{ansible-deploy} $|$ \normalfont{\emph{\ulhref{https://github.com/UsatovAI/claude-web-console}{claude-web-console}}}}{2026}
+	{Автодеплой веб-консоли к headless Claude Code на VPS}{Индивидуальный проект}
+	\resumeItemListStart
+	\resumeItem{}{Ansible-роли с тегами раскатывают приложение, Node.js и nginx; секреты в ansible-vault}
+	\resumeItem{}{Прод и тестовый VPS - разные группы инвентаря, чтобы прогон плейбука не задел прод}
+	\resumeItem{}{Сервис без root: отдельный системный пользователь, ProtectSystem=strict, NoNewPrivileges}
+	\resumeItem{}{certbot Let's Encrypt: pre/post-хуки освобождают порт 80, renewal-хук возвращает ACL на сертификат}
+	\resumeItem{}{Nginx - единственный слушатель 443 с маршрутизацией по SNI на два домена одного VPS}
+	\resumeItemListEnd
+	\textbf{Технологии}: Ansible, ansible-vault, systemd, Nginx, certbot/Let's Encrypt, Bash, Python, Ubuntu
+
 	\resumeSubheading
 	{\ulhref{https://github.com/UsatovPavel/PRAssign}{\textbf{PRAssign}} $|$ \normalfont{\emph{сервис управления code review}}}{ноябрь 2025 - январь 2026}
 	{Go REST API и асинхронный пайплайн на Kafka}{Индивидуальный проект}
@@ -181,21 +192,15 @@
 	\resumeItemListEnd
 	\textbf{Технологии}: Docker, Docker Compose, PostgreSQL, Java, Spring Boot
 
-	\resumeSubheading
-	{Автоматизация на Python}{}{}{}
-	\resumeItemListStart
-	\resumeItem{pr-review-rag}{прототип AI-ревью пул-реквестов: RAG в SQLite, GigaChat и Yandex AI Studio}
-	\resumeItem{\ulhref{https://github.com/UsatovPavel/Pop_ML_Forecast10}{Прогноз населения}}{сбор данных из трёх API, сравнение 10 моделей, MAPE 0.020}
-	\resumeItemListEnd
 	\resumeSubHeadingListEnd
 
 	%-----------SKILLS-----------
 	\section{Навыки}
 	\textbf{Оркестрация}{: Kubernetes (DaemonSet, ConfigMap, Secret, RBAC, Service), Helm, minikube, k3s} \\
 	\textbf{Контейнеры}{: Docker, Docker Compose, Podman, Porto, OCI/Docker Registry API} \\
-	\textbf{CI/CD и скрипты}{: Git, GitLab CI, GitHub Actions, Make, Bash, Gradle, golangci-lint} \\
+	\textbf{CI/CD и конфигурация}{: Git, GitLab CI, GitHub Actions, Ansible, Make, Bash, Gradle, golangci-lint} \\
 	\textbf{Мониторинг}{: Prometheus, VictoriaMetrics, vmagent, Grafana, kube-state-metrics, ELK} \\
-	\textbf{ОС, сеть, данные}{: Linux, Nginx, gRPC, unix-socket, PostgreSQL, Kafka} \\
+	\textbf{ОС, сеть, данные}{: Linux, systemd, Nginx, TLS/Let's Encrypt, gRPC, unix-socket, PostgreSQL, Kafka} \\
 	\textbf{Языки}{: Go, Python, Java, Scala}
 
 %-------------------------------------------
