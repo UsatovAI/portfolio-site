@@ -139,6 +139,7 @@
 	\resumeItem{}{CI в GitHub Actions: 5 джоб, поднимает minikube (driver=none) и Dragonfly прямо в раннере}
 	\resumeItem{}{Свой Helm-чарт riid-observer: VictoriaMetrics, Grafana и kube-state-metrics с RBAC}
 	\resumeItem{}{Метрики в Prometheus-формате через Micrometer, скрейп vmagent-ом как DaemonSet}
+	\resumeItem{}{Релиз библиотеки по тегу: публикация в GitHub Packages, версия из тега, гейты checkstyle/PMD/SpotBugs}
 	\resumeItem{}{Провижининг ВМ в Yandex Cloud; прогоны против registry Selectel, Docker Hub и локального}
 	\resumeItem{}{Нагрузочный прогон на 12 нодах: 100 образов от 1 МБ до 5 ГБ, на 20\% быстрее Podman}
 	\resumeItemListEnd
@@ -169,6 +170,15 @@
 	\resumeItem{}{Миграции golang-migrate, нагрузка k6, golangci-lint в пайплайне}
 	\resumeItemListEnd
 	\textbf{Технологии}: Go, Nginx, Kafka, PostgreSQL, Docker Compose, k6, golangci-lint
+
+	\resumeSubheading
+	{\ulhref{https://github.com/hse-project-Java-2025}{TimeTamer}}{2025}
+	{Java server$+$Kotlin Android приложение-календарь с элементами AI и геймификации}{Командный проект}
+	\resumeItemListStart
+	\resumeItem{}{Докеризовал серверную часть: Dockerfile и docker-compose с PostgreSQL, секреты через .env}
+	\resumeItem{}{Настроил кэш слоёв сборки; починил пересоздание таблиц Hibernate внутри контейнера}
+	\resumeItemListEnd
+	\textbf{Технологии}: Docker, Docker Compose, PostgreSQL, Java, Spring Boot
 
 	\resumeSubheading
 	{Автоматизация на Python}{}{}{}
