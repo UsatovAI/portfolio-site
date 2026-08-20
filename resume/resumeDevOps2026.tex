@@ -3,7 +3,7 @@
 % License : MIT
 %------------------------
 
-\documentclass[letterpaper,10pt]{article}
+\documentclass[letterpaper,12pt]{article}
 
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
@@ -123,9 +123,6 @@
 	\resumeSubheading
 	{ВШЭ СПБ}{Санкт-Петербург}
 	{Прикладная математика и информатика}{2023-2027}
-	\item \textbf{Релевантные курсы:}
-	Архитектура компьютера и операционные системы, компьютерные сети, базы данных,
-	алгоритмы и структуры данных, архитектура ПО
 	\resumeSubHeadingListEnd
 
 	%-----------EXPERIENCE-----------
@@ -133,28 +130,23 @@
 	\resumeSubHeadingListStart
 	\resumeSubheading
 	{\ulhref{https://github.com/UsatovPavel/riid}{Утилита RIID для внутреннего облака VK}}{январь 2026 - июнь 2026}
-	{Daemon доставки OCI/Docker образов по p2p, независимый от container engine}{Курсовая, научрук - SRE из VK}
+	{Daemon доставки образов по p2p, независимый от container engine}{Курсовая, научрук - SRE из VK}
 	\resumeItemListStart
-	\resumeItem{}{Развернул в k8s: DaemonSet агента на каждой ноде, ConfigMap, Secret, Service, local-path storage}
-	\resumeItem{}{CI в GitHub Actions: 5 джоб, поднимает minikube (driver=none) и Dragonfly прямо в раннере}
-	\resumeItem{}{Свой Helm-чарт riid-observer: VictoriaMetrics, Grafana и kube-state-metrics с RBAC}
-	\resumeItem{}{Метрики в Prometheus-формате через Micrometer, скрейп vmagent-ом как DaemonSet}
-	\resumeItem{}{Релиз библиотеки по тегу: публикация в GitHub Packages, версия из тега, гейты checkstyle/PMD/SpotBugs}
-	\resumeItem{}{Провижининг ВМ в Yandex Cloud; прогоны против registry Selectel, Docker Hub и локального}
-	\resumeItem{}{Нагрузочный прогон на 12 нодах: 100 образов от 1 МБ до 5 ГБ, на 20\% быстрее Podman}
+	\resumeItem{}{Развернул в k8s: DaemonSet, ConfigMap, Secret, Service, local-path storage}
+	\resumeItem{}{CI в GitHub Actions: minikube и Dragonfly в раннере, релиз по тегу в Packages}
+	\resumeItem{}{Helm-чарт riid-observer: VictoriaMetrics, Grafana, kube-state-metrics, RBAC}
+	\resumeItem{}{12 нод, 100 образов от 1 МБ до 5 ГБ: на 20\% быстрее Podman}
 	\resumeItemListEnd
-	\textbf{Технологии}: Kubernetes, Helm, Docker, Podman, OCI Registry API, Prometheus, Grafana, Bash, Yandex Cloud
+	\textbf{Технологии}: Kubernetes, Helm, Docker, Podman, Prometheus, Grafana, Yandex Cloud
 
 	\resumeSubheading
 	{Стажировка Backend Т-Банк}{апрель 2026 - июль 2026}
-	{Продуктовая команда документооборота}{Kanban, релизы через merge request}
+	{Продуктовая команда документооборота}{Kanban}
 	\resumeItemListStart
-	\resumeItem{}{Настроил алерты на БД, оптимизировал запрос, добавил расширения PostgreSQL}
-	\resumeItem{}{Релизный цикл в GitLab: merge request, ревью, зелёный пайплайн, автоматический выкат на прод}
-	\resumeItem{}{Проверял изменения на QA-контуре: e2e-прогоны 23 интеграций перед выкатом на прод}
-	\resumeItem{}{Локализовал баги генерации документов на стыке с внешним сервисом по логам в ELK}
+	\resumeItem{}{Релизы в GitLab: merge request, ревью, зелёный пайплайн, автовыкат на прод}
+	\resumeItem{}{Алерты на БД, расширения PostgreSQL, e2e на QA-контуре, разбор багов по ELK}
 	\resumeItemListEnd
-	\textbf{Технологии}: GitLab CI, PostgreSQL, Kafka, Docker, ELK, Scala, Typescript
+	\textbf{Технологии}: GitLab CI, PostgreSQL, Kafka, Docker, ELK, Scala
 
 	\resumeSubHeadingListEnd
 
@@ -165,43 +157,36 @@
 	{\ulhref{https://github.com/UsatovAI/ansible-deploy}{ansible-deploy} $|$ \normalfont{\emph{\ulhref{https://github.com/UsatovAI/claude-web-console}{claude-web-console}}}}{2026}
 	{Автодеплой веб-консоли к headless Claude Code на VPS}{Индивидуальный проект}
 	\resumeItemListStart
-	\resumeItem{}{Ansible-роли с тегами раскатывают приложение, Node.js и nginx; секреты в ansible-vault}
-	\resumeItem{}{Прод и тестовый VPS - разные группы инвентаря, чтобы прогон плейбука не задел прод}
-	\resumeItem{}{Сервис без root: отдельный системный пользователь, ProtectSystem=strict, NoNewPrivileges}
-	\resumeItem{}{certbot Let's Encrypt: pre/post-хуки освобождают порт 80, renewal-хук возвращает ACL на сертификат}
-	\resumeItem{}{Nginx - единственный слушатель 443 с маршрутизацией по SNI на два домена одного VPS}
+	\resumeItem{}{Ansible-роли с тегами, ansible-vault, прод и тест - разные группы инвентаря}
+	\resumeItem{}{Сервис без root: свой пользователь, ProtectSystem=strict, NoNewPrivileges}
+	\resumeItem{}{certbot: pre/post-хуки освобождают порт 80, renewal-хук возвращает ACL}
+	\resumeItem{}{Nginx единственный на 443, маршрутизация по SNI на два домена}
 	\resumeItemListEnd
-	\textbf{Технологии}: Ansible, ansible-vault, systemd, Nginx, certbot/Let's Encrypt, Bash, Python, Ubuntu
+	\textbf{Технологии}: Ansible, ansible-vault, systemd, Nginx, certbot/Let's Encrypt, Bash
 
 	\resumeSubheading
-	{\ulhref{https://github.com/UsatovPavel/PRAssign}{\textbf{PRAssign}} $|$ \normalfont{\emph{сервис управления code review}}}{ноябрь 2025 - январь 2026}
+	{\ulhref{https://github.com/UsatovPavel/PRAssign}{PRAssign} $|$ \normalfont{\emph{сервис управления code review}}}{ноябрь 2025 - январь 2026}
 	{Go REST API и асинхронный пайплайн на Kafka}{Индивидуальный проект}
 	\resumeItemListStart
-	\resumeItem{}{Три конфигурации Docker Compose: сборка, интеграционные тесты, нагрузка}
-	\resumeItem{}{Nginx балансирует реплики: повтор по 502/503/504, keepalive, вывод упавшего бэкенда}
-	\resumeItem{}{Миграции golang-migrate, нагрузка k6, golangci-lint в пайплайне}
+	\resumeItem{}{Compose для сборки/тестов/нагрузки, Nginx балансирует реплики с повтором по 5xx}
 	\resumeItemListEnd
 	\textbf{Технологии}: Go, Nginx, Kafka, PostgreSQL, Docker Compose, k6, golangci-lint
 
 	\resumeSubheading
 	{\ulhref{https://github.com/hse-project-Java-2025}{TimeTamer}}{2025}
-	{Java server$+$Kotlin Android приложение-календарь с элементами AI и геймификации}{Командный проект}
+	{Java-сервер и Android-приложение календаря}{Командный проект}
 	\resumeItemListStart
-	\resumeItem{}{Докеризовал серверную часть: Dockerfile и docker-compose с PostgreSQL, секреты через .env}
-	\resumeItem{}{Настроил кэш слоёв сборки; починил пересоздание таблиц Hibernate внутри контейнера}
+	\resumeItem{}{Докеризовал сервер: Dockerfile и compose с PostgreSQL, кэш слоёв сборки}
 	\resumeItemListEnd
 	\textbf{Технологии}: Docker, Docker Compose, PostgreSQL, Java, Spring Boot
-
 	\resumeSubHeadingListEnd
 
 	%-----------SKILLS-----------
 	\section{Навыки}
-	\textbf{Оркестрация}{: Kubernetes (DaemonSet, ConfigMap, Secret, RBAC, Service), Helm, minikube, k3s} \\
-	\textbf{Контейнеры}{: Docker, Docker Compose, Podman, Porto, OCI/Docker Registry API} \\
-	\textbf{CI/CD и конфигурация}{: Git, GitLab CI, GitHub Actions, Ansible, Make, Bash, Gradle, golangci-lint} \\
-	\textbf{Мониторинг}{: Prometheus, VictoriaMetrics, vmagent, Grafana, kube-state-metrics, ELK} \\
-	\textbf{ОС, сеть, данные}{: Linux, systemd, Nginx, TLS/Let's Encrypt, gRPC, unix-socket, PostgreSQL, Kafka} \\
-	\textbf{Языки}{: Go, Python, Java, Scala}
+	\textbf{Kubernetes и контейнеры}{: DaemonSet, ConfigMap, RBAC, Helm, Docker, Compose, Podman} \\
+	\textbf{CI/CD и конфигурация}{: Git, GitLab CI, GitHub Actions, Ansible, Make, Bash, Gradle} \\
+	\textbf{Мониторинг и ОС}{: Prometheus, VictoriaMetrics, Grafana, ELK, Linux, systemd, Nginx, TLS} \\
+	\textbf{Данные и языки}{: PostgreSQL, Kafka, gRPC, Go, Python, Java, Scala}
 
 %-------------------------------------------
 \end{document}
