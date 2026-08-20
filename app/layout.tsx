@@ -21,22 +21,22 @@ const siteUrl = "https://usatovpavel.ru";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Павел Усатов — JVM backend-разработчик",
+  title: "Павел Усатов — backend-разработчик",
   description:
-    "Портфолио Павла Усатова: JVM backend, Scala, Java, Kafka и Kubernetes. Опыт в Т-Банке, RIID, продуктовые, ML и учебные проекты.",
+    "Портфолио Павла Усатова: backend-разработка, распределённые системы, Java, Scala, Go, Kafka, PostgreSQL и Kubernetes.",
   openGraph: {
-    title: "Павел Усатов — JVM backend-разработчик",
+    title: "Павел Усатов — backend-разработчик",
     description:
-      "Портфолио Павла Усатова: JVM backend, Scala, Java, Kafka и Kubernetes. Опыт в Т-Банке, RIID, продуктовые, ML и учебные проекты.",
+      "Портфолио Павла Усатова: backend-разработка, распределённые системы, Java, Scala, Go, Kafka, PostgreSQL и Kubernetes.",
     url: siteUrl,
     locale: "ru_RU",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Павел Усатов — JVM backend-разработчик",
+    title: "Павел Усатов — backend-разработчик",
     description:
-      "Портфолио Павла Усатова: JVM backend, Scala, Java, Kafka и Kubernetes. Опыт в Т-Банке, RIID, продуктовые, ML и учебные проекты.",
+      "Портфолио Павла Усатова: backend-разработка, распределённые системы, Java, Scala, Go, Kafka, PostgreSQL и Kubernetes.",
   },
 };
 

@@ -1,6 +1,7 @@
 import { GitHubIcon } from "@/components/ui/GitHubIcon";
+import type { PortfolioVariant } from "@/content/portfolio-variant";
 
-export function Hero() {
+export function Hero({ variant }: { variant: PortfolioVariant }) {
   return (
     <section id="home" aria-labelledby="hero-heading" className="scroll-mt-16 py-16 sm:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
@@ -12,15 +13,21 @@ export function Hero() {
         </h1>
 
         <div className="mt-4 flex flex-wrap items-baseline gap-x-2 text-h3 text-text-primary">
-          <span className="jvm-role-disclosure">
-            <span className="jvm-role-disclosure__trigger" tabIndex={0} aria-describedby="jvm-languages">
-              JVM
-            </span>
-            <span id="jvm-languages" role="tooltip" className="jvm-role-disclosure__languages">
-              Java · Kotlin · Scala
-            </span>
-          </span>
-          <span>backend developer</span>
+          {variant === "default" ? (
+            <span>backend developer</span>
+          ) : (
+            <>
+              <span className="jvm-role-disclosure">
+                <span className="jvm-role-disclosure__trigger" tabIndex={0} aria-describedby="jvm-languages">
+                  JVM
+                </span>
+                <span id="jvm-languages" role="tooltip" className="jvm-role-disclosure__languages">
+                  Java · Kotlin · Scala
+                </span>
+              </span>
+              <span>backend developer</span>
+            </>
+          )}
         </div>
 
         <div className="mt-5 max-w-3xl space-y-2 text-lead text-text-secondary">
