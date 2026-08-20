@@ -60,9 +60,9 @@
 
 %-------------------------
 % Custom commands
-\newcommand{\resumeItem}[1]{
+\newcommand{\resumeItem}[2]{
 	\item\small{
-		{#1 \vspace{-2pt}}
+		{\ifx&#1&\else\textbf{#1}: \fi#2 \vspace{-2pt}}
 	}
 }
 
@@ -93,7 +93,7 @@
 	\end{tabular*}\vspace{-7pt}
 }
 
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
@@ -115,7 +115,7 @@
 		% \end{tabular*}
 	
 	\begin{center}
-		\textbf{\Large \scshape Усатов Павел} \\ \vspace{1pt}
+		\textbf{\Large \scshape Усатов Павел} \textbf{\Large $|$ Java Backend Developer} \\ \vspace{1pt}
 		\small +7 (912) 712-83-52 $|$ 
 		\href{https://t.me/Usatov_Pavel}{\underline{Telegram}} $|$
 		\href{mailto:pvusatov@edu.hse.ru}{\underline{pvusatov@edu.hse.ru}} $|$
@@ -142,25 +142,25 @@
 	\resumeSubHeadingListStart
 	\resumeSubheading
 	{Стажировка Scala Т-банк}{апрель 2026 - июль 2026}
-	{Учавствовал в миграции документов с long на uuid}{Продуктовая команда документооборота}
+	{Участвовал в миграции документов с long на uuid}{Продуктовая команда документооборота}
 	\resumeItemListStart
 	\resumeItem{}{Создал 10 новых эндпоинтов, работающих с uuid}
 	\resumeItem{}{Создал 7 клиентов к сервисам команды в репозитории интеграции b2b. Протестировал e2e на QA контуре}
-	\resumeItem{}{Создал и протестировал 23 интеграции для low-code платформы, обеспечив переход на новое API бугалтерии}
-	\resumeItem{}{Работа с БД: создание алертов, оптимизация запроса,добавление расширений}
+	\resumeItem{}{Создал и протестировал 23 интеграции для low-code платформы, обеспечив переход на новое API бухгалтерии}
+	\resumeItem{}{Работа с БД: создание алертов, оптимизация запроса, добавление расширений}
 	\resumeItemListEnd
 	\textbf{Технологии}: Scala, Cats Effect, PostgreSQL, Kanban, Kafka, Docker, Typescript, ELK
 	\resumeSubheading
-	{\ulhref{https://github.com/UsatovPavel/riid}{Утилита RIID для внутреннего облака VK}}{январь 2026 -- июнь 2026}
-	{Daemon на Java для p2p-загрузки OCI/Docker образов \textit{независимое} от container engine}{Индивидуальный проект}
+	{\ulhref{https://github.com/UsatovPavel/riid}{Утилита RIID для внутреннего облака VK}}{январь 2026 - июнь 2026}
+	{Daemon на Java для p2p-загрузки OCI/Docker образов \textit{независимый} от container engine}{Индивидуальный проект}
 	\resumeItemListStart
 	\resumeItem{}{Модульная архитектура: CLI → dispatcher (стратегия скачивания) → registry client/cache/p2p → engine adapters}
-	\resumeItem{}{Нагрузочное тестирование: кластер в k8s, 100 образов от 1 мб до 5 ГБ}
-	\resumeItem{}{Скачивает в 1.2 раза быстрее чем Podman согласно нагрузочному тестированию}
-	\resumeItem{}{P2P-модуль: взаимодействие с Dragonfly через unix-socket/tcp по gRPC через \href{https://github.com/UsatovPavel/java-dragonfly-image-puller}{\underline{свою библиотеку}}}.
-	%\resumeItem{}{Сбор метрик через Prometeus, отображение в Grafana}
+	\resumeItem{}{Нагрузочное тестирование: кластер в k8s, 100 образов от 1 МБ до 5 ГБ}
+	\resumeItem{}{Скачивает в 1,2 раза быстрее, чем Podman согласно нагрузочному тестированию}
+	\resumeItem{}{P2P-модуль: взаимодействие с Dragonfly через unix-socket/tcp по gRPC через \href{https://github.com/UsatovPavel/java-dragonfly-image-puller}{\underline{свою библиотеку}}}
+	%\resumeItem{}{Сбор метрик через Prometheus, отображение в Grafana}
 	\resumeItemListEnd
-	\textbf{Технологии}: Java, Kubernetes, Grafana, Prometeus, Gradle, OCI/Docker Registry API, p2p, Podman, Docker, gRPC%\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HTTP, CLI, интеграционные и e2e тесты
+	\textbf{Технологии}: Java, Kubernetes, Grafana, Prometheus, Gradle, OCI/Docker Registry API, p2p, Podman, Docker, gRPC%\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HTTP, CLI, интеграционные и e2e тесты
 	
 	
 	\resumeSubHeadingListEnd
@@ -185,19 +185,19 @@
 		\normalfont{\emph{\ulhref{https://github.com/UsatovPavel/PRAssign}{Go REST API} + {\ulhref{https://github.com/UsatovPavel/AsyncFactorial}{Scala Kafka consumers}:}
 			}
 	}}{ноябрь 2025 - январь 2026}
-	{Получение задач через Go сервис,передача через  Kafka, вычисление на Scala, отслеживание в БД} {Индивидуальный проект}
+	{Получение задач через Go сервис, передача через Kafka, вычисление на Scala, отслеживание в БД} {Индивидуальный проект}
 	%\resumeItemListStart
 	%\resumeItem 
-	%\resumeItem {API для управления PR с проверкой прав и статистикой}
-	%\resumeItem{Асинхронный пайплайн обработки задач: Go API $\rightarrow$ Kafka $\rightarrow$ Scala consumer $\rightarrow$ Kafka$\rightarrow$ PostgreSQL;}
-	%\resumeItem{Контейнеризированный запуск/тестирование и фоновая очистка}
-	%\resumeItem{Масштабирование consumer-групп и API (Nginx), параллельная обработка на Cats Effect/FS2}
+	%\resumeItem{}{API для управления PR с проверкой прав и статистикой}
+	%\resumeItem{}{Асинхронный пайплайн обработки задач: Go API $\rightarrow$ Kafka $\rightarrow$ Scala consumer $\rightarrow$ Kafka$\rightarrow$ PostgreSQL;}
+	%\resumeItem{}{Контейнеризированный запуск/тестирование и фоновая очистка}
+	%\resumeItem{}{Масштабирование consumer-групп и API (Nginx), параллельная обработка на Cats Effect/FS2}
 	%\resumeItemListEnd
 	\par\noindent\textbf{Технологии}:  Scala, Go, 
 	Kafka, Cats Effect 3, PostgreSQL, Nginx, ScalaTest, Docker, k6%,Go Gin golang-migrate
 	
 	\resumeSubheading
-	{\ulhref{https://github.com/hse-project-Java-2025}{Приложение "TimeTamer"}}{февраль 2025- август 2025} 
+	{\ulhref{https://github.com/hse-project-Java-2025}{Приложение «TimeTamer»}}{февраль 2025 - август 2025} 
 	{Java server$+$Kotlin Android приложение-календарь с элементами AI и геймификации} {Командный проект}
 	\resumeItemListStart
 	\item {Общие задания, статистика, достижения, push-уведомления, аутентификация}
@@ -207,11 +207,10 @@
 	\textbf{Технологии}: Java, Spring Boot, Kotlin, Jetpack Compose, Retrofit, PostgreSQL, Docker, JUnit 4/5,  Mockito
 	
 	\resumeSubheading
-	{\ulhref{https://github.com/UsatovPavel/Voevoda}{Игра "Voevoda"}}{январь 2024 - июнь 2024}
-	{2d topdown RTS: управление генералом, захват городов,наём армии и сражения с ИИ}{Командный проект}
+	{\ulhref{https://github.com/UsatovPavel/Voevoda}{Игра «Voevoda»}}{январь 2024 - июнь 2024}
+	{2d topdown RTS: управление генералом, захват городов, наём армии и сражения с ИИ}{Командный проект}
 	\resumeItemListStart
-	\resumeItem
-	{Генерация городов и оппонентов, поведение врагов, виджеты армии ИИ-оппонентов;  туман войны и сражения}
+	\resumeItem{}{Генерация городов и оппонентов, поведение врагов, виджеты армии ИИ-оппонентов;  туман войны и сражения}
 	\resumeItemListEnd
 	\textbf{Технологии}: C++, Unreal Engine 4
 	
@@ -226,16 +225,17 @@
 	% \resumeItem{C++}{библиотека для тестов с использованием макросов}
 	\resumeItem{Java}{реализация Cli аналога Git}
 	\resumeItem{Scala}{\ulhref{https://github.com/UsatovPavel/ZIO-Notification-Service}{ZIO REST API} для уведомлений с учётом часовых поясов}% с тестированием через TestClient
-	\resumeItem{Python}{ \ulhref{https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev}{ANTLR-парсер} регулярных выражений}%\ulhref{https://github.com/UsatovPavel/Pop_ML_Forecast10}{ML: Предсказание населения стран на 10-летнем горизонте}
+	\resumeItem{Python}{\ulhref{https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev}{ANTLR-парсер} регулярных выражений}%\ulhref{https://github.com/UsatovPavel/Pop_ML_Forecast10}{ML: Предсказание населения стран на 10-летнем горизонте}
+	\resumeItemListEnd
 	\resumeSubHeadingListEnd
 	
 	%
 	%-----------PROGRAMMING SKILLS-----------
 	\section{Навыки}
-	\textbf{Языки}{:Java, Scala, средне: (Kotlin, Python, C++)} \\
-	\textbf{Frameworks}{: SpringBoot, JUnit, Mockito} \\
-	\textbf{Технологии и инструменты}{:Git,Docker, PostgreSQL, Kafka, Kubernetes, Grafana, Prometeus, Gradle,Cats Effect} \\%Nginx, k6, p2p, ZIO, FS
-	\textbf{Навыки}{: тестирование(интеграционное/e2e/нагрузочное/ UI),  алгоритмы и структуры данных, работа по Kanban}%проектирование архитектур(MVVM/клиент-сервер/микросервисная)}%<- ТУПО
+	\textbf{Языки}{: Java, Scala, средне: (Kotlin, Python, C++)} \\
+	\textbf{Frameworks}{: Spring Boot, JUnit, Mockito} \\
+	\textbf{Технологии и инструменты}{: Git, Docker, PostgreSQL, Kafka, Kubernetes, Grafana, Prometheus, Gradle, Cats Effect} \\%Nginx, k6, p2p, ZIO, FS
+	\textbf{Навыки}{: тестирование (интеграционное/e2e/нагрузочное/UI), алгоритмы и структуры данных, работа по Kanban}%проектирование архитектур(MVVM/клиент-сервер/микросервисная)}%<- ТУПО
 % Jetpack Compose, Retrofit, WorkManager <- если на Mobile/fullstack добавить
 % Unreal Engine <- если на Gamedev
 
@@ -244,7 +244,8 @@
 \resumeSubHeadingListStart
 \resumeSubheading
 {Кировская летняя метапредметная школа}{Вишкиль}
-{Педагог доп. образования(математика)}{Июль 2024, Июль 2025}
+{Педагог доп. образования (математика)}{Июль 2024, Июль 2025}
+\resumeSubHeadingListEnd
 
 %-------------------------------------------
 \end{document}
