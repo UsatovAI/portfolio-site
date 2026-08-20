@@ -1,3 +1,4 @@
+import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { GitHubIcon } from "@/components/ui/GitHubIcon";
 import type { PortfolioVariant } from "@/content/portfolio-variant";
 
@@ -14,7 +15,7 @@ export function Hero({ variant }: { variant: PortfolioVariant }) {
 
         <div className="mt-4 flex flex-wrap items-baseline gap-x-2 text-h3 text-text-primary">
           {variant === "default" ? (
-            <span>backend developer</span>
+            <span>Backend developer</span>
           ) : (
             <>
               <span className="jvm-role-disclosure">

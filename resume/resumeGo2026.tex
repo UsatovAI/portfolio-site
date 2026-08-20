@@ -1,0 +1,196 @@
+%-------------------------
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[russian, english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+	\vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+	\item\small{
+		{\ifx&#1&\else\textbf{#1}: \fi#2 \vspace{-2pt}}
+	}
+}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+
+\newcommand{\resumeSubheading}[4]{
+	\vspace{-1pt}\item
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		\textbf{#1} & #2 \\
+		\ifx&#3&\else\textit{\small#3} & \textit{\small #4} \\ \fi
+	\end{tabular*}\vspace{-5pt}
+}
+
+
+\newcommand{\resumeSubSubheading}[2]{
+	\item
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		\textit{\small#1} & \textit{\small #2} \\
+	\end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+	\item
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		\small#1 & #2 \\
+	\end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+	\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+	\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\ulhref}[2]{\href{#1}{\underline{#2}}}
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+	\begin{center}
+		\textbf{\Large \scshape Усатов Павел} \textbf{\Large $|$ Go Backend Developer} \\ \vspace{1pt}
+		\small +7 (912) 712-83-52 $|$
+		\href{https://t.me/Usatov_Pavel}{\underline{Telegram}} $|$
+		\href{mailto:pvusatov@edu.hse.ru}{\underline{pvusatov@edu.hse.ru}} $|$
+		\href{https://github.com/UsatovPavel}{\underline{Github}} $|$
+		\href{https://usatovpavel.ru/default}{\underline{\textbf{Сайт}}}
+	\end{center}
+
+	%-----------EDUCATION-----------
+	\section{Образование}
+	\resumeSubHeadingListStart
+	\resumeSubheading
+	{ВШЭ СПБ}{Санкт-Петербург}
+	{Прикладная математика и информатика}{2023-2027}
+	\item \textbf{Релевантные курсы:}
+	Архитектура компьютера и операционные системы, базы данных, компьютерные сети,
+	алгоритмы и структуры данных, архитектура ПО
+	\resumeSubHeadingListEnd
+
+	%-----------EXPERIENCE-----------
+	\section{Опыт}
+	\resumeSubHeadingListStart
+	\resumeSubheading
+	{Стажировка Backend Т-Банк}{апрель 2026 - июль 2026}
+	{Участвовал в миграции документов с long на uuid}{Продуктовая команда документооборота}
+	\resumeItemListStart
+	\resumeItem{}{Версионировал 10 эндпоинтов под uuid, чтобы не сломать мобильные приложения, установленные у пользователей}
+	\resumeItem{}{Написал модуль команды в репозитории интеграции: 7 клиентов взамен legacy, смежные команды мигрируют на API}
+	\resumeItem{}{Работа с БД: создание алертов, оптимизация запроса, добавление расширений}
+	\resumeItem{}{Чинил баги генерации документов: время у нас, восстановил столбец статистики во внешнем сервисе}
+	\resumeItemListEnd
+	\textbf{Технологии}: Scala, Cats Effect, PostgreSQL, Kafka, Docker, Typescript, Kanban
+	\resumeSubheading
+	{\ulhref{https://github.com/UsatovPavel/riid}{Утилита RIID для внутреннего облака VK}}{январь 2026 - июнь 2026}
+	{Daemon для p2p-загрузки OCI/Docker образов \textit{независимый} от container engine}{Курсовая, научрук - SRE из VK}
+	\resumeItemListStart
+	\resumeItem{}{Написал \ulhref{https://github.com/UsatovPavel/java-dragonfly-image-puller}{библиотеку}: gRPC-клиент к Dragonfly для загрузки слоёв с соседних нод. \textbf{Взят в использование в VK}}
+	\resumeItem{}{Разобрал Go- и Rust-клиенты Dragonfly, обосновал команде Rust: Go-версия не поддерживается с 2026}
+	\resumeItem{}{Модульная архитектура: CLI $\rightarrow$ dispatcher $\rightarrow$ registry/cache/p2p $\rightarrow$ adapters для Podman, Porto, Docker}
+	\resumeItem{}{На 20\% быстрее Podman на кластере k8s из 12 нод: 100 образов от 1 МБ до 5 ГБ}
+	\resumeItemListEnd
+	\textbf{Технологии}: Java, Kubernetes, gRPC, Docker, Podman, OCI/Docker Registry API, p2p, Grafana
+	\resumeSubHeadingListEnd
+
+	%-----------PROJECTS-----------
+	\section{Проекты}
+	\resumeSubHeadingListStart
+	\resumeSubheading
+	{\ulhref{https://github.com/UsatovPavel/PRAssign}{\textbf{PRAssign}} $|$ \normalfont{\emph{Go-сервис управления code review}}}{ноябрь 2025 - январь 2026}
+	{REST API на Gin: команды, пользователи, пул-реквесты, назначение ревьюеров и статистика}{Индивидуальный проект}
+	\resumeItemListStart
+	\resumeItem{}{Слоистая архитектура: handler $\rightarrow$ service $\rightarrow$ repository на pgx, конфигурация viper, JWT с проверкой прав}
+	\resumeItem{}{Асинхронный пайплайн: Go API $\rightarrow$ Kafka (sarama) $\rightarrow$ \ulhref{https://github.com/UsatovPavel/AsyncFactorial}{Scala-consumer} $\rightarrow$ Kafka $\rightarrow$ Go-consumer $\rightarrow$ PostgreSQL}
+	\resumeItem{}{Nginx балансирует реплики сервиса: повтор по 502/503/504, keepalive, вывод упавшего бэкенда}
+	\resumeItem{}{Пирамида тестов: интеграционные, e2e, smoke, stress; миграции golang-migrate, нагрузка k6}
+	\resumeItemListEnd
+	\textbf{Технологии}: Go, Gin, pgx, sarama, viper, JWT, Kafka, PostgreSQL, Nginx, Docker Compose, k6, golangci-lint
+
+	\resumeSubheading
+	{\ulhref{https://github.com/hse-project-Java-2025}{TimeTamer}}{2025}
+	{Java server$+$Kotlin Android приложение-календарь с элементами AI и геймификации}{Командный проект}
+	\resumeItemListStart
+	\resumeItem{}{Интеграция AI-ассистента (ChatGPT + Whisper) для предложений по задачам и голосового ввода}
+	\resumeItemListEnd
+	\textbf{Технологии}: Java, Spring Boot, Kotlin, PostgreSQL, Docker, JUnit 4/5, Mockito
+
+	\resumeSubheading
+	{Учебные задания}{}{}{}
+	\resumeItemListStart
+	\resumeItem{Scala}{\ulhref{https://github.com/UsatovPavel/ZIO-Notification-Service}{ZIO REST API} для уведомлений с учётом часовых поясов}
+	\resumeItem{Python}{\ulhref{https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev}{ANTLR-парсер} регулярных выражений}
+	\resumeItem{Java}{реализация CLI-аналога Git}
+	\resumeItemListEnd
+
+	\resumeSubHeadingListEnd
+
+	%-----------SKILLS-----------
+	\section{Навыки}
+	\textbf{Языки}{: Go, Java, Scala} \\
+	\textbf{Go}{: Gin, pgx, sarama, viper, golang-migrate, golangci-lint} \\
+	\textbf{Технологии и инструменты}{: Docker, PostgreSQL, Kafka, Kubernetes, gRPC, Nginx, k6, Git, Grafana, Prometheus} \\
+	\textbf{Навыки}{: REST API, асинхронные пайплайны, тестирование (интеграционное/e2e/нагрузочное), алгоритмы и структуры данных, работа по Kanban}
+
+%-------------------------------------------
+\end{document}
