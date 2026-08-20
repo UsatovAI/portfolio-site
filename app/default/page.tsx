@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PortfolioPage } from "@/components/PortfolioPage";
 
 export const metadata: Metadata = {
-  title: "Павел Усатов — JVM backend-разработчик",
+  title: "Павел Усатов — backend-разработчик",
   alternates: { canonical: "/default" },
 };
 

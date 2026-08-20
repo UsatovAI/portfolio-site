@@ -18,7 +18,7 @@ export function PortfolioPage({ variant }: { variant: PortfolioVariant }) {
         <SkipLink />
         <Nav />
         <main id="main">
-          <Hero />
+          <Hero variant={variant} />
           <Stack variant={variant} />
           <Experience variant={variant} />
           <Projects variant={variant} />
