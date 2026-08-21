@@ -13,7 +13,9 @@ export function Hero({ variant }: { variant: PortfolioVariant }) {
         </h1>
 
         <div className="mt-4 flex flex-wrap items-baseline gap-x-2 text-h3 text-text-primary">
-          {variant === "default" ? (
+          {variant === "devops" ? (
+            <span>DevOps engineer</span>
+          ) : variant === "default" ? (
             <span>Backend developer</span>
           ) : (
             <>

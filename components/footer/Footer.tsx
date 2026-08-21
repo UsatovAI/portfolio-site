@@ -13,10 +13,12 @@ import { GitHubIcon } from "@/components/ui/GitHubIcon";
 // Flagged in the PR description for Pavel to add real LinkedIn/Telegram links (and
 // update site-architecture.md) if he wants those channels included.
 export function Footer({ variant }: { variant: PortfolioVariant }) {
-  const isScalaVariant = variant === "jvm";
-  const resumeHref = isScalaVariant
-    ? "/resume-scala.pdf?v=2026-08-21"
-    : "/resume.pdf?v=2026-08-21";
+  const resume =
+    variant === "devops"
+      ? { href: "/resume-devops.pdf?v=2026-08-21", label: "DevOps-резюме" }
+      : variant === "jvm"
+        ? { href: "/resume.pdf?v=2026-08-21", label: "Java-резюме" }
+        : { href: "/resume.pdf?v=2026-08-21", label: "резюме" };
 
   return (
     <footer className="border-t border-border">
@@ -27,10 +29,10 @@ export function Footer({ variant }: { variant: PortfolioVariant }) {
               <span className="text-terminal">$</span> resume --format=pdf
             </p>
             <a
-              href={resumeHref}
+              href={resume.href}
               className="inline-block border-b border-border font-sans text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
             >
-              Скачать {isScalaVariant ? "Scala-резюме" : "резюме"} (PDF) ↓
+              Скачать {resume.label} (PDF) ↓
             </a>
           </div>
 

@@ -31,6 +31,7 @@ export function Stack({ variant }: { variant: PortfolioVariant }) {
     jvm: ["backend", "infrastructure", "tools", "ml-python"],
     backend: ["backend", "infrastructure", "tools", "ml-python"],
     ml: ["ml-python", "backend", "infrastructure", "tools"],
+    devops: ["backend", "ml-python", "infrastructure", "tools"],
   };
   const categories = [...shapedCategories].sort(
     (a, b) => categoryPriority[variant].indexOf(a.slug) - categoryPriority[variant].indexOf(b.slug)

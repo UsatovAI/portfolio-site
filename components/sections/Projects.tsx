@@ -42,7 +42,7 @@ export function Projects({ variant }: { variant: PortfolioVariant }) {
   const renderedProjects = prioritizedProjects.filter(
     (project) => activeCategory === "Все" || project.categories.includes(activeCategory)
   );
-  const filters: Array<ProjectCategory | "Все"> = ["Все", "Backend", "ML", "Android"];
+  const filters: Array<ProjectCategory | "Все"> = ["Все", "Backend", "DevOps", "ML", "Android"];
 
   return (
     <section

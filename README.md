@@ -6,13 +6,14 @@ a 3rd-year Applied Mathematics & Computer Science student at HSE University, Sai
 Live at [usatovpavel.ru](https://usatovpavel.ru).
 
 Next.js (App Router) + Tailwind, exported as a static site (`output: "export"`). One build
-serves four content variants, each reordering/reshaping the same sections for a different
+serves five content variants, each reordering/reshaping the same sections for a different
 audience:
 
 - `/default` (and `/`) — complete portfolio
 - `/jvm` — JVM-first framing (Java/Kotlin/Scala prioritized, TypeScript dropped)
 - `/backend` — backend/infra stack and projects prioritized
 - `/ml` — ML/Python stack and projects prioritized
+- `/devops` — shared portfolio content with a DevOps role and résumé
 
 ## Structure
 

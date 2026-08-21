@@ -3,7 +3,7 @@ export interface ProjectLink {
   href: string;
 }
 
-export type ProjectCategory = "Backend" | "ML" | "Android";
+export type ProjectCategory = "Backend" | "ML" | "Android" | "DevOps";
 
 export interface ProjectMedia {
   src: string;
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     description:
       "Go-сервис принимает задачи, Kafka передаёт их Scala-консьюмерам для вычисления, а состояние сохраняется в PostgreSQL.",
     stack: ["Go", "Scala", "Kafka", "Cats Effect 3", "PostgreSQL", "Nginx", "Docker", "k6"],
-    categories: ["Backend"],
+    categories: ["Backend", "DevOps"],
     links: [
       { label: "PRAssign", href: "https://github.com/UsatovPavel/PRAssign" },
       { label: "AsyncFactorial", href: "https://github.com/UsatovPavel/AsyncFactorial" },
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     description:
       "Календарь с общими заданиями, статистикой, достижениями, push-уведомлениями и AI-ассистентом ChatGPT + Whisper для подсказок и голосового ввода.",
     stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit", "PostgreSQL"],
-    categories: ["Backend", "Android"],
+    categories: ["Backend", "Android", "DevOps"],
     media: [
       {
         src: "/projects/timetamer/calendar-demo.mp4",
@@ -127,6 +127,22 @@ export const projects: Project[] = [
     ],
     links: [{ label: "GitHub", href: "https://github.com/UsatovPavel/Voevoda" }],
   },
+  {
+    slug: "ansible-deploy",
+    title: "ansible-deploy + claude-web-console",
+    tier: 1,
+    period: "2026",
+    role: "Индивидуальный проект",
+    summary: "Автодеплой веб-консоли к headless Claude Code на VPS",
+    description:
+      "Ansible-роли с тегами и секретами в ansible-vault для раздельных prod- и test-групп. systemd без root с ProtectSystem=strict, Certbot с renewal-хуком и SNI на Nginx.",
+    stack: ["Ansible", "ansible-vault", "systemd", "Nginx", "Certbot", "Bash"],
+    categories: ["DevOps"],
+    links: [
+      { label: "ansible-deploy", href: "https://github.com/UsatovAI/ansible-deploy" },
+      { label: "claude-web-console", href: "https://github.com/UsatovAI/claude-web-console" },
+    ],
+  },
 ];
 
 export const educationalProjects: Project[] = [
@@ -181,7 +197,7 @@ export const educationalProjects: Project[] = [
     role: "TypeScript",
     summary: "Собственный портфолио-сайт: Next.js + Tailwind",
     description:
-      "Статический экспорт с четырьмя вариантами подачи контента (полный/JVM/backend/ML); деплой на VPS через Nginx и Certbot.",
+      "Статический экспорт с пятью вариантами подачи контента (полный/JVM/backend/ML/DevOps); деплой на VPS через Nginx и Certbot.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Nginx"],
     categories: ["Backend"],
     links: [{ label: "GitHub", href: "https://github.com/UsatovAI/portfolio-site" }],
