@@ -1,3 +1,6 @@
+import type { PortfolioVariant } from "@/content/portfolio-variant";
+import { GitHubIcon } from "@/components/ui/GitHubIcon";
+
 // Footer: resume PDF link + contact only — no dedicated /resume or /contact route,
 // per site-architecture.md §2/§3. No phone number in cleartext (requirements §5).
 //
@@ -9,7 +12,12 @@
 // invent a LinkedIn/Telegram URL, this footer links only email (mailto) and GitHub.
 // Flagged in the PR description for Pavel to add real LinkedIn/Telegram links (and
 // update site-architecture.md) if he wants those channels included.
-export function Footer() {
+export function Footer({ variant }: { variant: PortfolioVariant }) {
+  const isScalaVariant = variant === "jvm";
+  const resumeHref = isScalaVariant
+    ? "/resume-scala.pdf?v=2026-08-21"
+    : "/resume.pdf?v=2026-08-21";
+
   return (
     <footer className="border-t border-border">
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
@@ -19,10 +27,10 @@ export function Footer() {
               <span className="text-terminal">$</span> resume --format=pdf
             </p>
             <a
-              href="/resume.pdf?v=2026-08-20"
+              href={resumeHref}
               className="inline-block border-b border-border font-sans text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
             >
-              Скачать резюме (PDF) ↓
+              Скачать {isScalaVariant ? "Scala-резюме" : "резюме"} (PDF) ↓
             </a>
           </div>
 
@@ -55,10 +63,9 @@ export function Footer() {
         </div>
 
         <p className="mt-10 font-mono text-caption text-text-secondary">
-          Обновлено: 20 августа 2026
+          Обновлено: 21 августа 2026
         </p>
       </div>
     </footer>
   );
 }
-import { GitHubIcon } from "@/components/ui/GitHubIcon";

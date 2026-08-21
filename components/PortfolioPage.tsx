@@ -25,7 +25,7 @@ export function PortfolioPage({ variant }: { variant: PortfolioVariant }) {
           <EducationalProjects />
           <AdditionalActivities />
         </main>
-        <Footer />
+        <Footer variant={variant} />
       </div>
     </div>
   );
