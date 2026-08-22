@@ -10,8 +10,9 @@ export interface StackCategory {
   items: StackItem[];
 }
 
-// Source: docs/stub-content.md §1. Go intentionally folds under Backend rather than
-// getting its own category, per site-architecture.md §1 (Pavel's review).
+// Resume-backed items are synchronized with HH_spam/Resume/BackendTex.tex; the
+// broader portfolio adds tools evidenced by portfolio-only projects. Go folds
+// under Backend rather than getting its own category, per site-architecture.md §1.
 // Testing frameworks (JUnit/Mockito/ScalaTest) and dev/observability tooling
 // (Gradle/Grafana/Prometheus/ELK/Git/Kanban/k6) live under Tools, separate from
 // Infrastructure (runtime/deployment tech) — split requested directly by Pavel.
@@ -20,7 +21,7 @@ export const stackCategories: StackCategory[] = [
     slug: "backend",
     title: "Backend",
     items: [
-      { name: "Java", note: "основной backend-язык — RIID, сервер TimeTamer, стажировка в Т-Банке" },
+      { name: "Java", note: "RIID, сервер TimeTamer, учебный Git CLI" },
       { name: "Scala", note: "Cats Effect 3, ZIO — стажировка в Т-Банке, PRAssign+AsyncFactorial, ZIO-Notification-Service" },
       { name: "Go", note: "REST API — PRAssign" },
       { name: "Kotlin", note: "Android — TimeTamer" },

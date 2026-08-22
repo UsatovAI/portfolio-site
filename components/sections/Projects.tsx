@@ -10,14 +10,6 @@ export function Projects({ variant }: { variant: PortfolioVariant }) {
   const shapedProjects = projects.map((project) => {
     if (variant !== "jvm") return project;
 
-    if (project.slug === "scanovich-webui") {
-      return {
-        ...project,
-        description:
-          "Оркестратор AI-моделей для Open WebUI: маршрутизация запросов, генерация PPTX и распознавание речи.",
-      };
-    }
-
     if (project.slug === "population-forecast") {
       return {
         ...project,
@@ -56,7 +48,7 @@ export function Projects({ variant }: { variant: PortfolioVariant }) {
         </h2>
 
         <p className="mt-2 max-w-2xl text-body text-text-secondary">
-          Продуктовые, командные и исследовательские проекты из резюме.
+          Продуктовые, командные и исследовательские проекты из резюме и портфолио.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2" role="group" aria-label="Фильтр проектов">

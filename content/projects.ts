@@ -28,19 +28,20 @@ export interface Project {
   featured?: boolean;
 }
 
-// Source: the resume attached to AGENT-64. Main and educational work are kept
-// as separate collections so the page mirrors the resume structure.
+// Resume-backed entries are synchronized with HH_spam/Resume/BackendTex.tex.
+// Main and educational work are kept separate so the page mirrors its structure;
+// portfolio-only projects remain available as additional proof of work.
 export const projects: Project[] = [
   {
     slug: "scanovich-webui",
-    title: "Scanovich",
+    title: "Хакатон MTS True Tech",
     tier: 1,
     period: "2026",
-    role: "Командный хакатон MTS True Tech",
-    summary: "Python-оркестратор AI-моделей для Open WebUI",
+    role: "Командный проект",
+    summary: "Оркестратор нейросетей на Python с интеграцией в WebUI",
     description:
-      "Классификация запросов, выбор модели и загрузка файлов из Open WebUI. Генерация PPTX через LLM-план, параллельных агентов и шаблоны под аудиторию; интеграция распознавания речи и pytest-тесты.",
-    stack: ["Python", "FastAPI", "Open WebUI", "REST API", "pytest", "Docker Compose"],
+      "Разработка оркестратора нейросетей на Python и его интеграция с WebUI в рамках хакатона MTS True Tech.",
+    stack: ["Python", "WebUI"],
     categories: ["Backend", "ML"],
     links: [{ label: "GitHub", href: "https://github.com/FUYOH666/scanovich-webUI/" }],
   },
@@ -53,7 +54,7 @@ export const projects: Project[] = [
     summary: "Go REST API + Scala/Kafka pipeline",
     description:
       "Go-сервис принимает задачи, Kafka передаёт их Scala-консьюмерам для вычисления, а состояние сохраняется в PostgreSQL.",
-    stack: ["Go", "Scala", "Kafka", "Cats Effect 3", "PostgreSQL", "Nginx", "Docker", "k6"],
+    stack: ["Scala", "Go", "Kafka", "Cats Effect 3", "PostgreSQL", "Nginx", "ScalaTest", "Docker", "k6"],
     categories: ["Backend", "DevOps"],
     links: [
       { label: "PRAssign", href: "https://github.com/UsatovPavel/PRAssign" },
@@ -67,10 +68,10 @@ export const projects: Project[] = [
     featured: true,
     period: "февраль 2025 – август 2025",
     role: "Командный проект",
-    summary: "Java-сервер + Kotlin/Compose календарь",
+    summary: "Java-сервер + Kotlin Android-приложение-календарь с AI и геймификацией",
     description:
-      "Календарь с общими заданиями, статистикой, достижениями, push-уведомлениями и AI-ассистентом ChatGPT + Whisper для подсказок и голосового ввода.",
-    stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit", "PostgreSQL"],
+      "Общие задания, статистика, достижения, push-уведомления и аутентификация; взаимодействие с сервером через Retrofit и WorkManager; AI-ассистент ChatGPT + Whisper для предложений по задачам и голосового ввода.",
+    stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit", "WorkManager", "PostgreSQL", "Docker", "JUnit 4/5", "Mockito"],
     categories: ["Backend", "Android", "DevOps"],
     media: [
       {
@@ -112,7 +113,7 @@ export const projects: Project[] = [
     tier: 1,
     period: "январь 2024 – июнь 2024",
     role: "Командный проект",
-    summary: "2D top-down RTS на Unreal Engine 4",
+    summary: "2D top-down RTS: управление генералом, захват городов, наём армии и сражения с ИИ",
     description:
       "Генерация городов и оппонентов, поведение врагов, виджеты армии ИИ, туман войны и механика сражений.",
     stack: ["C++", "Unreal Engine 4"],

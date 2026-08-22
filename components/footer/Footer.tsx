@@ -65,7 +65,7 @@ export function Footer({ variant }: { variant: PortfolioVariant }) {
         </div>
 
         <p className="mt-10 font-mono text-caption text-text-secondary">
-          Обновлено: 21 августа 2026
+          Обновлено: 22 августа 2026
         </p>
       </div>
     </footer>

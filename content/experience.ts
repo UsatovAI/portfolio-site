@@ -5,7 +5,7 @@ export interface ExperienceEntry {
   period: string;
   bullets: string[];
   stack?: string[];
-  link?: { label: string; href: string };
+  links?: { label: string; href: string }[];
   media?: {
     overview: ExperienceMedia[];
     byTechnology: Partial<Record<string, ExperienceMedia[]>>;
@@ -21,36 +21,54 @@ export interface ExperienceMedia {
   height: number;
 }
 
-// Source: the resume attached to AGENT-64. RIID belongs to Experience there,
-// rather than being duplicated in Projects.
+// Source of truth: HH_spam/Resume/BackendTex.tex. RIID belongs to Experience
+// there, rather than being duplicated in Projects.
 export const experience: ExperienceEntry[] = [
   {
     slug: "t-bank",
     org: "Т-Банк",
-    role: "Стажировка, Scala-разработчик · продуктовая команда документооборота",
+    role: "Backend-стажировка · миграция документов с long на UUID · продуктовая команда документооборота",
     period: "апрель 2026 – июль 2026",
     bullets: [
-      "Участвовал в миграции документов с long на UUID: создал 10 новых эндпоинтов.",
-      "Создал 7 клиентов к сервисам команды и протестировал их e2e на QA-контуре.",
-      "Создал и протестировал 23 интеграции low-code платформы для перехода на новое API бухгалтерии.",
-      "Настраивал алерты, оптимизировал запросы и добавлял расширения PostgreSQL.",
+      "Версионировал 10 эндпоинтов под UUID, сохранив совместимость с установленными мобильными приложениями.",
+      "Написал модуль команды в общем репозитории B2B-интеграций: 7 документированных клиентов взамен трёхлетнего legacy. Смежные команды завели эпики перехода на новое API.",
+      "Перевёл 23 low-code-интеграции на новое API, обеспечив переход бухгалтерии; проверил e2e на QA-контуре.",
+      "Работал с PostgreSQL: создавал алерты, оптимизировал запрос и добавлял расширения.",
+      "Исправлял баги генерации документов, включая проблему со временем на нашей стороне; восстановил столбец статистики во внешнем сервисе.",
     ],
     stack: ["Scala", "Cats Effect", "PostgreSQL", "Kafka", "Docker", "TypeScript", "ELK", "Kanban"],
   },
   {
     slug: "riid",
     org: "RIID для внутреннего облака VK",
-    role: "Индивидуальный проект · Java daemon для p2p-загрузки OCI/Docker-образов",
+    role: "Курсовая, научный руководитель — SRE из VK · Java daemon для p2p-загрузки OCI/Docker-образов, независимый от container engine",
     period: "январь 2026 – июнь 2026",
     featured: true,
     bullets: [
-      "Спроектировал модульный pipeline: CLI → dispatcher → registry client/cache/p2p → engine adapters.",
-      "Провёл нагрузочное тестирование на k8s-кластере: 100 образов размером от 1 МБ до 5 ГБ.",
-      "По результатам тестирования загрузка в 1,2 раза быстрее Podman.",
-      "Интегрировал Dragonfly через unix-socket/TCP и собственную gRPC-библиотеку.",
+      "Написал библиотеку — gRPC-клиент к Dragonfly для загрузки слоёв с соседних нод; библиотека взята в использование в VK.",
+      "Обосновал команде интеграцию с Rust-версией вместо согласованной ранее Go-версии, которая не поддерживается с 2026 года.",
+      "Спроектировал модульную архитектуру: CLI → dispatcher (стратегия скачивания) → registry client/cache/p2p → engine adapters.",
+      "Добился загрузки на 20% быстрее Podman на k8s-кластере из 12 нод: 100 образов размером от 1 МБ до 5 ГБ.",
     ],
-    stack: ["Java", "Kubernetes", "Grafana", "Prometheus", "gRPC", "OCI Registry API", "Docker"],
-    link: { label: "GitHub", href: "https://github.com/UsatovPavel/riid" },
+    stack: [
+      "Java",
+      "Kubernetes",
+      "Grafana",
+      "Prometheus",
+      "Gradle",
+      "OCI/Docker Registry API",
+      "p2p",
+      "Podman",
+      "Docker",
+      "gRPC",
+    ],
+    links: [
+      { label: "RIID", href: "https://github.com/UsatovPavel/riid" },
+      {
+        label: "java-dragonfly-image-puller",
+        href: "https://github.com/UsatovPavel/java-dragonfly-image-puller",
+      },
+    ],
     media: {
       overview: [
         {

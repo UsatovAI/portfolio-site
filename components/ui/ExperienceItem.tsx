@@ -130,16 +130,17 @@ export function ExperienceItem({
         ) : null}
 
         <div className="mt-4 flex flex-wrap items-center gap-4">
-          {entry.link ? (
+          {entry.links?.map((link) => (
             <a
-              href={entry.link.href}
+              key={link.href}
+              href={link.href}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block border-b border-border text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
             >
-              {entry.link.label} ↗
+              {link.label} ↗
             </a>
-          ) : null}
+          ))}
 
           {hasMedia ? (
             <button
