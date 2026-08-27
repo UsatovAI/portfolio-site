@@ -128,7 +128,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
           {project.media!.map((media) => (
             <figure key={media.src} className="overflow-hidden border border-border bg-surface">
               <video
-                className="aspect-video w-full bg-black object-contain"
+                className="block h-auto w-full"
                 controls
                 playsInline
                 preload="metadata"
