@@ -1,4 +1,6 @@
 import { stackCategories } from "@/content/stack";
+import { stackCategoriesEn } from "@/content/en/stack";
+import { ui, type Locale } from "@/content/locale";
 import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { JVM_SECONDARY_TECH } from "@/content/portfolio-variant";
 import { StackCard } from "@/components/ui/StackCard";
@@ -14,17 +16,19 @@ const JVM_ML_ITEMS = new Set([
   "pytest",
 ]);
 
-export function Stack({ variant }: { variant: PortfolioVariant }) {
+export function Stack({ variant, locale }: { variant: PortfolioVariant; locale: Locale }) {
+  const t = ui[locale];
+  const baseCategories = locale === "en" ? stackCategoriesEn : stackCategories;
   const shapedCategories =
     variant === "jvm"
-      ? stackCategories.map((category) => ({
+      ? baseCategories.map((category) => ({
           ...category,
           items: category.items
             .filter((item) => item.name !== "TypeScript")
             .filter((item) => category.slug !== "ml-python" || JVM_ML_ITEMS.has(item.name))
             .map((item) => ({ ...item, muted: JVM_SECONDARY_TECH.has(item.name) })),
         }))
-      : stackCategories;
+      : baseCategories;
 
   const categoryPriority: Record<PortfolioVariant, string[]> = {
     default: ["backend", "ml-python", "infrastructure", "tools"],
@@ -38,15 +42,15 @@ export function Stack({ variant }: { variant: PortfolioVariant }) {
   );
 
   const descriptions: Partial<Record<PortfolioVariant, string>> = {
-    backend: "Backend-first профиль: языки, API, базы данных и инфраструктура показаны раньше ML-инструментов.",
-    ml: "ML-first профиль: Python, данные и модели показаны раньше backend- и инфраструктурного стека.",
+    backend: t.stack.backend,
+    ml: t.stack.ml,
   };
 
   return (
     <section id="stack" aria-labelledby="stack-heading" className="scroll-mt-16 py-16 sm:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <h2 id="stack-heading" className="text-h2 text-text-primary">
-          Стек
+          {t.stack.heading}
         </h2>
         {descriptions[variant] ? (
           <p className="mt-2 max-w-2xl text-body text-text-secondary">{descriptions[variant]}</p>

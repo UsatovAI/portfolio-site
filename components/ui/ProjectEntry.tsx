@@ -4,11 +4,21 @@ import { useId, useState } from "react";
 import type { Project } from "@/content/projects";
 import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { JVM_SECONDARY_TECH } from "@/content/portfolio-variant";
+import { ui, type Locale } from "@/content/locale";
 
 // Terminal-motif Project entry. Spec: docs/design-system.md §4 "Project entry".
 // Tier 1 (flagship) gets the `surface` fill; Tier 2 (coursework/hackathon) is the
 // same structure at a visually lighter weight (border only, transparent background).
-export function ProjectEntry({ project, variant }: { project: Project; variant: PortfolioVariant }) {
+export function ProjectEntry({
+  project,
+  variant,
+  locale,
+}: {
+  project: Project;
+  variant: PortfolioVariant;
+  locale: Locale;
+}) {
+  const t = ui[locale].projects;
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isPinnedOpen, setIsPinnedOpen] = useState(false);
@@ -38,14 +48,14 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
           ★
         </span>
       ) : null}
-      {project.featured ? <span className="sr-only">Ключевой проект:</span> : null}
+      {project.featured ? <span className="sr-only">{t.featured}</span> : null}
 
       <div className="selection-card relative border border-border bg-surface p-6">
         {hasMedia ? (
           <button
             type="button"
             className="absolute inset-0 z-[1] cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
-            aria-label={`${isOpen ? "Скрыть" : "Показать"} материалы проекта ${project.title}`}
+            aria-label={`${isOpen ? t.hide : t.show} ${t.mediaOf} ${project.title}`}
             aria-expanded={isOpen}
             aria-controls={mediaId}
             onClick={() => setIsPinnedOpen((value) => !value)}
@@ -69,12 +79,19 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
           <div className="mt-4 space-y-3 text-body text-text-secondary">
             <p className="font-medium text-text-primary">{project.summary}</p>
             <p>{project.description}</p>
+            {project.bullets?.length ? (
+              <ul className="list-inside list-disc space-y-1">
+                {project.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            ) : null}
             {project.metric ? <p className="text-text-primary">{project.metric}</p> : null}
             <p className="text-caption">{project.role}</p>
 
             <ul
               className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary"
-              aria-label="Стек проекта"
+              aria-label={t.stackLabel}
             >
               {project.stack.map((tech) => (
                 <li
@@ -110,9 +127,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
                 <span aria-hidden="true" className="text-body leading-none">
                   {isOpen ? "−" : "+"}
                 </span>
-                {isOpen
-                  ? "Скрыть материалы"
-                  : `Наведите: ${project.media!.length} видео`}
+                {isOpen ? t.hideMedia : t.hoverMedia(project.media!.length)}
               </p>
             ) : null}
           </div>
@@ -136,7 +151,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
                 aria-label={media.title}
               >
                 <source src={media.src} type="video/mp4" />
-                Ваш браузер не поддерживает видео. Можно открыть файл по ссылке ниже.
+                {t.noVideo}
               </video>
               <figcaption className="space-y-1 p-3">
                 <p className="font-medium text-text-primary">{media.title}</p>
@@ -145,7 +160,7 @@ export function ProjectEntry({ project, variant }: { project: Project; variant: 
                   href={media.src}
                   className="inline-block border-b border-border text-caption text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
                 >
-                  Открыть видео
+                  {t.openVideo}
                 </a>
               </figcaption>
             </figure>

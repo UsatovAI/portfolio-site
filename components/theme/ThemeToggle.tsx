@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ui, type Locale } from "@/content/locale";
 
-export function ThemeToggle() {
+export function ThemeToggle({ locale }: { locale: Locale }) {
   // Start undecided until mounted, so we never render a toggle state that
   // contradicts what ThemeScript already set on <html> before hydration.
   const [isDark, setIsDark] = useState<boolean | null>(null);
@@ -22,7 +23,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={isDark ? "Переключить на светлую тему" : "Переключить на тёмную тему"}
+      aria-label={isDark ? ui[locale].theme.toLight : ui[locale].theme.toDark}
       className="rounded-sm border border-border px-2 py-1 font-mono text-caption text-text-secondary transition-colors hover:border-terminal hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
     >
       {isDark === null ? "…" : isDark ? "☮ dark" : "☀ light"}

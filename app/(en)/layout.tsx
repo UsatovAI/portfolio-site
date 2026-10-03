@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { YandexMetrika } from "@/components/analytics/YandexMetrika";
 import { ThemeScript } from "@/components/theme/ThemeScript";
-import "./globals.css";
+import "../globals.css";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -20,30 +20,32 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteUrl = "https://usatovpavel.ru";
 
+// Root layout for the English pages: a separate route group so <html lang>
+// is "en" here and "ru" everywhere else.
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Павел Усатов — backend-разработчик",
+  title: "Pavel Usatov — backend developer",
   description:
-    "Портфолио Павла Усатова: backend-разработка, распределённые системы, Java, Scala, Go, Kafka, PostgreSQL и Kubernetes.",
+    "Pavel Usatov’s portfolio: backend development, distributed systems, Java, Scala, Kotlin, Kafka, PostgreSQL and Kubernetes.",
   openGraph: {
-    title: "Павел Усатов — backend-разработчик",
+    title: "Pavel Usatov — backend developer",
     description:
-      "Портфолио Павла Усатова: backend-разработка, распределённые системы, Java, Scala, Go, Kafka, PostgreSQL и Kubernetes.",
+      "Pavel Usatov’s portfolio: backend development, distributed systems, Java, Scala, Kotlin, Kafka, PostgreSQL and Kubernetes.",
     url: siteUrl,
-    locale: "ru_RU",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Павел Усатов — backend-разработчик",
+    title: "Pavel Usatov — backend developer",
     description:
-      "Портфолио Павла Усатова: backend-разработка, распределённые системы, Java, Scala, Go, Kafka, PostgreSQL и Kubernetes.",
+      "Pavel Usatov’s portfolio: backend development, distributed systems, Java, Scala, Kotlin, Kafka, PostgreSQL and Kubernetes.",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function EnglishRootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeScript />
       </head>

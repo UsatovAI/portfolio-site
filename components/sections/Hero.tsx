@@ -1,7 +1,10 @@
 import type { PortfolioVariant } from "@/content/portfolio-variant";
+import { ui, type Locale } from "@/content/locale";
 import { GitHubIcon } from "@/components/ui/GitHubIcon";
 
-export function Hero({ variant }: { variant: PortfolioVariant }) {
+export function Hero({ variant, locale }: { variant: PortfolioVariant; locale: Locale }) {
+  const t = ui[locale];
+
   return (
     <section id="home" aria-labelledby="hero-heading" className="scroll-mt-16 py-16 sm:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
@@ -9,7 +12,7 @@ export function Hero({ variant }: { variant: PortfolioVariant }) {
           <span aria-hidden="true">$</span> whoami
         </p>
         <h1 id="hero-heading" className="mt-2 text-h1 text-text-primary">
-          Павел Усатов
+          {t.name}
         </h1>
 
         <div className="mt-4 flex flex-wrap items-baseline gap-x-2 text-h3 text-text-primary">
@@ -33,11 +36,9 @@ export function Hero({ variant }: { variant: PortfolioVariant }) {
         </div>
 
         <div className="mt-5 max-w-3xl space-y-2 text-lead text-text-secondary">
-          <p>
-            Разрабатываю бэкенд и распределенные системы: Spring Boot, REST API, работа с PostgreSQL,
-            контейнеризация с Docker, асинхронные пайплайны (Kafka).
-          </p>
-          <p>Развертываю в Kubernetes, наблюдаю через Grafana.</p>
+          {t.hero.lines.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
         </div>
 
         <div className="mt-8 flex flex-wrap gap-4 font-mono text-body">
@@ -45,7 +46,7 @@ export function Hero({ variant }: { variant: PortfolioVariant }) {
             href="#projects"
             className="border border-border px-4 py-2 text-text-primary transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
           >
-            смотреть проекты →
+            {t.hero.projectsCta}
           </a>
           <a
             href="https://github.com/UsatovPavel"

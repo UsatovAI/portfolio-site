@@ -1,6 +1,7 @@
 import type { Project } from "@/content/projects";
+import { ui, type Locale } from "@/content/locale";
 
-export function EducationalProjectCard({ project }: { project: Project }) {
+export function EducationalProjectCard({ project, locale }: { project: Project; locale: Locale }) {
   return (
     <article className="selection-card flex flex-col border border-border bg-surface/70 p-5 sm:p-6">
       <p className="font-mono text-caption text-terminal">{project.role}</p>
@@ -9,7 +10,7 @@ export function EducationalProjectCard({ project }: { project: Project }) {
       <p className="mt-3 text-body text-text-secondary">{project.description}</p>
 
       <div className="mt-6">
-        <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary" aria-label="Стек проекта">
+        <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary" aria-label={ui[locale].projects.stackLabel}>
           {project.stack.map((tech) => (
             <li key={tech}>{tech}</li>
           ))}

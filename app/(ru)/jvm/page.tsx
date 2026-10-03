@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Павел Усатов — backend/infra-разработчик",
   description:
     "JVM-ориентированное портфолио Павла Усатова: Java, Scala, Kotlin, Spring Boot, Kafka, PostgreSQL и Kubernetes.",
-  alternates: { canonical: "/jvm" },
+  alternates: { canonical: "/jvm", languages: { ru: "/jvm", en: "/en/jvm" } },
 };
 
 export default function JvmPortfolio() {
-  return <PortfolioPage variant="jvm" />;
+  return <PortfolioPage variant="jvm" alternateHref="/en/jvm" />;
 }

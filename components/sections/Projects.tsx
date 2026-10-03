@@ -2,13 +2,19 @@
 
 import { useState } from "react";
 import { projects, type ProjectCategory } from "@/content/projects";
+import { projectsEn } from "@/content/en/projects";
+import { ui, type Locale } from "@/content/locale";
 import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { ProjectEntry } from "@/components/ui/ProjectEntry";
 
-export function Projects({ variant }: { variant: PortfolioVariant }) {
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory | "Все">("Все");
-  const shapedProjects = projects.map((project) => {
-    if (variant !== "jvm") return project;
+type ProjectFilter = ProjectCategory | "all";
+
+export function Projects({ variant, locale }: { variant: PortfolioVariant; locale: Locale }) {
+  const t = ui[locale].projects;
+  const [activeCategory, setActiveCategory] = useState<ProjectFilter>("all");
+  // The English edition is written for the JVM page and already carries its wording.
+  const shapedProjects = (locale === "en" ? projectsEn : projects).map((project) => {
+    if (variant !== "jvm" || locale === "en") return project;
 
     if (project.slug === "population-forecast") {
       return {
@@ -32,9 +38,9 @@ export function Projects({ variant }: { variant: PortfolioVariant }) {
       )
     : shapedProjects;
   const renderedProjects = prioritizedProjects.filter(
-    (project) => activeCategory === "Все" || project.categories.includes(activeCategory)
+    (project) => activeCategory === "all" || project.categories.includes(activeCategory)
   );
-  const filters: Array<ProjectCategory | "Все"> = ["Все", "Backend", "DevOps", "ML", "Android"];
+  const filters: ProjectFilter[] = ["all", "Backend", "DevOps", "ML", "Android"];
 
   return (
     <section
@@ -44,14 +50,14 @@ export function Projects({ variant }: { variant: PortfolioVariant }) {
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <h2 id="projects-heading" className="text-h2 text-text-primary">
-          Проекты
+          {t.heading}
         </h2>
 
         <p className="mt-2 max-w-2xl text-body text-text-secondary">
-          Продуктовые, командные и исследовательские проекты из резюме и портфолио.
+          {t.intro}
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-2" role="group" aria-label="Фильтр проектов">
+        <div className="mt-6 flex flex-wrap gap-2" role="group" aria-label={t.filterLabel}>
           {filters.map((filter) => {
             const isActive = activeCategory === filter;
 
@@ -67,7 +73,7 @@ export function Projects({ variant }: { variant: PortfolioVariant }) {
                     : "border-border bg-surface/80 text-text-secondary hover:border-terminal hover:text-text-primary"
                 }`}
               >
-                {filter}
+                {filter === "all" ? t.all : filter}
               </button>
             );
           })}
@@ -76,11 +82,11 @@ export function Projects({ variant }: { variant: PortfolioVariant }) {
         <div className="mt-10 space-y-6">
           {renderedProjects.length > 0 ? (
             renderedProjects.map((project) => (
-              <ProjectEntry key={project.slug} project={project} variant={variant} />
+              <ProjectEntry key={project.slug} project={project} variant={variant} locale={locale} />
             ))
           ) : (
             <p className="border border-border bg-surface p-6 text-body text-text-secondary">
-              В этой категории пока нет проектов.
+              {t.empty}
             </p>
           )}
         </div>

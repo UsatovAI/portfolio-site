@@ -2,16 +2,18 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { ui, type Locale } from "@/content/locale";
 
 const NAV_LINKS = [
-  { href: "#stack", label: "Стек", sectionId: "stack" },
-  { href: "#experience", label: "Опыт", sectionId: "experience" },
-  { href: "#projects", label: "Проекты", sectionId: "projects" },
-  { href: "#education-projects", label: "Учебные", sectionId: "education-projects" },
-  { href: "#activities", label: "Активности", sectionId: "activities" },
-];
+  { href: "#stack", key: "stack", sectionId: "stack" },
+  { href: "#experience", key: "experience", sectionId: "experience" },
+  { href: "#projects", key: "projects", sectionId: "projects" },
+  { href: "#education-projects", key: "education", sectionId: "education-projects" },
+  { href: "#activities", key: "activities", sectionId: "activities" },
+] as const;
 
-export function Nav() {
+export function Nav({ locale, alternateHref }: { locale: Locale; alternateHref?: string }) {
+  const t = ui[locale];
   const [activeSection, setActiveSection] = useState<string>("home");
   const [indicator, setIndicator] = useState({ left: 0, top: 0, width: 0, visible: false });
   const linksRef = useRef<HTMLUListElement>(null);
@@ -68,14 +70,14 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-bg/80 shadow-[0_1px_0_rgb(var(--color-terminal)/0.05)] backdrop-blur-xl">
       <nav
-        aria-label="Основная навигация"
+        aria-label={t.nav.label}
         className="mx-auto grid max-w-5xl grid-cols-[1fr_auto] items-center gap-x-4 gap-y-3 px-4 py-3 lg:grid-cols-[auto_1fr_auto] lg:px-6"
       >
         <a
           href="#home"
           className="font-mono text-body font-bold text-text-primary transition-colors hover:text-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
         >
-          Павел Усатов
+          {t.name}
         </a>
 
         <ul
@@ -107,15 +109,25 @@ export function Nav() {
                     (isActive ? "text-terminal" : "text-text-secondary")
                   }
                 >
-                  {link.label}
+                  {t.nav[link.key]}
                 </a>
               </li>
             );
           })}
         </ul>
 
-        <div className="col-start-2 row-start-1 lg:col-start-3">
-          <ThemeToggle />
+        <div className="col-start-2 row-start-1 flex items-center gap-2 lg:col-start-3">
+          {alternateHref ? (
+            <a
+              href={alternateHref}
+              hrefLang={locale === "en" ? "ru" : "en"}
+              lang={locale === "en" ? "ru" : "en"}
+              className="rounded-sm border border-border px-2 py-1 font-mono text-caption text-text-secondary transition-colors hover:border-terminal hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+            >
+              {locale === "en" ? "RU" : "EN"}
+            </a>
+          ) : null}
+          <ThemeToggle locale={locale} />
         </div>
       </nav>
     </header>

@@ -1,5 +1,6 @@
 import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { GitHubIcon } from "@/components/ui/GitHubIcon";
+import { ui, type Locale } from "@/content/locale";
 
 // Footer: resume PDF link + contact only — no dedicated /resume or /contact route,
 // per site-architecture.md §2/§3. No phone number in cleartext (requirements §5).
@@ -12,13 +13,14 @@ import { GitHubIcon } from "@/components/ui/GitHubIcon";
 // invent a LinkedIn/Telegram URL, this footer links only email (mailto) and GitHub.
 // Flagged in the PR description for Pavel to add real LinkedIn/Telegram links (and
 // update site-architecture.md) if he wants those channels included.
-export function Footer({ variant }: { variant: PortfolioVariant }) {
+export function Footer({ variant, locale }: { variant: PortfolioVariant; locale: Locale }) {
+  const t = ui[locale].footer;
   const resume =
     variant === "devops"
-      ? { href: "/resume-devops.pdf?v=2026-08-21", label: "DevOps-резюме" }
+      ? { href: "/resume-devops.pdf?v=2026-08-21", label: t.devopsResume }
       : variant === "jvm"
-        ? { href: "/resume.pdf?v=2026-08-21", label: "Java-резюме" }
-        : { href: "/resume.pdf?v=2026-08-21", label: "резюме" };
+        ? { href: "/resume.pdf?v=2026-08-21", label: t.jvmResume }
+        : { href: "/resume.pdf?v=2026-08-21", label: t.resume };
 
   return (
     <footer className="border-t border-border">
@@ -32,7 +34,7 @@ export function Footer({ variant }: { variant: PortfolioVariant }) {
               href={resume.href}
               className="inline-block border-b border-border font-sans text-body text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
             >
-              Скачать {resume.label} (PDF) ↓
+              {t.download(resume.label)}
             </a>
           </div>
 
@@ -65,7 +67,7 @@ export function Footer({ variant }: { variant: PortfolioVariant }) {
         </div>
 
         <p className="mt-10 font-mono text-caption text-text-secondary">
-          Обновлено: 22 августа 2026
+          {t.updated}
         </p>
       </div>
     </footer>

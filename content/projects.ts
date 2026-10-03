@@ -20,6 +20,7 @@ export interface Project {
   role: string;
   summary: string;
   description: string;
+  bullets?: string[];
   metric?: string;
   stack: string[];
   categories: ProjectCategory[];

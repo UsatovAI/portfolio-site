@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useId, useState } from "react";
 import type { ExperienceEntry, ExperienceMedia } from "@/content/experience";
 import type { PortfolioVariant } from "@/content/portfolio-variant";
+import { ui, type Locale } from "@/content/locale";
 
 type MediaSelection = "overview" | string | null;
 
@@ -38,10 +39,13 @@ function MediaPanel({ items, selection }: { items: ExperienceMedia[]; selection:
 export function ExperienceItem({
   entry,
   variant,
+  locale,
 }: {
   entry: ExperienceEntry;
   variant: PortfolioVariant;
+  locale: Locale;
 }) {
+  const t = ui[locale].experience;
   const [selection, setSelection] = useState<MediaSelection>(null);
   const mediaId = useId();
   const hasMedia = Boolean(entry.media);
@@ -78,22 +82,24 @@ export function ExperienceItem({
           ★
         </span>
       ) : null}
-      {entry.featured ? <span className="sr-only">Ключевой проект:</span> : null}
+      {entry.featured ? <span className="sr-only">{t.featured}</span> : null}
 
       <div>
         <p className="font-mono text-caption text-text-secondary">{entry.period}</p>
         <h3 className="mt-1 text-h3 text-text-primary">{entry.org}</h3>
         <p className="text-body font-medium text-text-secondary">{entry.role}</p>
-        <ul className="mt-3 list-inside list-disc space-y-1 text-body text-text-secondary">
-          {entry.bullets.map((bullet) => (
-            <li key={bullet}>{bullet}</li>
-          ))}
-        </ul>
+        {entry.bullets.length > 0 ? (
+          <ul className="mt-3 list-inside list-disc space-y-1 text-body text-text-secondary">
+            {entry.bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+        ) : null}
 
         {entry.stack && entry.stack.length > 0 ? (
           <ul
             className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-caption text-text-secondary"
-            aria-label="Стек проекта"
+            aria-label={t.stackLabel}
           >
             {entry.stack
               .filter((tech) => variant !== "jvm" || tech !== "TypeScript")
@@ -150,7 +156,7 @@ export function ExperienceItem({
               onClick={() => toggleSelection("overview")}
               className="border-b border-border font-mono text-caption text-terminal transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
             >
-              {selection === "overview" ? "− скрыть материалы RIID" : "+ материалы RIID"}
+              {selection === "overview" ? t.hideMedia : t.showMedia}
             </button>
           ) : null}
         </div>
