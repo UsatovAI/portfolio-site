@@ -31,8 +31,8 @@ export const ui = {
       heading: "Опыт",
       featured: "Ключевой проект:",
       stackLabel: "Стек проекта",
-      showMedia: "+ материалы RIID",
-      hideMedia: "− скрыть материалы RIID",
+      showMedia: "+ материалы",
+      hideMedia: "− скрыть материалы",
     },
     projects: {
       heading: "Проекты",

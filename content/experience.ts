@@ -25,6 +25,47 @@ export interface ExperienceMedia {
 // there, rather than being duplicated in Projects.
 export const experience: ExperienceEntry[] = [
   {
+    slug: "moscollector",
+    org: "Хакатон ЛЦТ 2026 · АО «Москоллектор»",
+    role: "Капитан команды, Backend · сервис прогноза аварий в коллекторах Москвы",
+    period: "сентябрь 2026",
+    bullets: [
+      "Руководил командой из 5 человек (backend, ML, frontend): задачи в Jira, дейли и планирование; развернул прод с бэкапами.",
+      "Спроектировал архитектуру потоков данных из внешних сервисов (погода, гидрология, сервисы заказчика) в ML и Frontend.",
+    ],
+    stack: ["Java", "Spring Boot", "PostgreSQL", "Kafka", "Python", "CatBoost", "Vue", "Jira"],
+    links: [
+      { label: "Стенд", href: "https://moscollector-goal.ru/" },
+      { label: "Репозитории", href: "https://github.com/hack-goal-team" },
+    ],
+    media: {
+      overview: [
+        {
+          src: "/projects/moscollector/high-risk-incidents.webp",
+          alt: "Журнал прогнозов: таблица инцидентов высокого риска и открытая карточка прогноза пожара с вероятностью 99% и формой решения",
+          caption: "Журнал прогнозов: инциденты высокого риска и карточка прогноза",
+          width: 1600,
+          height: 934,
+        },
+        {
+          src: "/projects/moscollector/technician-tree.webp",
+          alt: "Иерархия объекта «объект Альфа» под ролью техника: дочерние объекты окрашены по уровню риска",
+          caption: "Иерархия объектов с уровнем риска, роль техника",
+          width: 1600,
+          height: 934,
+        },
+        {
+          src: "/projects/moscollector/technician-equipment.webp",
+          alt: "Вкладка «Оборудование» журнала прогнозов под ролью техника: два датчика к проверке с вероятностью отказа 95% и 98%",
+          caption: "Оборудование к проверке: прогноз отказов датчиков",
+          width: 1600,
+          height: 934,
+        },
+      ],
+      byTechnology: {},
+    },
+  },
+  {
     slug: "t-bank",
     org: "Т-Банк",
     role: "Backend-стажировка · миграция документов с long на UUID · продуктовая команда документооборота",
