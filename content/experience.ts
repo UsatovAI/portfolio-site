@@ -19,6 +19,8 @@ export interface ExperienceMedia {
   caption: string;
   width: number;
   height: number;
+  // Wide screens show it in the page gutter beside the entry instead.
+  side?: "left" | "right";
 }
 
 // Source of truth: HH_spam/Resume/BackendTex.tex. RIID belongs to Experience
@@ -46,6 +48,7 @@ export const experience: ExperienceEntry[] = [
           caption: "Журнал прогнозов: инциденты высокого риска и карточка прогноза",
           width: 1600,
           height: 934,
+          side: "left",
         },
         {
           src: "/projects/moscollector/technician-tree.webp",
@@ -53,6 +56,7 @@ export const experience: ExperienceEntry[] = [
           caption: "Иерархия объектов с уровнем риска, роль техника",
           width: 1600,
           height: 934,
+          side: "right",
         },
         {
           src: "/projects/moscollector/technician-equipment.webp",
@@ -60,6 +64,7 @@ export const experience: ExperienceEntry[] = [
           caption: "Оборудование к проверке: прогноз отказов датчиков",
           width: 1600,
           height: 934,
+          side: "right",
         },
       ],
       byTechnology: {},
