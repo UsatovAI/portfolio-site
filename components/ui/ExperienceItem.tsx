@@ -87,6 +87,7 @@ export function ExperienceItem({
   locale: Locale;
 }) {
   const t = ui[locale].experience;
+  const tProjects = ui[locale].projects;
   const [selection, setSelection] = useState<MediaSelection>(null);
   const mediaId = useId();
   const hasMedia = Boolean(entry.media);
@@ -211,6 +212,31 @@ export function ExperienceItem({
             </button>
           ) : null}
         </div>
+        {entry.video ? (
+          <figure className="mt-4 overflow-hidden border border-border bg-surface">
+            <video
+              className="block h-auto w-full"
+              controls
+              muted
+              playsInline
+              preload="metadata"
+              poster={entry.video.poster}
+              aria-label={entry.video.caption}
+            >
+              <source src={entry.video.src} type="video/mp4" />
+              {tProjects.noVideo}
+            </video>
+            <figcaption className="flex flex-wrap items-center justify-between gap-2 p-3 text-caption text-text-secondary">
+              <span>{entry.video.caption}</span>
+              <a
+                href={entry.video.src}
+                className="inline-block border-b border-border text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+              >
+                {tProjects.openVideo}
+              </a>
+            </figcaption>
+          </figure>
+        ) : null}
       </div>
 
       {inGutters ? (

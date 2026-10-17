@@ -11,6 +11,7 @@ export interface ExperienceEntry {
     byTechnology: Partial<Record<string, ExperienceMedia[]>>;
   };
   featured?: boolean;
+  video?: { src: string; poster: string; caption: string };
 }
 
 export interface ExperienceMedia {
@@ -40,6 +41,11 @@ export const experience: ExperienceEntry[] = [
       { label: "Стенд", href: "https://moscollector-goal.ru/" },
       { label: "Репозитории", href: "https://github.com/hack-goal-team" },
     ],
+    video: {
+      src: "/projects/moscollector/demo.mp4",
+      poster: "/projects/moscollector/demo-poster.jpg",
+      caption: "Демо стенда, 57 с, без звука",
+    },
     media: {
       overview: [
         {
