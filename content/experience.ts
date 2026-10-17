@@ -19,11 +19,81 @@ export interface ExperienceMedia {
   caption: string;
   width: number;
   height: number;
+  // Wide screens show it in the page gutter beside the entry instead.
+  side?: "left" | "right";
 }
 
 // Source of truth: HH_spam/Resume/BackendTex.tex. RIID belongs to Experience
 // there, rather than being duplicated in Projects.
 export const experience: ExperienceEntry[] = [
+  {
+    slug: "moscollector",
+    org: "Хакатон ЛЦТ 2026 · АО «Москоллектор»",
+    role: "Капитан команды, Backend · сервис прогноза аварий в коллекторах Москвы",
+    period: "сентябрь 2026",
+    bullets: [
+      "Руководил командой из 5 человек (backend, ML, frontend): задачи в Jira, дейли и планирование; развернул прод с бэкапами.",
+      "Спроектировал архитектуру потоков данных из внешних сервисов (погода, гидрология, сервисы заказчика) в ML и Frontend.",
+    ],
+    stack: ["Java", "Spring Boot", "PostgreSQL", "Kafka", "Python", "CatBoost", "Vue", "Jira"],
+    links: [
+      { label: "Стенд", href: "https://moscollector-goal.ru/" },
+      { label: "Репозитории", href: "https://github.com/hack-goal-team" },
+    ],
+    media: {
+      overview: [
+        {
+          src: "/projects/moscollector/analytics-dashboard.webp",
+          alt: "Аналитическая панель: карточки активных рисков, высокого риска и оборудования к проверке, распределение инцидентов по уровням риска",
+          caption: "Аналитическая панель: сводка рисков и распределение инцидентов по уровням",
+          width: 1600,
+          height: 613,
+          side: "left",
+        },
+        {
+          src: "/projects/moscollector/high-risk-incidents.webp",
+          alt: "Журнал прогнозов: таблица инцидентов высокого риска и открытая карточка прогноза пожара с вероятностью 99% и формой решения",
+          caption: "Журнал прогнозов: инциденты высокого риска и карточка прогноза",
+          width: 1600,
+          height: 934,
+          side: "left",
+        },
+        {
+          src: "/projects/moscollector/technician-tree.webp",
+          alt: "Иерархия объекта «объект Альфа» под ролью техника: дочерние объекты окрашены по уровню риска",
+          caption: "Иерархия объектов с уровнем риска, роль техника",
+          width: 1600,
+          height: 934,
+          side: "right",
+        },
+        {
+          src: "/projects/moscollector/technician-equipment.webp",
+          alt: "Вкладка «Оборудование» журнала прогнозов под ролью техника: два датчика к проверке с вероятностью отказа 95% и 98%",
+          caption: "Оборудование к проверке: прогноз отказов датчиков",
+          width: 1600,
+          height: 934,
+          side: "right",
+        },
+        {
+          src: "/projects/moscollector/admin-settings.webp",
+          alt: "Настройки администратора: обновление интеграций (метеослужба, уровень Москвы-реки, реестр, заявки ОДС) и параметры прогноза с порогами MEDIUM и HIGH",
+          caption: "Панель администратора: интеграции и пороги прогноза",
+          width: 1600,
+          height: 705,
+          side: "left",
+        },
+        {
+          src: "/projects/moscollector/admin-audit.webp",
+          alt: "Журнал аудита администратора: входы, выходы и неудачные попытки входа пользователей с фильтрами по периоду, пользователю и действию",
+          caption: "Панель администратора: журнал аудита",
+          width: 1600,
+          height: 782,
+          side: "right",
+        },
+      ],
+      byTechnology: {},
+    },
+  },
   {
     slug: "t-bank",
     org: "Т-Банк",

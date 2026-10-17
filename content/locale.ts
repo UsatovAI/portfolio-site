@@ -33,6 +33,8 @@ export const ui = {
       stackLabel: "Стек проекта",
       showMedia: "+ материалы RIID",
       hideMedia: "− скрыть материалы RIID",
+      showScreens: "+ скриншоты",
+      hideScreens: "− скрыть скриншоты",
     },
     projects: {
       heading: "Проекты",
@@ -108,6 +110,8 @@ export const ui = {
       stackLabel: "Project stack",
       showMedia: "+ RIID materials",
       hideMedia: "− hide RIID materials",
+      showScreens: "+ screenshots",
+      hideScreens: "− hide screenshots",
     },
     projects: {
       heading: "Projects",

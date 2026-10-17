@@ -36,6 +36,47 @@ function MediaPanel({ items, selection }: { items: ExperienceMedia[]; selection:
   );
 }
 
+// Each gutter is (100vw - max-w-5xl) / 2; cards keep 4rem of it as spacing.
+const GUTTER_CARD = "w-[min(22rem,calc((100vw-64rem)/2-4rem))]";
+
+function GutterMedia({ items, side }: { items: ExperienceMedia[]; side: "left" | "right" }) {
+  if (items.length === 0) return null;
+
+  return (
+    <div
+      className={`absolute top-0 z-10 hidden space-y-4 min-[1700px]:block ${GUTTER_CARD} ${
+        side === "left" ? "right-[calc(100%+3rem)]" : "left-[calc(100%+3rem)]"
+      }`}
+    >
+      {items.map((item) => (
+        <figure
+          key={item.src}
+          className="overflow-hidden rounded-md border border-border bg-surface/90 backdrop-blur-sm"
+        >
+          <a
+            href={item.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:-outline-offset-2"
+          >
+            <Image
+              src={item.src}
+              alt={item.alt}
+              width={item.width}
+              height={item.height}
+              sizes="22rem"
+              className="h-auto w-full transition-opacity hover:opacity-90"
+            />
+          </a>
+          <figcaption className="px-3 py-2 font-mono text-caption text-text-secondary">
+            {item.caption}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 export function ExperienceItem({
   entry,
   variant,
@@ -49,6 +90,10 @@ export function ExperienceItem({
   const [selection, setSelection] = useState<MediaSelection>(null);
   const mediaId = useId();
   const hasMedia = Boolean(entry.media);
+  const overview = entry.media?.overview ?? [];
+  const inGutters = overview.some((item) => item.side);
+  // Gutter media replaces the toggle and inline grid on wide screens.
+  const compactOnly = inGutters ? "min-[1700px]:hidden" : "";
   const selectedItems =
     selection && entry.media
       ? selection === "overview"
@@ -154,16 +199,29 @@ export function ExperienceItem({
               aria-expanded={selection === "overview"}
               aria-controls={mediaId}
               onClick={() => toggleSelection("overview")}
-              className="border-b border-border font-mono text-caption text-terminal transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+              className={`${compactOnly} border-b border-border font-mono text-caption text-terminal transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2`}
             >
-              {selection === "overview" ? t.hideMedia : t.showMedia}
+              {selection === "overview"
+                ? inGutters
+                  ? t.hideScreens
+                  : t.hideMedia
+                : inGutters
+                  ? t.showScreens
+                  : t.showMedia}
             </button>
           ) : null}
         </div>
       </div>
 
+      {inGutters ? (
+        <>
+          <GutterMedia items={overview.filter((item) => item.side === "left")} side="left" />
+          <GutterMedia items={overview.filter((item) => item.side === "right")} side="right" />
+        </>
+      ) : null}
+
       {selection && selectedItems.length > 0 ? (
-        <div id={mediaId} className="media-reveal mt-4" aria-live="polite">
+        <div id={mediaId} className={`media-reveal mt-4 ${compactOnly}`} aria-live="polite">
           <MediaPanel items={selectedItems} selection={selection} />
         </div>
       ) : null}
