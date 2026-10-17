@@ -9,9 +9,16 @@ export interface ExperienceEntry {
   media?: {
     overview: ExperienceMedia[];
     byTechnology: Partial<Record<string, ExperienceMedia[]>>;
+    // Revealed first with the overview, also on wide screens with gutter media.
+    video?: ExperienceVideo;
   };
   featured?: boolean;
-  video?: { src: string; poster: string; caption: string };
+}
+
+export interface ExperienceVideo {
+  src: string;
+  poster: string;
+  caption: string;
 }
 
 export interface ExperienceMedia {
@@ -41,12 +48,12 @@ export const experience: ExperienceEntry[] = [
       { label: "Стенд", href: "https://moscollector-goal.ru/" },
       { label: "Репозитории", href: "https://github.com/hack-goal-team" },
     ],
-    video: {
-      src: "/projects/moscollector/demo.mp4",
-      poster: "/projects/moscollector/demo-poster.jpg",
-      caption: "Демо стенда, 57 с, без звука",
-    },
     media: {
+      video: {
+        src: "/projects/moscollector/demo.mp4",
+        poster: "/projects/moscollector/demo-poster.jpg",
+        caption: "Демо стенда, 57 с, без звука",
+      },
       overview: [
         {
           src: "/projects/moscollector/analytics-dashboard.webp",

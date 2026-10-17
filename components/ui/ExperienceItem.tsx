@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useId, useState } from "react";
-import type { ExperienceEntry, ExperienceMedia } from "@/content/experience";
+import type { ExperienceEntry, ExperienceMedia, ExperienceVideo } from "@/content/experience";
 import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { ui, type Locale } from "@/content/locale";
 
@@ -33,6 +33,38 @@ function MediaPanel({ items, selection }: { items: ExperienceMedia[]; selection:
         </figure>
       ))}
     </div>
+  );
+}
+
+function RevealVideo({ video, locale }: { video: ExperienceVideo; locale: Locale }) {
+  const t = ui[locale].projects;
+
+  // Mounted only while revealed, so leaving the entry stops playback.
+  return (
+    <figure className="overflow-hidden border border-border bg-surface">
+      <video
+        className="block h-auto w-full"
+        controls
+        autoPlay
+        muted
+        playsInline
+        preload="metadata"
+        poster={video.poster}
+        aria-label={video.caption}
+      >
+        <source src={video.src} type="video/mp4" />
+        {t.noVideo}
+      </video>
+      <figcaption className="flex flex-wrap items-center justify-between gap-2 p-3 text-caption text-text-secondary">
+        <span>{video.caption}</span>
+        <a
+          href={video.src}
+          className="inline-block border-b border-border text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+        >
+          {t.openVideo}
+        </a>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -87,14 +119,15 @@ export function ExperienceItem({
   locale: Locale;
 }) {
   const t = ui[locale].experience;
-  const tProjects = ui[locale].projects;
   const [selection, setSelection] = useState<MediaSelection>(null);
   const mediaId = useId();
   const hasMedia = Boolean(entry.media);
   const overview = entry.media?.overview ?? [];
   const inGutters = overview.some((item) => item.side);
-  // Gutter media replaces the toggle and inline grid on wide screens.
+  const video = entry.media?.video;
+  // Gutter media replaces the inline grid on wide screens; a video still reveals.
   const compactOnly = inGutters ? "min-[1700px]:hidden" : "";
+  const showVideo = selection === "overview" && Boolean(video);
   const selectedItems =
     selection && entry.media
       ? selection === "overview"
@@ -200,43 +233,18 @@ export function ExperienceItem({
               aria-expanded={selection === "overview"}
               aria-controls={mediaId}
               onClick={() => toggleSelection("overview")}
-              className={`${compactOnly} border-b border-border font-mono text-caption text-terminal transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2`}
+              className={`${video ? "" : compactOnly} border-b border-border font-mono text-caption text-terminal transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2`}
             >
               {selection === "overview"
                 ? inGutters
-                  ? t.hideScreens
+                  ? t.hideMaterials
                   : t.hideMedia
                 : inGutters
-                  ? t.showScreens
+                  ? t.showMaterials
                   : t.showMedia}
             </button>
           ) : null}
         </div>
-        {entry.video ? (
-          <figure className="mt-4 overflow-hidden border border-border bg-surface">
-            <video
-              className="block h-auto w-full"
-              controls
-              muted
-              playsInline
-              preload="metadata"
-              poster={entry.video.poster}
-              aria-label={entry.video.caption}
-            >
-              <source src={entry.video.src} type="video/mp4" />
-              {tProjects.noVideo}
-            </video>
-            <figcaption className="flex flex-wrap items-center justify-between gap-2 p-3 text-caption text-text-secondary">
-              <span>{entry.video.caption}</span>
-              <a
-                href={entry.video.src}
-                className="inline-block border-b border-border text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
-              >
-                {tProjects.openVideo}
-              </a>
-            </figcaption>
-          </figure>
-        ) : null}
       </div>
 
       {inGutters ? (
@@ -246,9 +254,18 @@ export function ExperienceItem({
         </>
       ) : null}
 
-      {selection && selectedItems.length > 0 ? (
-        <div id={mediaId} className={`media-reveal mt-4 ${compactOnly}`} aria-live="polite">
-          <MediaPanel items={selectedItems} selection={selection} />
+      {showVideo || (selection && selectedItems.length > 0) ? (
+        <div
+          id={mediaId}
+          className={`media-reveal mt-4 space-y-3 ${showVideo ? "" : compactOnly}`}
+          aria-live="polite"
+        >
+          {showVideo ? <RevealVideo video={video!} locale={locale} /> : null}
+          {selection && selectedItems.length > 0 ? (
+            <div className={compactOnly}>
+              <MediaPanel items={selectedItems} selection={selection} />
+            </div>
+          ) : null}
         </div>
       ) : null}
     </li>
