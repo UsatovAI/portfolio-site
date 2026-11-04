@@ -5,12 +5,25 @@ export interface ProjectLink {
 
 export type ProjectCategory = "Backend" | "ML" | "Android" | "DevOps";
 
-export interface ProjectMedia {
+interface ProjectMediaBase {
   src: string;
-  poster: string;
   title: string;
   description: string;
 }
+
+export interface ProjectVideoMedia extends ProjectMediaBase {
+  type: "video";
+  poster: string;
+}
+
+export interface ProjectImageMedia extends ProjectMediaBase {
+  type: "image";
+  alt: string;
+  width: number;
+  height: number;
+}
+
+export type ProjectMedia = ProjectVideoMedia | ProjectImageMedia;
 
 export interface Project {
   slug: string;
@@ -33,6 +46,89 @@ export interface Project {
 // Main and educational work are kept separate so the page mirrors its structure;
 // portfolio-only projects remain available as additional proof of work.
 export const projects: Project[] = [
+  {
+    slug: "moscollector",
+    title: "Хакатон ЛЦТ 2026 · АО «Москоллектор»",
+    tier: 1,
+    period: "сентябрь 2026",
+    role: "Капитан команды, Backend",
+    summary: "Сервис прогноза аварий в коллекторах Москвы",
+    description:
+      "ML-модель прогнозирует аварии по данным внешних сервисов, а Java-бэкенд передаёт риски и рекомендации в интерфейсы диспетчеров и технических специалистов.",
+    bullets: [
+      "Руководил командой из 5 человек (backend, ML, frontend): задачи в Jira, дейли и планирование; развернул прод с бэкапами.",
+      "Спроектировал архитектуру потоков данных из внешних сервисов (погода, гидрология, сервисы заказчика) в ML и Frontend.",
+    ],
+    stack: ["Java", "Spring Boot", "PostgreSQL", "Kafka", "Python", "CatBoost", "Vue", "Jira"],
+    categories: ["Backend", "ML"],
+    media: [
+      {
+        type: "video",
+        src: "/projects/moscollector/demo.mp4",
+        poster: "/projects/moscollector/demo-poster.jpg",
+        title: "Демо стенда",
+        description: "57 секунд, без звука.",
+      },
+      {
+        type: "image",
+        src: "/projects/moscollector/analytics-dashboard.webp",
+        alt: "Аналитическая панель: карточки активных рисков, высокого риска и оборудования к проверке, распределение инцидентов по уровням риска",
+        title: "Аналитическая панель",
+        description: "Сводка рисков и распределение инцидентов по уровням.",
+        width: 1600,
+        height: 613,
+      },
+      {
+        type: "image",
+        src: "/projects/moscollector/high-risk-incidents.webp",
+        alt: "Журнал прогнозов: таблица инцидентов высокого риска и открытая карточка прогноза пожара с вероятностью 99% и формой решения",
+        title: "Журнал прогнозов",
+        description: "Инциденты высокого риска и карточка прогноза.",
+        width: 1600,
+        height: 934,
+      },
+      {
+        type: "image",
+        src: "/projects/moscollector/technician-tree.webp",
+        alt: "Иерархия объекта «объект Альфа» под ролью техника: дочерние объекты окрашены по уровню риска",
+        title: "Иерархия объектов",
+        description: "Уровни риска для технического специалиста.",
+        width: 1600,
+        height: 934,
+      },
+      {
+        type: "image",
+        src: "/projects/moscollector/technician-equipment.webp",
+        alt: "Вкладка «Оборудование» журнала прогнозов под ролью техника: два датчика к проверке с вероятностью отказа 95% и 98%",
+        title: "Оборудование к проверке",
+        description: "Прогноз отказов датчиков.",
+        width: 1600,
+        height: 934,
+      },
+      {
+        type: "image",
+        src: "/projects/moscollector/admin-settings.webp",
+        alt: "Настройки администратора: обновление интеграций и параметры прогноза с порогами MEDIUM и HIGH",
+        title: "Панель администратора",
+        description: "Интеграции и пороги прогноза.",
+        width: 1600,
+        height: 705,
+      },
+      {
+        type: "image",
+        src: "/projects/moscollector/admin-audit.webp",
+        alt: "Журнал аудита администратора: входы, выходы и неудачные попытки входа пользователей с фильтрами",
+        title: "Журнал аудита",
+        description: "События пользователей с фильтрами по периоду, пользователю и действию.",
+        width: 1600,
+        height: 782,
+      },
+    ],
+    links: [
+      { label: "Стенд", href: "https://moscollector-goal.ru/" },
+      { label: "Репозитории", href: "https://github.com/hack-goal-team" },
+    ],
+  },
   {
     slug: "scanovich-webui",
     title: "Хакатон MTS True Tech",
@@ -76,12 +172,14 @@ export const projects: Project[] = [
     categories: ["Backend", "Android", "DevOps"],
     media: [
       {
+        type: "video",
         src: "/projects/timetamer/calendar-demo.mp4",
         poster: "/projects/timetamer/calendar-poster.jpg",
         title: "Smart Calendar",
         description: "Сценарии календаря, общих задач и планирования в Android-приложении.",
       },
       {
+        type: "video",
         src: "/projects/timetamer/ai-dialog-demo.mp4",
         poster: "/projects/timetamer/ai-dialog-poster.jpg",
         title: "AI-диалог и голосовой ввод",
@@ -121,6 +219,7 @@ export const projects: Project[] = [
     categories: [],
     media: [
       {
+        type: "video",
         src: "/projects/voevoda/gameplay-demo.mp4",
         poster: "/projects/voevoda/gameplay-poster.jpg",
         title: "Игровой процесс Voevoda",

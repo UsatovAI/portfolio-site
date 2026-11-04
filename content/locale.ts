@@ -48,9 +48,10 @@ export const ui = {
       hide: "Скрыть",
       mediaOf: "материалы проекта",
       hideMedia: "Скрыть материалы",
-      hoverMedia: (count: number) => `Наведите: ${count} видео`,
+      hoverMedia: (count: number) => `Наведите: ${count} материалов`,
       noVideo: "Ваш браузер не поддерживает видео. Можно открыть файл по ссылке ниже.",
       openVideo: "Открыть видео",
+      openImage: "Открыть изображение",
     },
     education: {
       heading: "Учебные проекты",
@@ -125,9 +126,10 @@ export const ui = {
       hide: "Hide",
       mediaOf: "materials for project",
       hideMedia: "Hide materials",
-      hoverMedia: (count: number) => `Hover: ${count} ${count === 1 ? "video" : "videos"}`,
+      hoverMedia: (count: number) => `Hover: ${count} ${count === 1 ? "item" : "items"}`,
       noVideo: "Your browser does not support video. You can open the file via the link below.",
       openVideo: "Open video",
+      openImage: "Open image",
     },
     education: {
       heading: "Coursework",

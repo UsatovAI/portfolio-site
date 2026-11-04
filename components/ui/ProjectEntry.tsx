@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useId, useState } from "react";
 import type { Project } from "@/content/projects";
 import type { PortfolioVariant } from "@/content/portfolio-variant";
@@ -142,17 +143,35 @@ export function ProjectEntry({
         >
           {project.media!.map((media) => (
             <figure key={media.src} className="overflow-hidden border border-border bg-surface">
-              <video
-                className="block h-auto w-full"
-                controls
-                playsInline
-                preload="metadata"
-                poster={media.poster}
-                aria-label={media.title}
-              >
-                <source src={media.src} type="video/mp4" />
-                {t.noVideo}
-              </video>
+              {media.type === "video" ? (
+                <video
+                  className="block h-auto w-full"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={media.poster}
+                  aria-label={media.title}
+                >
+                  <source src={media.src} type="video/mp4" />
+                  {t.noVideo}
+                </video>
+              ) : (
+                <a
+                  href={media.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:-outline-offset-2"
+                >
+                  <Image
+                    src={media.src}
+                    alt={media.alt}
+                    width={media.width}
+                    height={media.height}
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="h-auto w-full transition-opacity hover:opacity-90"
+                  />
+                </a>
+              )}
               <figcaption className="space-y-1 p-3">
                 <p className="font-medium text-text-primary">{media.title}</p>
                 <p className="text-caption text-text-secondary">{media.description}</p>
@@ -160,7 +179,7 @@ export function ProjectEntry({
                   href={media.src}
                   className="inline-block border-b border-border text-caption text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
                 >
-                  {t.openVideo}
+                  {media.type === "video" ? t.openVideo : t.openImage}
                 </a>
               </figcaption>
             </figure>

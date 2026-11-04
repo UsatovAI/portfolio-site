@@ -21,10 +21,10 @@ export const stackCategories: StackCategory[] = [
     slug: "backend",
     title: "Backend",
     items: [
-      { name: "Java", note: "RIID, сервер TimeTamer, учебный Git CLI" },
+      { name: "Java", note: "RIID, сервер TimeTamer, учебный Git CLI, стажировка в Яндексе" },
       { name: "Scala", note: "Cats Effect 3, ZIO — стажировка в Т-Банке, PRAssign+AsyncFactorial, ZIO-Notification-Service" },
       { name: "Go", note: "REST API — PRAssign" },
-      { name: "Kotlin", note: "Android — TimeTamer" },
+      { name: "Kotlin", note: "Android — TimeTamer; стажировка в Яндексе" },
       { name: "Spring Boot" },
       { name: "TypeScript", note: "стек стажировки в Т-Банке" },
       { name: "C++", note: "средний уровень — Voevoda (Unreal Engine 4)" },
@@ -57,6 +57,7 @@ export const stackCategories: StackCategory[] = [
       { name: "Kubernetes", note: "кластер нагрузочного тестирования RIID" },
       { name: "Kafka", note: "PRAssign+AsyncFactorial, стажировка в Т-Банке" },
       { name: "PostgreSQL", note: "стажировка в Т-Банке, PRAssign, TimeTamer" },
+      { name: "MySQL", note: "стажировка в Яндексе" },
       { name: "Nginx", note: "масштабирование API PRAssign" },
       { name: "gRPC", note: "RIID" },
       { name: "OCI/Docker Registry API", note: "RIID" },
@@ -71,6 +72,7 @@ export const stackCategories: StackCategory[] = [
     items: [
       { name: "Git" },
       { name: "Kanban" },
+      { name: "Jira", note: "хакатон по коллекторам Москвы" },
       { name: "Gradle", note: "сборка RIID" },
       { name: "Grafana" },
       { name: "Prometheus" },
