@@ -6,10 +6,11 @@ export const experienceEn: ExperienceEntry[] = [
   {
     slug: "yandex-ads",
     org: "Yandex Advertising Network",
+    orgHref: "https://partner.yandex.com/",
     role: "Backend internship",
     period: "September 2026 – present",
     bullets: [],
-    stack: ["Java", "Kotlin", "Spring", "MySQL"],
+    stack: ["Java", "Kotlin", "Spring", "MySQL", "jOOQ"],
   },
   {
     slug: "t-bank",

@@ -1,6 +1,7 @@
 export interface ExperienceEntry {
   slug: string;
   org: string;
+  orgHref?: string;
   role: string;
   period: string;
   bullets: string[];
@@ -37,10 +38,11 @@ export const experience: ExperienceEntry[] = [
   {
     slug: "yandex-ads",
     org: "Рекламная сеть Яндекса",
+    orgHref: "https://partner.yandex.ru/",
     role: "Backend-стажировка",
     period: "сентябрь 2026 – настоящее время",
     bullets: [],
-    stack: ["Java", "Kotlin", "Spring", "MySQL"],
+    stack: ["Java", "Kotlin", "Spring", "MySQL", "jOOQ"],
   },
   {
     slug: "t-bank",

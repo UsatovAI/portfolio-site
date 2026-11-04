@@ -165,7 +165,20 @@ export function ExperienceItem({
 
       <div>
         <p className="font-mono text-caption text-text-secondary">{entry.period}</p>
-        <h3 className="mt-1 text-h3 text-text-primary">{entry.org}</h3>
+        <h3 className="mt-1 text-h3 text-text-primary">
+          {entry.orgHref ? (
+            <a
+              href={entry.orgHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-border transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
+            >
+              {entry.org}
+            </a>
+          ) : (
+            entry.org
+          )}
+        </h3>
         <p className="text-body font-medium text-text-secondary">{entry.role}</p>
         {entry.bullets.length > 0 ? (
           <ul className="mt-3 list-inside list-disc space-y-1 text-body text-text-secondary">
