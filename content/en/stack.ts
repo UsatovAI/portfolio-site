@@ -40,6 +40,7 @@ export const stackCategoriesEn: StackCategory[] = [
       { name: "Docker" },
       { name: "Docker Compose" },
       { name: "Kubernetes", note: "RIID load-testing cluster" },
+      { name: "Terraform" },
       { name: "Kafka", note: "PRAssign+AsyncFactorial, T-Bank internship" },
       { name: "PostgreSQL", note: "T-Bank internship, PRAssign, TimeTamer" },
       { name: "MySQL", note: "Yandex internship" },

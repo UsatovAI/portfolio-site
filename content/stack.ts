@@ -55,6 +55,7 @@ export const stackCategories: StackCategory[] = [
       { name: "Docker" },
       { name: "Docker Compose" },
       { name: "Kubernetes", note: "кластер нагрузочного тестирования RIID" },
+      { name: "Terraform" },
       { name: "Kafka", note: "PRAssign+AsyncFactorial, стажировка в Т-Банке" },
       { name: "PostgreSQL", note: "стажировка в Т-Банке, PRAssign, TimeTamer" },
       { name: "MySQL", note: "стажировка в Яндексе" },
