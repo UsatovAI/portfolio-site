@@ -1,24 +1,16 @@
-import type { Metadata } from "next";
 import { PortfolioPage } from "@/components/PortfolioPage";
+import { pageMetadata } from "@/content/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Павел Усатов — backend-разработчик",
   description:
     "Портфолио Павла Усатова: backend и распределённые системы, Java, Scala, Go, Kafka, PostgreSQL, Kubernetes.",
-  openGraph: {
-    title: "Павел Усатов — backend-разработчик",
-    description:
-      "Портфолио Павла Усатова: backend и распределённые системы, Java, Scala, Go, Kafka, PostgreSQL, Kubernetes.",
-    url: "/default",
-  },
-  twitter: {
-    title: "Павел Усатов — backend-разработчик",
-    description:
-      "Портфолио Павла Усатова: backend и распределённые системы, Java, Scala, Go, Kafka, PostgreSQL, Kubernetes.",
-  },
-  alternates: { canonical: "/default" },
-};
+  locale: "ru",
+  path: "/default",
+  ruPath: "/default",
+  enPath: "/en/default",
+});
 
 export default function DefaultPortfolio() {
-  return <PortfolioPage variant="default" />;
+  return <PortfolioPage variant="default" alternateHref="/en/default" />;
 }

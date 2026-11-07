@@ -12,16 +12,14 @@ type ProjectFilter = ProjectCategory | "all";
 export function Projects({ variant, locale }: { variant: PortfolioVariant; locale: Locale }) {
   const t = ui[locale].projects;
   const [activeCategory, setActiveCategory] = useState<ProjectFilter>("all");
-  // The English edition is written for the JVM page and already carries its wording.
+  // The JVM page keeps the ML project short; every other variant shows it in full.
+  const jvmPopulationForecast = {
+    ru: "Прогнозирование населения на 10-летнем горизонте: сравнение ARIMA, Prophet, XGBoost и Random Forest.",
+    en: "Population forecasting over a 10-year horizon: comparing ARIMA, Prophet, XGBoost and Random Forest.",
+  };
   const shapedProjects = (locale === "en" ? projectsEn : projects).map((project) => {
-    if (variant !== "jvm" || locale === "en") return project;
-
-    if (project.slug === "population-forecast") {
-      return {
-        ...project,
-        description:
-          "Прогнозирование населения на 10-летнем горизонте: сравнение ARIMA, Prophet, XGBoost и Random Forest.",
-      };
+    if (variant === "jvm" && project.slug === "population-forecast") {
+      return { ...project, description: jvmPopulationForecast[locale] };
     }
 
     return project;

@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
 import { PortfolioPage } from "@/components/PortfolioPage";
+import { pageMetadata } from "@/content/page-metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Павел Усатов — backend/infra-разработчик",
   description:
     "JVM-ориентированное портфолио Павла Усатова: Java, Scala, Kotlin, Spring Boot, Kafka, PostgreSQL и Kubernetes.",
-  alternates: { canonical: "/jvm", languages: { ru: "/jvm", en: "/en/jvm" } },
-};
+  locale: "ru",
+  path: "/jvm",
+  ruPath: "/jvm",
+  enPath: "/en/jvm",
+});
 
 export default function JvmPortfolio() {
   return <PortfolioPage variant="jvm" alternateHref="/en/jvm" />;

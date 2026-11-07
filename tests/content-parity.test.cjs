@@ -78,3 +78,27 @@ test("RU and EN stack sections expose the same technologies", () => {
 
   assert.deepEqual(namesByCategory(stackCategories), namesByCategory(stackCategoriesEn));
 });
+
+test("every RU page has an English counterpart under /en", () => {
+  const ruRoot = path.join(process.cwd(), "app/(ru)");
+  const enRoot = path.join(process.cwd(), "app/(en)/en");
+  const pages = (root) =>
+    fs
+      .readdirSync(root, { recursive: true })
+      .filter((file) => path.basename(file) === "page.tsx")
+      .map((file) => path.dirname(file))
+      .sort();
+
+  assert.deepEqual(pages(enRoot), pages(ruRoot));
+});
+
+test("every page builds its metadata with pageMetadata, so link previews match the page", () => {
+  const roots = ["app/(ru)", "app/(en)/en"].map((dir) => path.join(process.cwd(), dir));
+  for (const root of roots) {
+    for (const file of fs.readdirSync(root, { recursive: true })) {
+      if (path.basename(file) !== "page.tsx") continue;
+      const source = fs.readFileSync(path.join(root, file), "utf8");
+      assert.match(source, /pageMetadata\(/, `${path.join(root, file)} must use pageMetadata`);
+    }
+  }
+});

@@ -44,6 +44,10 @@ server {
         return 301 /jvm;
     }
 
+    location = /en {
+        return 301 /en/jvm;
+    }
+
     location / {
         try_files $uri $uri.html $uri/ =404;
         add_header Cache-Control "no-cache" always;

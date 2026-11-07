@@ -153,7 +153,7 @@ export const ui = {
     },
     footer: {
       download: (label: string) => `Download ${label} (PDF) ↓`,
-      resume: "resume",
+      resume: "resume, in Russian",
       jvmResume: "Java resume, in Russian",
       devopsResume: "DevOps resume, in Russian",
       updated: "Updated: October 3, 2026",

@@ -152,7 +152,7 @@ export const projectsEn: Project[] = [
     role: "ML / time series",
     summary: "10-year time series forecasting",
     description:
-      "Population forecasting over a 10-year horizon: comparing ARIMA, Prophet, XGBoost and Random Forest.",
+      "Collected data from the World Bank API, UN Population Division and Census API. Compared ARIMA, Prophet, linear regression, XGBoost and Random Forest by MAPE, RMSE and error stability.",
     metric: "Best model, ARIMA with grid search: MAPE 0.020 on a held-out ten-year window.",
     stack: ["Python", "pandas", "scikit-learn", "XGBoost", "Prophet", "statsmodels", "SciPy"],
     categories: ["ML"],
