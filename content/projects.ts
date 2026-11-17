@@ -38,16 +38,18 @@ export interface Project {
   stack: string[];
   categories: ProjectCategory[];
   media?: ProjectMedia[];
+  mediaLayout?: "sides";
   links: ProjectLink[];
   featured?: boolean;
 }
 
-// Resume-backed entries are synchronized with HH_spam/Resume/BackendTex.tex.
+// Resume-backed entries are synchronized with HH_spam/Resume/Backend_resume_repo/Backend.tex.
 // Main and educational work are kept separate so the page mirrors its structure;
 // portfolio-only projects remain available as additional proof of work.
 export const projects: Project[] = [
   {
     slug: "moscollector",
+    mediaLayout: "sides",
     title: "Хакатон ЛЦТ 2026 · АО «Москоллектор»",
     tier: 1,
     period: "сентябрь 2026",
@@ -125,9 +127,20 @@ export const projects: Project[] = [
       },
     ],
     links: [
-      { label: "Стенд", href: "https://moscollector-goal.ru/" },
       { label: "Репозитории", href: "https://github.com/hack-goal-team" },
     ],
+  },
+  {
+    slug: "nasa-spherex",
+    title: "Хакатон NASA",
+    tier: 1,
+    period: "2026",
+    role: "Командный проект · English, backend",
+    summary: "Backend (Scala, ZIO) для сервиса снимков",
+    description: "",
+    stack: ["Scala", "ZIO"],
+    categories: ["Backend"],
+    links: [{ label: "Хостинг", href: "https://spherexblink.tech" }],
   },
   {
     slug: "scanovich-webui",
@@ -135,9 +148,8 @@ export const projects: Project[] = [
     tier: 1,
     period: "2026",
     role: "Командный проект",
-    summary: "Оркестратор нейросетей на Python с интеграцией в WebUI",
-    description:
-      "Разработка оркестратора нейросетей на Python и его интеграция с WebUI в рамках хакатона MTS True Tech.",
+    summary: "Оркестратор нейросетей на Python с WebUI",
+    description: "",
     stack: ["Python", "WebUI"],
     categories: ["Backend", "ML"],
     links: [{ label: "GitHub", href: "https://github.com/FUYOH666/scanovich-webUI/" }],
@@ -167,7 +179,7 @@ export const projects: Project[] = [
     role: "Командный проект",
     summary: "Java-сервер + Kotlin Android-приложение-календарь с AI и геймификацией",
     description:
-      "Общие задания, статистика, достижения, push-уведомления и аутентификация; взаимодействие с сервером через Retrofit и WorkManager; AI-ассистент ChatGPT + Whisper для предложений по задачам и голосового ввода.",
+      "Общие задания, статистика, достижения, push-уведомления, аутентификация. Интеграция AI-ассистента.",
     stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit", "WorkManager", "PostgreSQL", "Docker", "JUnit 4/5", "Mockito"],
     categories: ["Backend", "Android", "DevOps"],
     media: [
@@ -183,7 +195,7 @@ export const projects: Project[] = [
         src: "/projects/timetamer/ai-dialog-demo.mp4",
         poster: "/projects/timetamer/ai-dialog-poster.jpg",
         title: "AI-диалог и голосовой ввод",
-        description: "Работа ассистента ChatGPT и распознавания речи Whisper.",
+        description: "Демонстрация интеграции AI-ассистента.",
       },
     ],
     links: [
@@ -208,13 +220,12 @@ export const projects: Project[] = [
   },
   {
     slug: "voevoda",
-    title: "Voevoda",
+    title: "Игра «Voevoda» | C++, Unreal Engine 4",
     tier: 1,
     period: "январь 2024 – июнь 2024",
     role: "Командный проект",
     summary: "2D top-down RTS: управление генералом, захват городов, наём армии и сражения с ИИ",
-    description:
-      "Генерация городов и оппонентов, поведение врагов, виджеты армии ИИ, туман войны и механика сражений.",
+    description: "",
     stack: ["C++", "Unreal Engine 4"],
     categories: [],
     media: [
@@ -247,6 +258,18 @@ export const projects: Project[] = [
 ];
 
 export const educationalProjects: Project[] = [
+  {
+    slug: "qilin-pointer-analysis",
+    title: "Анализ указателей",
+    tier: 2,
+    period: "учебный проект",
+    role: "Java",
+    summary: "Анализ указателей на основе КС-достижимости",
+    description: "",
+    stack: ["Java"],
+    categories: ["Backend"],
+    links: [{ label: "Pull request", href: "https://github.com/UsatovPavel/Qilin/pull/1" }],
+  },
   {
     slug: "java-git-cli",
     title: "Git CLI",

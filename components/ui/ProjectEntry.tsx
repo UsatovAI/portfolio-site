@@ -2,10 +2,35 @@
 
 import Image from "next/image";
 import { useId, useState } from "react";
-import type { Project } from "@/content/projects";
+import type { Project, ProjectMedia } from "@/content/projects";
 import type { PortfolioVariant } from "@/content/portfolio-variant";
 import { JVM_SECONDARY_TECH } from "@/content/portfolio-variant";
 import { ui, type Locale } from "@/content/locale";
+
+function MediaCard({ media, locale }: { media: ProjectMedia; locale: Locale }) {
+  const t = ui[locale].projects;
+  return (
+    <figure className="overflow-hidden border border-border bg-surface">
+      {media.type === "video" ? (
+        <video className="block h-auto w-full" controls playsInline preload="metadata" poster={media.poster} aria-label={media.title}>
+          <source src={media.src} type="video/mp4" />
+          {t.noVideo}
+        </video>
+      ) : (
+        <a href={media.src} target="_blank" rel="noopener noreferrer" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:-outline-offset-2">
+          <Image src={media.src} alt={media.alt} width={media.width} height={media.height} sizes="(min-width: 1480px) 24vw, (min-width: 640px) 50vw, 100vw" className="h-auto w-full transition-opacity hover:opacity-90" />
+        </a>
+      )}
+      <figcaption className="space-y-1 p-3">
+        <p className="font-medium text-text-primary">{media.title}</p>
+        <p className="text-caption text-text-secondary">{media.description}</p>
+        <a href={media.src} className="inline-block border-b border-border text-caption text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2">
+          {media.type === "video" ? t.openVideo : t.openImage}
+        </a>
+      </figcaption>
+    </figure>
+  );
+}
 
 // Terminal-motif Project entry. Spec: docs/design-system.md §4 "Project entry".
 // Tier 1 (flagship) gets the `surface` fill; Tier 2 (coursework/hackathon) is the
@@ -26,10 +51,13 @@ export function ProjectEntry({
   const mediaId = useId();
   const hasMedia = Boolean(project.media?.length);
   const isOpen = hasMedia && (isHovered || isFocused || isPinnedOpen);
+  const sideMedia = project.mediaLayout === "sides";
+  const screenshots = project.media?.filter((media) => media.type === "image") ?? [];
+  const middle = Math.ceil(screenshots.length / 2);
 
   return (
     <article
-      className="relative"
+      className={`relative${sideMedia && isOpen ? " project-side-media" : ""}`}
       onMouseEnter={hasMedia ? () => setIsHovered(true) : undefined}
       onMouseLeave={hasMedia ? () => setIsHovered(false) : undefined}
       onFocus={hasMedia ? () => setIsFocused(true) : undefined}
@@ -51,7 +79,7 @@ export function ProjectEntry({
       ) : null}
       {project.featured ? <span className="sr-only">{t.featured}</span> : null}
 
-      <div className="selection-card relative border border-border bg-surface p-6">
+      <div className="selection-card project-main-card relative border border-border bg-surface p-6">
         {hasMedia ? (
           <button
             type="button"
@@ -79,7 +107,7 @@ export function ProjectEntry({
 
           <div className="mt-4 space-y-3 text-body text-text-secondary">
             <p className="font-medium text-text-primary">{project.summary}</p>
-            <p>{project.description}</p>
+            {project.description ? <p>{project.description}</p> : null}
             {project.bullets?.length ? (
               <ul className="list-inside list-disc space-y-1">
                 {project.bullets.map((bullet) => (
@@ -138,52 +166,22 @@ export function ProjectEntry({
       {hasMedia && isOpen ? (
         <div
           id={mediaId}
-          className="media-reveal mt-4 grid gap-4 sm:grid-cols-2"
+          className={`media-reveal mt-4 grid gap-4 sm:grid-cols-2${sideMedia ? " project-side-media-panels" : ""}`}
           aria-live="polite"
         >
-          {project.media!.map((media) => (
-            <figure key={media.src} className="overflow-hidden border border-border bg-surface">
-              {media.type === "video" ? (
-                <video
-                  className="block h-auto w-full"
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster={media.poster}
-                  aria-label={media.title}
-                >
-                  <source src={media.src} type="video/mp4" />
-                  {t.noVideo}
-                </video>
-              ) : (
-                <a
-                  href={media.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:-outline-offset-2"
-                >
-                  <Image
-                    src={media.src}
-                    alt={media.alt}
-                    width={media.width}
-                    height={media.height}
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="h-auto w-full transition-opacity hover:opacity-90"
-                  />
-                </a>
-              )}
-              <figcaption className="space-y-1 p-3">
-                <p className="font-medium text-text-primary">{media.title}</p>
-                <p className="text-caption text-text-secondary">{media.description}</p>
-                <a
-                  href={media.src}
-                  className="inline-block border-b border-border text-caption text-accent transition-colors hover:border-terminal focus-visible:outline focus-visible:outline-2 focus-visible:outline-terminal focus-visible:outline-offset-2"
-                >
-                  {media.type === "video" ? t.openVideo : t.openImage}
-                </a>
-              </figcaption>
-            </figure>
-          ))}
+          {sideMedia ? (
+            <>
+              <div className="project-center-media contents">
+                {project.media!.filter((media) => media.type === "video").map((media) => <MediaCard key={media.src} media={media} locale={locale} />)}
+              </div>
+              <div className="project-left-media contents">
+                {screenshots.slice(0, middle).map((media) => <MediaCard key={media.src} media={media} locale={locale} />)}
+              </div>
+              <div className="project-right-media contents">
+                {screenshots.slice(middle).map((media) => <MediaCard key={media.src} media={media} locale={locale} />)}
+              </div>
+            </>
+          ) : project.media!.map((media) => <MediaCard key={media.src} media={media} locale={locale} />)}
         </div>
       ) : null}
     </article>

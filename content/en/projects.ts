@@ -5,6 +5,7 @@ import type { Project } from "@/content/projects";
 export const projectsEn: Project[] = [
   {
     slug: "moscollector",
+    mediaLayout: "sides",
     title: "LCT 2026 Hackathon · Moscollector JSC",
     tier: 1,
     period: "September 2026",
@@ -82,9 +83,20 @@ export const projectsEn: Project[] = [
       },
     ],
     links: [
-      { label: "Hosting", href: "https://moscollector-goal.ru/" },
       { label: "Repositories", href: "https://github.com/hack-goal-team" },
     ],
+  },
+  {
+    slug: "nasa-spherex",
+    title: "NASA Hackathon",
+    tier: 1,
+    period: "2026",
+    role: "Team project · English, backend",
+    summary: "Backend (Scala, ZIO) for an imagery service",
+    description: "",
+    stack: ["Scala", "ZIO"],
+    categories: ["Backend"],
+    links: [{ label: "Hosting", href: "https://spherexblink.tech" }],
   },
   {
     slug: "scanovich-webui",
@@ -92,8 +104,8 @@ export const projectsEn: Project[] = [
     tier: 1,
     period: "2026",
     role: "Team project",
-    summary: "Neural network orchestrator in Python integrated with a WebUI",
-    description: "Developed a neural network orchestrator in Python and integrated it with a WebUI.",
+    summary: "Neural network orchestrator in Python with WebUI",
+    description: "",
     stack: ["Python", "WebUI"],
     categories: ["Backend", "ML"],
     links: [{ label: "GitHub", href: "https://github.com/FUYOH666/scanovich-webUI/" }],
@@ -123,7 +135,7 @@ export const projectsEn: Project[] = [
     role: "Team project",
     summary: "Java server + Kotlin Android calendar app with AI and gamification",
     description:
-      "Shared tasks, statistics, achievements, push notifications and authentication; client–server communication via Retrofit and WorkManager; a ChatGPT + Whisper AI assistant for task suggestions and voice input.",
+      "Shared tasks, statistics, achievements, push notifications and authentication. AI assistant integration.",
     stack: ["Java", "Spring Boot", "Kotlin", "Jetpack Compose", "Retrofit", "WorkManager", "PostgreSQL", "Docker", "JUnit 4/5", "Mockito"],
     categories: ["Backend", "Android", "DevOps"],
     media: [
@@ -139,7 +151,7 @@ export const projectsEn: Project[] = [
         src: "/projects/timetamer/ai-dialog-demo.mp4",
         poster: "/projects/timetamer/ai-dialog-poster.jpg",
         title: "AI dialog and voice input",
-        description: "The ChatGPT assistant and Whisper speech recognition at work.",
+        description: "Demonstration of AI assistant integration.",
       },
     ],
     links: [{ label: "GitHub", href: "https://github.com/hse-project-Java-2025" }],
@@ -160,13 +172,12 @@ export const projectsEn: Project[] = [
   },
   {
     slug: "voevoda",
-    title: "Voevoda",
+    title: "Voevoda | C++, Unreal Engine 4",
     tier: 1,
     period: "January 2024 – June 2024",
     role: "Team project",
     summary: "2D top-down RTS: command a general, capture cities, hire armies and fight the AI",
-    description:
-      "City and opponent generation, enemy behavior, AI army widgets, fog of war and battle mechanics.",
+    description: "",
     stack: ["C++", "Unreal Engine 4"],
     categories: [],
     media: [
@@ -199,6 +210,18 @@ export const projectsEn: Project[] = [
 ];
 
 export const educationalProjectsEn: Project[] = [
+  {
+    slug: "qilin-pointer-analysis",
+    title: "Pointer analysis",
+    tier: 2,
+    period: "coursework",
+    role: "Java",
+    summary: "Pointer analysis based on context-free reachability",
+    description: "",
+    stack: ["Java"],
+    categories: ["Backend"],
+    links: [{ label: "Pull request", href: "https://github.com/UsatovPavel/Qilin/pull/1" }],
+  },
   {
     slug: "java-git-cli",
     title: "Git CLI",

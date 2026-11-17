@@ -78,7 +78,7 @@ export const ui = {
       resume: "резюме",
       jvmResume: "Java-резюме",
       devopsResume: "DevOps-резюме",
-      updated: "Обновлено: 22 августа 2026",
+      updated: "Обновлено: 17 ноября 2026",
     },
   },
   en: {
@@ -156,7 +156,7 @@ export const ui = {
       resume: "resume",
       jvmResume: "Java resume, in Russian",
       devopsResume: "DevOps resume, in Russian",
-      updated: "Updated: October 3, 2026",
+      updated: "Updated: November 17, 2026",
     },
   },
 } as const;

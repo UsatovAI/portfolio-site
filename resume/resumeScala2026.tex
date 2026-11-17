@@ -102,6 +102,16 @@
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 	\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 \newcommand{\ulhref}[2]{\href{#1}{\underline{#2}}}
+\newcommand{\resumeHackathons}{
+    \item
+    \begin{tabularx}{0.97\textwidth}{@{}X@{\hspace{12pt}}X@{\hspace{8pt}}r@{}}
+        \textbf{Хакатон NASA} $|$ \ulhref{https://spherexblink.tech}{Хостинг} &
+        \textbf{\ulhref{https://github.com/FUYOH666/scanovich-webUI/}{Хакатон MTS True Tech}} & 2026 \\
+        \small English, backend (Scala, ZIO) для сервиса снимков &
+        \small Оркестратор нейросетей на Python с WebUI &
+        \textit{\small Командные проекты}
+    \end{tabularx}\vspace{-5pt}
+}
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -141,6 +151,15 @@
 	\section{Опыт}
 	\resumeSubHeadingListStart
 	\resumeSubheading
+	{Стажировка Backend — \ulhref{https://partner.yandex.ru/}{Рекламная сеть Яндекса}}{сентябрь 2026 — 14 декабря 2026}{}{}
+	\resumeItemListStart
+	\resumeItem{}{Разработал селективную выборку тестов команды по покрытию JaCoCo; на исторических данных 5$\%$ ускорение}
+	\resumeItem{}{Инфраструктура наполнения тестовой базы данных для локальной разработки}
+	\resumeItem{}{Исправил принятие оферт при перерегистрации партнёров (доп. договоров с некорректными датами)}
+	\resumeItem{}{Сделал обработку договоров устойчивой к ошибкам клиентов, устранив блокировку очереди при 1 упавшем}
+	\resumeItemListEnd
+	\textbf{Технологии}: Java, Kotlin, Spring Boot, MySQL, Docker, JaCoCo, jOOQ, CI/CD
+	\resumeSubheading
 	{Стажировка Scala Т-Банк}{апрель 2026 - июль 2026}
 	{Участвовал в миграции документов с long на uuid}{Продуктовая команда документооборота}
 	\resumeItemListStart
@@ -156,7 +175,6 @@
 	{Daemon на Java для p2p-загрузки OCI/Docker образов \textit{независимый} от container engine}{Курсовая, научрук - SRE из VK}
 	\resumeItemListStart
     \resumeItem{}{{Написал \ulhref{https://github.com/UsatovPavel/java-dragonfly-image-puller}{библиотеку}: gRPC-клиент к Dragonfly для загрузки слоёв с соседних нод. \textbf{Взят в использование в VK}}}
-    \resumeItem{}{Обосновал команде интеграцию  с Rust версией вместо согласованной ранее Go: Go не поддерживается с 2026}
 	\resumeItem{}{Модульная архитектура: CLI $\rightarrow$ dispatcher (стратегия скачивания) $\rightarrow$ registry client/cache/p2p $\rightarrow$ engine adapters}
 	\resumeItem{}{На 20\% быстрее Podman на кластере k8s из 12 нод: 100 образов от 1 МБ до 5 ГБ}
 	%\resumeItem{}{Сбор метрик через Prometheus, отображение в Grafana}
@@ -182,6 +200,15 @@
 
 	\resumeSubHeadingListStart
 	\resumeSubheading
+	{\textbf{Сервис прогнозирования  аварий в коллекторах Москвы}  $|$
+		\normalfont{\emph{\ulhref{https://github.com/hack-goal-team}{Репозитории}
+			}
+	}}{Сентябрь 2026}
+	{ML(Python, Catboost)=> БД=>Backend(Java, Spring Boot)=> Frontend(JS, Vue) } {Капитан команды, Backend}
+    \resumeItem{}{Руководил командой из 5 человек (backend, ML, frontend): задачи в Jira, дейли и планирование; развернул прод с бэкапами}
+    \resumeItem{}{Проектирование архитектуры потоков данных из внешних сервисов (Метео, Гидро, сервисы заказчика)  в ML и Frontend}
+
+	\resumeSubheading
 	{\textbf{PRAssign}  $|$
 		\normalfont{\emph{\ulhref{https://github.com/UsatovPavel/PRAssign}{Go REST API} + {\ulhref{https://github.com/UsatovPavel/AsyncFactorial}{Scala Kafka consumers}:}
 			}
@@ -201,30 +228,22 @@
 	{\ulhref{https://github.com/hse-project-Java-2025}{Приложение «TimeTamer»}}{февраль 2025 - август 2025}
 	{Java server$+$Kotlin Android приложение-календарь с элементами AI и геймификации} {Командный проект}
 	\resumeItemListStart
-	\item {Общие задания, статистика, достижения, push-уведомления, аутентификация}
+	\item {Общие задания, статистика, достижения, push-уведомления, аутентификация. Интеграция AI-ассистента}
 	%\item {Взаимодействие с сервером через Retrofit и WorkManager}
-	\item{Интеграция AI-ассистента (ChatGPT + Whisper) для предложений по задачам и голосового ввода.}
 	\resumeItemListEnd
 	\textbf{Технологии}: Java, Spring Boot, Kotlin, Jetpack Compose, Retrofit, PostgreSQL, Docker, JUnit 4/5,  Mockito
 
 	\resumeSubheading
-	{\ulhref{https://github.com/UsatovPavel/Voevoda}{Игра «Voevoda»}}{январь 2024 - июнь 2024}
+	{\ulhref{https://github.com/UsatovPavel/Voevoda}{Игра «Voevoda»} $|$ \normalfont{C++, Unreal Engine 4}}{январь 2024 - июнь 2024}
 	{2d topdown RTS: управление генералом, захват городов, наём армии и сражения с ИИ}{Командный проект}
-	\resumeItemListStart
-	\resumeItem{}{Генерация городов и оппонентов, поведение врагов, виджеты армии ИИ-оппонентов;  туман войны и сражения}
-	\resumeItemListEnd
-	\textbf{Технологии}: C++, Unreal Engine 4
 
-	\resumeSubheading
-	{\ulhref{https://github.com/FUYOH666/scanovich-webUI/}{Хакатон MTS True Tech}}
-	{2026}
-	{разработка оркестратора нейросетей на Python, интеграция с WebUI}{Командный проект}
+	\resumeHackathons
 
 	\resumeSubheading
 	{Учебные задания}{}{}{}% ТУПО: либо антистек, либо
 	\resumeItemListStart
 	% \resumeItem{C++}{библиотека для тестов с использованием макросов}
-	\resumeItem{Java}{реализация Cli аналога Git}
+	\resumeItem{Java}{реализация Cli аналога Git, \ulhref{https://github.com/UsatovPavel/Qilin/pull/1}{Анализ указателей} на основе КС-достижимости}
 	\resumeItem{Scala}{\ulhref{https://github.com/UsatovPavel/ZIO-Notification-Service}{ZIO REST API} для уведомлений с учётом часовых поясов}% с тестированием через TestClient
 	\resumeItem{Python}{\ulhref{https://github.com/UsatovPavel/Usatov-FL-HSE/tree/task4-dev}{ANTLR-парсер} регулярных выражений}%\ulhref{https://github.com/UsatovPavel/Pop_ML_Forecast10}{ML: Предсказание населения стран на 10-летнем горизонте}
 	\resumeItemListEnd

@@ -232,6 +232,47 @@
   animation-delay: 70ms;
 }
 
+/* Keep the screenshots beside the project while reserving their full height,
+   so they never cover the following card. Narrow screens retain the media grid. */
+@media (min-width: 1480px) {
+  .project-side-media {
+    width: calc(100vw - 3rem);
+    margin-left: calc(50% - 50vw + 1.5rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, min(61rem, 55vw)) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .project-side-media > .project-main-card {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .project-side-media-panels {
+    display: contents;
+  }
+
+  .project-side-media-panels > div {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .project-center-media {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .project-left-media,
+  .project-right-media {
+    grid-row: 1 / span 2;
+  }
+
+  .project-left-media { grid-column: 1; }
+  .project-right-media { grid-column: 3; }
+}
+
 @property --stack-border-angle {
   syntax: "<angle>";
   initial-value: 0deg;

@@ -37,6 +37,7 @@ test("RU and EN experience sections expose the same employment entries", () => {
 test("RU and EN project sections expose the same portfolio entries", () => {
   const expectedSlugs = [
     "moscollector",
+    "nasa-spherex",
     "scanovich-webui",
     "prassign",
     "timetamer",

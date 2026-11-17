@@ -8,9 +8,14 @@ export const experienceEn: ExperienceEntry[] = [
     org: "Yandex Advertising Network",
     orgHref: "https://partner.yandex.com/",
     role: "Backend internship",
-    period: "September 2026 – present",
-    bullets: [],
-    stack: ["Java", "Kotlin", "Spring", "MySQL", "jOOQ"],
+    period: "September 2026 — December 14, 2026",
+    bullets: [
+      "Developed selective test execution for the team using JaCoCo coverage; historical data showed a 5% speedup.",
+      "Built infrastructure for populating a test database for local development.",
+      "Fixed offer acceptance when partners re-registered, including supplementary agreements with incorrect dates.",
+      "Made contract processing resilient to client errors, preventing a single failed item from blocking the queue.",
+    ],
+    stack: ["Java", "Kotlin", "Spring Boot", "MySQL", "Docker", "JaCoCo", "jOOQ", "CI/CD"],
   },
   {
     slug: "t-bank",
@@ -34,7 +39,6 @@ export const experienceEn: ExperienceEntry[] = [
     featured: true,
     bullets: [
       "Wrote a library — a gRPC client for Dragonfly that downloads layers from neighboring nodes; the library was adopted at VK.",
-      "Made the case to the team for integrating with the Rust version instead of the previously agreed Go version, which is unsupported since 2026.",
       "Designed a modular architecture: CLI → dispatcher (download strategy) → registry client/cache/p2p → engine adapters.",
       "Achieved downloads 20% faster than Podman on a 12-node k8s cluster: 100 images from 1 MB to 5 GB.",
     ],

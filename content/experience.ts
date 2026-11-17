@@ -32,7 +32,7 @@ export interface ExperienceMedia {
   side?: "left" | "right";
 }
 
-// Source of truth: HH_spam/Resume/BackendTex.tex. RIID belongs to Experience
+// Source of truth: HH_spam/Resume/Backend_resume_repo/Backend.tex. RIID belongs to Experience
 // there, rather than being duplicated in Projects.
 export const experience: ExperienceEntry[] = [
   {
@@ -40,9 +40,14 @@ export const experience: ExperienceEntry[] = [
     org: "Рекламная сеть Яндекса",
     orgHref: "https://partner.yandex.ru/",
     role: "Backend-стажировка",
-    period: "сентябрь 2026 – настоящее время",
-    bullets: [],
-    stack: ["Java", "Kotlin", "Spring", "MySQL", "jOOQ"],
+    period: "сентябрь 2026 — 14 декабря 2026",
+    bullets: [
+      "Разработал селективную выборку тестов команды по покрытию JaCoCo; на исторических данных 5% ускорение.",
+      "Инфраструктура наполнения тестовой базы данных для локальной разработки.",
+      "Исправил принятие оферт при перерегистрации партнёров (доп. договоров с некорректными датами).",
+      "Сделал обработку договоров устойчивой к ошибкам клиентов, устранив блокировку очереди при 1 упавшем.",
+    ],
+    stack: ["Java", "Kotlin", "Spring Boot", "MySQL", "Docker", "JaCoCo", "jOOQ", "CI/CD"],
   },
   {
     slug: "t-bank",
@@ -66,7 +71,6 @@ export const experience: ExperienceEntry[] = [
     featured: true,
     bullets: [
       "Написал библиотеку — gRPC-клиент к Dragonfly для загрузки слоёв с соседних нод; библиотека взята в использование в VK.",
-      "Обосновал команде интеграцию с Rust-версией вместо согласованной ранее Go-версии, которая не поддерживается с 2026 года.",
       "Спроектировал модульную архитектуру: CLI → dispatcher (стратегия скачивания) → registry client/cache/p2p → engine adapters.",
       "Добился загрузки на 20% быстрее Podman на k8s-кластере из 12 нод: 100 образов размером от 1 МБ до 5 ГБ.",
     ],

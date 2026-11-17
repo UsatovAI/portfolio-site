@@ -19,8 +19,8 @@ export function Footer({ variant, locale }: { variant: PortfolioVariant; locale:
     variant === "devops"
       ? { href: "/resume-devops.pdf?v=2026-08-21", label: t.devopsResume }
       : variant === "jvm"
-        ? { href: "/resume.pdf?v=2026-08-21", label: t.jvmResume }
-        : { href: "/resume.pdf?v=2026-08-21", label: t.resume };
+        ? { href: "/resume.pdf?v=2026-11-17", label: t.jvmResume }
+        : { href: "/resume.pdf?v=2026-11-17", label: t.resume };
 
   return (
     <footer className="border-t border-border">

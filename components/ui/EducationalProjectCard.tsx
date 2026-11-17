@@ -7,7 +7,7 @@ export function EducationalProjectCard({ project, locale }: { project: Project; 
       <p className="font-mono text-caption text-terminal">{project.role}</p>
       <h3 className="mt-3 text-h3 text-text-primary">{project.title}</h3>
       <p className="mt-2 text-body font-medium text-text-primary">{project.summary}</p>
-      <p className="mt-3 text-body text-text-secondary">{project.description}</p>
+      {project.description ? <p className="mt-3 text-body text-text-secondary">{project.description}</p> : null}
 
       <div className="mt-6">
         <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-caption text-text-secondary" aria-label={ui[locale].projects.stackLabel}>
